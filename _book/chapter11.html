@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kristie Campana">
+
+<title>12&nbsp; Correlations – Statistics for Social Scientists Who Are A Little Afraid of Them</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter12.html" rel="next">
+<link href="./chapter10.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-3e54a2ba524a9c641b796d074eb695a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter11.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Correlations</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics for Social Scientists Who Are A Little Afraid of Them</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Why Write This Book?</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentals of Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Samples and Populations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Understanding Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Getting to Know Your Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">T-Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Between-Subject ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Within-Subject ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Factorial Designs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Non-Parametric Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter11.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Correlations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mediation and Moderation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-correlation" id="toc-sec-correlation" class="nav-link active" data-scroll-target="#sec-correlation"><span class="header-section-number">13</span> Chapter 11: Correlations</a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">13.1</span> Learning Objectives</a></li>
+  <li><a href="#pearson-correlation-coefficient" id="toc-pearson-correlation-coefficient" class="nav-link" data-scroll-target="#pearson-correlation-coefficient"><span class="header-section-number">13.2</span> Pearson Correlation Coefficient</a></li>
+  <li><a href="#other-correlations" id="toc-other-correlations" class="nav-link" data-scroll-target="#other-correlations"><span class="header-section-number">13.3</span> Other Correlations</a>
+  <ul class="collapse">
+  <li><a href="#sec-phi" id="toc-sec-phi" class="nav-link" data-scroll-target="#sec-phi"><span class="header-section-number">13.3.1</span> Phi and Cramer’s V</a></li>
+  <li><a href="#point-biserial-correlation" id="toc-point-biserial-correlation" class="nav-link" data-scroll-target="#point-biserial-correlation"><span class="header-section-number">13.3.2</span> Point-Biserial Correlation</a></li>
+  <li><a href="#spearmans-rho-and-kendalls-tau" id="toc-spearmans-rho-and-kendalls-tau" class="nav-link" data-scroll-target="#spearmans-rho-and-kendalls-tau"><span class="header-section-number">13.3.3</span> Spearman’s Rho and Kendall’s Tau</a></li>
+  </ul></li>
+  <li><a href="#writing-the-results-of-a-correlation" id="toc-writing-the-results-of-a-correlation" class="nav-link" data-scroll-target="#writing-the-results-of-a-correlation"><span class="header-section-number">13.4</span> Writing the Results of a Correlation</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Correlations</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kristie Campana </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sec-correlation" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Chapter 11: Correlations</h1>
+<section id="learning-objectives" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">13.1</span> Learning Objectives</h2>
+<ul>
+<li>Know what a Pearson correlation is, and what types of data it requires.</li>
+<li>What phi and Cramer’s V correlations are, and what types of data they require.</li>
+<li>What a point-biserial is, and what type of data it requires.</li>
+<li>What Spearman’s rho and Kendall’s tau are, and what types of data they require.</li>
+<li>How to write up the results of a correlation.</li>
+</ul>
+</section>
+<section id="pearson-correlation-coefficient" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="pearson-correlation-coefficient"><span class="header-section-number">13.2</span> Pearson Correlation Coefficient</h2>
+<p>Perhaps one of the most prevalent statistics in most social sciences is the Pearson correlation. This is prevalent enough that most introductory social science courses at least provide the very basics of what a correlation is. The general introduction into correlations tells us that correlations have three important pieces of information they tell us:</p>
+<ol type="1">
+<li><p>Correlations can range from -1.00 to +1.00</p></li>
+<li><p>The strength of the relationship between variables is indicated by the magnitude of the number. The closer it gets to +/- 1.00, the stronger the relationship. A correlation of zero indicates no relationship.</p></li>
+<li><p>The direction of the relationship is indicated by whether the value is positive or negative. Positive relationships indicate the variables move in the same direction together (when one goes up, the other goes up). Negative relationships indicate an inverse relationship between variables (when one goes up, the other goes down).</p></li>
+</ol>
+<p>This is a great place to start, but it’s worth discussing a few more nuances of the statistic. First, one point worth mentioning is that the Pearson correlation assumes a linear relationship. So it’s worth it to check a scatterplot to make sure the relationship looks roughly linear, because if it’s something else (like a curve or a doughnut shape) the results might indicate there is no relationship between variables when there actually is… it’s just not a linear relationship.</p>
+<p>[insert images of non-linear relationships to illustrate]</p>
+<p>Secondly, if we were to plot a line that best fit our correlation, the Pearson correlation coefficient doesn’t provide us information about what that line would look like – that is information that we get from a regression, which is covered in section <a href="chapter12.html" class="quarto-xref"><span>Chapter 14</span></a>.</p>
+<p>Let’s walk through an example. Let’s say I’m doing a study on meditation, and I want to see whether the number of minutes someone meditates throughout the week is associated with their happiness, their stress levels, and how much they like meditating. I collect data from 20 participants, and it looks like this:</p>
+<div id="tbl-meditate" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-meditate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13.1: Meditation data
+</figcaption>
+<div aria-describedby="tbl-meditate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Meditation</th>
+<th>Happiness</th>
+<th>Stress</th>
+<th>Liking</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>111</td>
+<td>53</td>
+<td>42</td>
+<td>41</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>97</td>
+<td>39</td>
+<td>50</td>
+<td>46</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>123</td>
+<td>41</td>
+<td>55</td>
+<td>75</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>130</td>
+<td>58</td>
+<td>36</td>
+<td>60</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>99</td>
+<td>70</td>
+<td>50</td>
+<td>61</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>83</td>
+<td>65</td>
+<td>59</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>99</td>
+<td>67</td>
+<td>46</td>
+<td>48</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>89</td>
+<td>54</td>
+<td>52</td>
+<td>50</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>80</td>
+<td>55</td>
+<td>39</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>115</td>
+<td>54</td>
+<td>51</td>
+<td>52</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>76</td>
+<td>57</td>
+<td>46</td>
+<td>42</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>42</td>
+<td>33</td>
+<td>71</td>
+<td>73</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>73</td>
+<td>63</td>
+<td>49</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>118</td>
+<td>59</td>
+<td>63</td>
+<td>45</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>121</td>
+<td>69</td>
+<td>43</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>82</td>
+<td>53</td>
+<td>38</td>
+<td>36</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td>91</td>
+<td>50</td>
+<td>54</td>
+<td>48</td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td>97</td>
+<td>68</td>
+<td>27</td>
+<td>49</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td>53</td>
+<td>41</td>
+<td>64</td>
+<td>62</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>167</td>
+<td>71</td>
+<td>43</td>
+<td>57</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>First, let’s dig into the correlational analysis between minutes spent meditating and levels of happiness. Here’s a scatterplot of the relationship, which shows that it appears to be linear, so a Pearson correlation is a good option for us to use.</p>
+<div id="fig-simplescatter" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot between mediation and happiness; it shows a positive relationship, with higher meditation associated with more happiness.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simplescatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/simplescatter.png" class="img-fluid figure-img" alt="A scatterplot between mediation and happiness; it shows a positive relationship, with higher meditation associated with more happiness.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simplescatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.1: A scatterplot of meditation and happiness
+</figcaption>
+</figure>
+</div>
+<p>The first step to understanding the correlation is understanding something we call <strong>covariance</strong>. Covariance is a way of identifying if two variables “move together” – we see some of this in our scatterplot – people who tend to meditate more also tend to have a higher level of happiness. It’s not a perfect relationship; even though participants #5 and #7 are meditating the same amount, they have different happiness scores. But as scores move higher on minutes of meditation, happiness also trends up. Mathematically, here’s what that looks like:</p>
+<p><span class="math inline">\(cov_{xy}= \frac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{N-1}\)</span></p>
+<p>What covariance does is it takes each individual’s score on meditation, and subtracts the mean of mediation time (which is 97.30 in these data). It then takes each individual’s score on happiness and subtracts the mean of happiness (55.45 in these data). It then multiplies those two values together. Once that’s done, you sum those values up, and divide that total my N-1 (to adjust for the fact that our sample will slightly underestimate what’s going on in the population).</p>
+<div id="fig-bisected" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The scatterplot is bisected into quadrants by lines at the means for meditation and happiness. Most dots are in the upper right and lower left quadrant.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bisected-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/scatterref.png" class="img-fluid figure-img" alt="The scatterplot is bisected into quadrants by lines at the means for meditation and happiness. Most dots are in the upper right and lower left quadrant.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bisected-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.2: Scatterplot with lines at the mean for meditation and happiness.
+</figcaption>
+</figure>
+</div>
+<p>Let’s take a moment here and note that the majority of data tends to clump up in the upper right and lower left quadrants of this graph. This means that the <span class="math inline">\((x_i-\bar{x})(y_i-\bar{y})\)</span> part of the equation will usually be positive (in the upper right quandrant, we are multiplying two positive values together, and in the lower left quadrant, we are multiplying two negative values together, which equals a positive number). Put a pin in this point, as we’ll return to it during our second example.</p>
+<p>Covariance is a very important concept, and one that you’ll hear more throughout the rest of your statistical journey. But, there is a shortcoming of covariance: when we have a scale that is quite large as we do here, the covariance is also going to be large. As we’ve learned with other statistics, it’s helpful if we can figure out a way to standardize this value. And as you’ve seen before, standard deviation is one way we can do this. So, the equation for a Pearson correlation is:</p>
+<p><span class="math inline">\(r=\frac{cov(xy)}{s_xs_y}\)</span></p>
+<p>This ensures that this value can never be less than -1.00 or higher than +1.00, which helps make it more interpretable among data sets that might have smaller scales (like if we are using a 1 to 5 Likert scale or a GPA).</p>
+<p>I’ll spare you the tedious math here, and tell you that the calculations indicate <em>r=</em>.49, which is a moderately large correlation in most social sciences. Significance is determined in most statistical programs as a t-test:</p>
+<p><span class="math inline">\(t_r=\frac{r \sqrt{N-2}}{\sqrt{1-r^2}}\)</span></p>
+<p>In the case of our data, this results in a t value of 2.38. Degrees of freedom are N-2 here, so our critical t value is 2.10, so we can conclude that our correlation is significant.</p>
+<p>Because correlations are so important, it’s worth briefly walking through two more examples (and we’ll discuss them again in section <a href="chapter12.html" class="quarto-xref"><span>Chapter 14</span></a> when we review regression).</p>
+<p>Let’s take a look at the scatterplot for minutes of meditation and stress:</p>
+<div id="fig-negscatter" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot of mediation and stress. It demonstrates a negative relationship.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-negscatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/negscatter.png" class="img-fluid figure-img" alt="A scatterplot of mediation and stress. It demonstrates a negative relationship.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-negscatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.3: Scatterplot of meditation and stress
+</figcaption>
+</figure>
+</div>
+<p>Right away, we can see that it looks very different from the previous example, because the data points are gathered in the top left and bottom right quadrants. If you think back to our formula for covariance:</p>
+<p><span class="math inline">\(cov_{xy}= \frac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{N-1}\)</span></p>
+<p>you can see that for most data points in this correlation, if they are above the mean in meditation time, they are below the mean on stress, and vice versa. This means that the covariance will be negative (because a positive number times a negative number leads to a negative product), which in turn, means the correlation will be negative (<em>r</em>=-.41, to be exact!).</p>
+<p>Meanwhile, if we look at the scatterplot between meditation time and liking meditation:</p>
+<div id="fig-zerocorr" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot of mediation and liking. It shows no notable trend in the data.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zerocorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/zerocorr.png" class="img-fluid figure-img" alt="A scatterplot of mediation and liking. It shows no notable trend in the data.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zerocorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.4: A scatterplot of meditation and liking
+</figcaption>
+</figure>
+</div>
+<p>you will see that the data points are distributed pretty equally across all four quadrants. This means that when we sum it up, some of the positive and negative values will cancel each other out, which means our correlation will be pretty small (<em>r</em>=.04 in this case).</p>
+<p>I would be remiss if I didn’t say what all statistics teachers say: Correlation is not causation. Correlations can’t be used in experiments, so based on these results, we can’t say that meditation is causing higher happiness and lower stress, they are just related. It might be the other way around (happy people and people with low stress are more likely to meditate) or there could be another causal factor (people with money have the time to meditate, and they are happier and less stressed). So, be careful in how you talk about correlations so that you’re not implying a causal link.</p>
+</section>
+<section id="other-correlations" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="other-correlations"><span class="header-section-number">13.3</span> Other Correlations</h2>
+<p>The vast majority of the time, when someone says “correlation” they are talking about a Pearson correlation, but there are some other useful correlations that are worth knowing about. Whereas a Pearson correlation is intended for two continuous variables, we sometimes might have different types of variables where we need a correlation.</p>
+<section id="sec-phi" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="sec-phi"><span class="header-section-number">13.3.1</span> Phi and Cramer’s V</h3>
+<p>To start, I want to briefly address a correlation that I already hinted at in section <a href="chapter10.html#sec-chitoi" class="quarto-xref"><span>Section 12.3</span></a> – the phi correlation. The phi is useful when we have two categorical variables, each with two categories apiece. For example, imagine we want to learn about the relationship between dog ownership and exercise:</p>
+<div id="tbl-dogwalk" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dogwalk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13.2: Frequency of dog ownership and daily walks
+</figcaption>
+<div aria-describedby="tbl-dogwalk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 27%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Takes a daily walk</th>
+<th>Does not take a daily walk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Owns a dog</strong></td>
+<td>30</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td><strong>Does not own a dog</strong></td>
+<td>20</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>A chi-square is certainly one possible option here. But perhaps we’re interested in an effect size; a correlation is a useful way to gauge an effect size, since it’s a statistic that generalizes across different scales and sample sizes (this is not the case for a chi-square test value). But the phi value is very easy to get if you’ve already done a chi-square test of independence:</p>
+<p><span class="math inline">\(\phi = \sqrt{\frac{\chi^2}{n}}\)</span></p>
+<p>For this data, we obtain a chi-square value of 4.00 and an n of 100, so the equation works out to:</p>
+<p><span class="math inline">\(\phi = \sqrt{\frac{4.00}{100}}=.20\)</span></p>
+<p>Phi values can be interpreted mostly like a correlation, with values closer to +/-1 indicating a stronger relationship, so this is a fairly small relationship. With Pearson correlations, the direction matters; with phi, it doesn’t really matter, because it’s arbitrary which group we put in which order, as there is no amount attached to the category. So, it’s smart to also provide a table of your results so your audience can understand the nature of the relationship.</p>
+<p>But what about if we have a chi-square where we have more than two categories in one or both variables? In this case, the appropriate calculation is a <strong>Cramer’s V:</strong></p>
+<p><span class="math inline">\(V=\sqrt{\frac{\chi^2}{n \times min(r-1,c-1)}}\)</span></p>
+<p>What this formula does is in the denominator, we multiply the sample size by whichever value is larger, the number of rows minus one, or the number of columns minus one. If we take the data from <a href="chapter10.html#sec-chitoi" class="quarto-xref"><span>Section 12.3</span></a> on parental and child smoking behaviors:</p>
+<table class="caption-top table">
+<caption>Table of youth and parental smoking behaviors; expected values, rounded to the nearest whole number, are provided in parentheses.</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Never-smoker</th>
+<th>Early Regular</th>
+<th>Early Experimental</th>
+<th>Late Experimental</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Non-smoker</strong></td>
+<td>16</td>
+<td>16</td>
+<td>38</td>
+<td>37</td>
+</tr>
+<tr class="even">
+<td><strong>Former smoker</strong></td>
+<td>36</td>
+<td>3</td>
+<td>28</td>
+<td>59</td>
+</tr>
+<tr class="odd">
+<td><strong>Current smoker</strong></td>
+<td>69</td>
+<td>5</td>
+<td>26</td>
+<td>67</td>
+</tr>
+</tbody>
+</table>
+<p>We obtained a chi-square value of 48.20, and we can see that we have fewer rows than columns, so:</p>
+<p><span class="math inline">\(V=\sqrt{\frac{48.20}{n \times (3-1)}}=.25\)</span></p>
+<p>So, again, here we have a fairly small effect. Note also that if we have a chi-square with two groups in each variable, you basically end up with the formula for phi. Again, Cramer’s V is best shared with a table so the audience can understand the nature of the relationship between the variables.</p>
+</section>
+<section id="point-biserial-correlation" class="level3" data-number="13.3.2">
+<h3 data-number="13.3.2" class="anchored" data-anchor-id="point-biserial-correlation"><span class="header-section-number">13.3.2</span> Point-Biserial Correlation</h3>
+<p>Another helpful type of correlation is the point-biserial correlation, where we are correlating a <u>dichotomous</u> variable with a continuous variable. A common use of this statistic is in test development to examine the quality of an item. So, imagine that we have an item on a test that we’ve scored 1 for correct and zero for incorrect. We also have each participants total score on the test. We can correlate the correctness with the total score:</p>
+<div id="tbl-pbs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pbs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13.3: Participant score on item and test
+</figcaption>
+<div aria-describedby="tbl-pbs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Score on Item</th>
+<th>Score on Test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>0</td>
+<td>37</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>0</td>
+<td>24</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>0</td>
+<td>37</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>0</td>
+<td>34</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>0</td>
+<td>51</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>0</td>
+<td>66</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>0</td>
+<td>42</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>0</td>
+<td>36</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>1</td>
+<td>52</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>1</td>
+<td>68</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>1</td>
+<td>79</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>1</td>
+<td>85</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>1</td>
+<td>60</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>1</td>
+<td>58</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>1</td>
+<td>90</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td>1</td>
+<td>84</td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td>1</td>
+<td>44</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td>1</td>
+<td>87</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>1</td>
+<td>92</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The good news is, mathematically, the formula for the point-biserial is the same as the formula for a Pearson; if we do the calculations, we’ll see a <span class="math inline">\(r_{pb}\)</span> of .74. This is good news for this test item! What it’s saying is that people who score well on my test tend to get this question correct, and those who score poorly on my test get this question wrong, which is what we’d expect. If we saw a negative correlation here, it means my students who score well on the exam get this question wrong, that likely means I have a bad item (either it is “tricky” so my strong students get confused and answer wrong, or perhaps I’ve made a mistake on my answer key).</p>
+<p>You might be asking “If it’s mathematically the same as a Pearson correlation, why do we need a special statistic?” The main reason is that because one variable is dichotomous, it breaks some of the assumptions of a Pearson correlation (such as the assumption we have roughly normal distributions in both variables). It’s also a good reminder that we probably need to provide an interpretation for our audience. For example, if we did a point-biserial correlation on man and women and their scores on a test, the way we code the data is arbitrary (i.e., there’s no reason why we’d have to code men = 1 and women = 2, we can choose whatever numbers we want for each group). So, we need to add in some extra interpretation when sharing our result to clarify for our audience which group has a higher score on our continuous variable.</p>
+<p>You might also be asking “Wait, if we’re looking at a dichotomous variable and a continuous variable, can’t we just do an independent t-test?” And… yes, you can! Really, the point-biserial is just the effect size of a t-test, so they both tell you the same thing, but sometimes putting it on a -1 to +1 scale can be helpful (like for my test development example, where test developers are very used to looking at point-biserials).</p>
+<p>One final question you might have is that I underlined the word <u>dichotomous</u> a few paragraphs ago, so you may wonder “Can I use a point-biserial correlation if my variable is <u>dichotomized</u>?” Nope! There is another type of correlation called a biserial correlation and that is more appropriate for a dichotomized variable, because there is a distribution that underlies the dichotomous variable. I used to teach this formula to my students, but it’s not something people use much. Usually it is better to leave a continuous variable alone rather than dichotomize it; plus, biserials are fiddly and a lot of statistical programs (like SPSS) don’t even offer it as an option, so you might end up having to do the math by hand. The information is out there if you ever need it, but I’ve stopped teaching this statistic to my students because it’s so rare to use it (I have never personally needed it!)</p>
+</section>
+<section id="spearmans-rho-and-kendalls-tau" class="level3" data-number="13.3.3">
+<h3 data-number="13.3.3" class="anchored" data-anchor-id="spearmans-rho-and-kendalls-tau"><span class="header-section-number">13.3.3</span> Spearman’s Rho and Kendall’s Tau</h3>
+<p>The last set of alternative correlations I like to cover applies to ordinal data. Ordinal data is a little tricky to work with, and I largely avoid talking about it in introductory statistics courses, but these two values can come in useful in case you want to see if a ranked order remains the same or if it changes. As an example, let’s say that I have some students and I am ranking them on their skills in some classes:</p>
+<div id="tbl-skillrank" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-skillrank-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13.4: Student rankings on skills
+</figcaption>
+<div aria-describedby="tbl-skillrank-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Student</th>
+<th>Math</th>
+<th>Art</th>
+<th>Logical Reasoning</th>
+<th>Reading</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Adam</td>
+<td>1</td>
+<td>12</td>
+<td>2</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td>Betty</td>
+<td>2</td>
+<td>11</td>
+<td>1</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td>Calvin</td>
+<td>3</td>
+<td>10</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>Danielle</td>
+<td>4</td>
+<td>9</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>Edgar</td>
+<td>5</td>
+<td>8</td>
+<td>6</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Fern</td>
+<td>6</td>
+<td>7</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>George</td>
+<td>7</td>
+<td>6</td>
+<td>8</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Harriet</td>
+<td>8</td>
+<td>5</td>
+<td>9</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>Igor</td>
+<td>9</td>
+<td>4</td>
+<td>10</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>Jackie</td>
+<td>10</td>
+<td>3</td>
+<td>9</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Kevin</td>
+<td>11</td>
+<td>2</td>
+<td>12</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Liz</td>
+<td>12</td>
+<td>1</td>
+<td>11</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Compare each set of scores to the math scores, and you’ll notice some trends:</p>
+<ul>
+<li><p>Art scores are perfectly inverse of the Math scores, with the worst students Math students scoring the best on Art, and vice versa.</p></li>
+<li><p>Logical Reasoning scores are mostly in the same order, but with lots of inversions – Betty is better than Adam in Logic, but not on Math, and so on.</p></li>
+<li><p>Reading scores in the middle are the same as math scores, but the top and bottom scores are out of order.</p></li>
+</ul>
+<p>I set these up to help highlight the difference between Spearman’s Rho and Kendall’s Tau. They both are useful, but they are sensitive to different things. The formula for Spearman’s Rho is the same as a Pearson correlation. So, it is sensitive to the overall order and whether it is preserved between the two measures. Kendall’s tau is a bit different. Here, it counts the number of inversions in the data, and compares it to the number of pairs of objects:</p>
+<p><span class="math inline">\(\tau=1-\frac{2(Number\;of\;inversions)}{N(N-1)/2}\)</span></p>
+<p>So, when we look at the data and think about this, we can expect that the rho between Math and Logical Reasoning will be pretty good (the data order is mostly preserved) but our tau estimation will be lower, because there are lots of inversions. Meanwhile, the rho between Math and Reading will drop quite a bit because the 4 most extreme scores have swapped, but tau will look a little better because the other 8 have no inversions.</p>
+<p>Here are the actual values we obtain if we do the math:</p>
+<div id="tbl-rhotau" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rhotau-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13.5: Rho and Tau calculations for data
+</figcaption>
+<div aria-describedby="tbl-rhotau-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variables</th>
+<th>Rho</th>
+<th>Tau</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Math and Art</td>
+<td>-1.00</td>
+<td>-1.00</td>
+</tr>
+<tr class="even">
+<td>Math and Logical Reasoning</td>
+<td>.96</td>
+<td>.82</td>
+</tr>
+<tr class="odd">
+<td>Math and Reading</td>
+<td>-.40</td>
+<td>-.09</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Our expectations bear out here – Math and Art have a perfectly inverse relationship, so we see a perfect -1.00 correlation for both rho and tau. For Math and Logical reasoning, we do see that the flip-flops in the data drop Tau much more than they do Rho. And for Math and reading, we see that the four swapped scores lead to a much lower rho than tau.</p>
+<p>So which one is the right one to use? It ultimately depends on what you care more about in your research. If the general order of rankings matters most, use rho; if inversions matter, use tau. When in doubt, rho is conceptually similar to a correlation, so that tends to be used more commonly.</p>
+</section>
+</section>
+<section id="writing-the-results-of-a-correlation" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="writing-the-results-of-a-correlation"><span class="header-section-number">13.4</span> Writing the Results of a Correlation</h2>
+<p>The good news here is that writing correlations is typically very brief and straightforward for the most part. When sharing the results of a correlation, you want to convey the following information to your audience:</p>
+<ul>
+<li><p>What type of correlation you are using (if you just say “correlation” your reader will assume it’s a Pearson correlation)</p></li>
+<li><p>The correlation value.</p></li>
+<li><p>Some journals also like to have degrees of freedom for Pearson correlations.</p></li>
+<li><p>For Pearson, point-biserial, Spearman, and Kendall correlations, you typically provide significance values. For phi and Cramer’s V, significance values are not typically given, but if you want to provide them, they will be the same value as the related chi-square significance.</p></li>
+<li><p>In the case of phi, Cramer’s V, and point-biserials, an interpretation of the direction of the results – again, this is because the direction of these statistics is arbitrary so you must interpret them for your audience.</p></li>
+</ul>
+<blockquote class="blockquote">
+<p>The correlation between meditation and happiness was moderately strong, <em>r</em>(18)=.49, <em>p</em>&lt;.001.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>A phi correlation suggests a moderate correlation, <span class="math inline">\(\phi\)</span>=.20. Specifically, people who own a dog are more likely to take a daily walk.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>A point-biserial correlation indicates the test item is not functioning appropriately, <span class="math inline">\(r_{pb}\)</span> = .74, <em>p</em>&lt;.001. Specifically, students who tend to score higher on the overall test tend to do poorly on this item.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>A Spearman correlation suggests that there is a strong association between ranked scores for Math and Logical Reasoning, <span class="math inline">\(\rho\)</span>=.96, <em>p</em>&lt;.001.</p>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter10.html" class="pagination-link" aria-label="Non-Parametric Tests">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Non-Parametric Tests</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter12.html" class="pagination-link" aria-label="Regression">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Regression</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

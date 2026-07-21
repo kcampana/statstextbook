@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kristie Campana">
+
+<title>14&nbsp; Logistic Regression – Statistics for Social Scientists Who Are A Little Afraid of Them</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter14.html" rel="next">
+<link href="./chapter12.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-3e54a2ba524a9c641b796d074eb695a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter13.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logistic Regression</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics for Social Scientists Who Are A Little Afraid of Them</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Why Write This Book?</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentals of Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Samples and Populations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Understanding Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Getting to Know Your Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">T-Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Between-Subject ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Within-Subject ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Factorial Designs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Non-Parametric Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Correlations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter13.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mediation and Moderation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-13-logistic-regression" id="toc-chapter-13-logistic-regression" class="nav-link active" data-scroll-target="#chapter-13-logistic-regression"><span class="header-section-number">15</span> Chapter 13: Logistic Regression</a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">15.1</span> Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#probability-odds-and-logit" id="toc-probability-odds-and-logit" class="nav-link" data-scroll-target="#probability-odds-and-logit"><span class="header-section-number">15.1.1</span> Probability, Odds and Logit</a></li>
+  <li><a href="#conducting-a-simple-logistic-regression" id="toc-conducting-a-simple-logistic-regression" class="nav-link" data-scroll-target="#conducting-a-simple-logistic-regression"><span class="header-section-number">15.1.2</span> Conducting a simple Logistic Regression</a></li>
+  <li><a href="#multiple-logistic-regression" id="toc-multiple-logistic-regression" class="nav-link" data-scroll-target="#multiple-logistic-regression"><span class="header-section-number">15.1.3</span> Multiple Logistic Regression</a></li>
+  </ul></li>
+  <li><a href="#writing-the-results-of-a-logistic-regression" id="toc-writing-the-results-of-a-logistic-regression" class="nav-link" data-scroll-target="#writing-the-results-of-a-logistic-regression"><span class="header-section-number">15.2</span> Writing the Results of a Logistic Regression</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logistic Regression</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kristie Campana </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="chapter-13-logistic-regression" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Chapter 13: Logistic Regression</h1>
+<section id="learning-objectives" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">15.1</span> Learning Objectives</h2>
+<ul>
+<li><p>Know what a binary logistic regression is, and what kinds of research questions it can address.</p></li>
+<li><p>Know the ways that a logistic regression differs from a regular linear regression.</p></li>
+<li><p>Know the assumptions of a logistic regression, and how violations might affect your results.</p></li>
+<li><p>Know how to interpret the results of a logistic regression.</p></li>
+</ul>
+<p>Chapter 12 has hopefully demonstrated that regressions can be very powerful tools for analyzing multiple predictors on a continuous outcome. However, you can certainly imagine many contexts in which our outcome is binary – dead/alive, successful/unsuccessful, pass/fail, right/wrong. However, a simple graph shows that when we try to map a continuous predictor to a binary outcome, a regression line is not a great fit!</p>
+<p>[insert graph]</p>
+<p>This is where a procedure known as logistic regression comes into play. Logistic regression fits an S-shaped curve (sometimes known as an ogive curve or a sigmoidal curve) to the data. As you can see, this is a better approximation of what’s going on in the data:</p>
+<p>[insert figure]</p>
+<p>At the leftmost side of this S-curve, the line is very close to zero, but it never quite reaches zero. In the middle of the curve, we see a fairly steep curvy line, and that leads to the rightmost side where our line creeps closer and closer to 1, but never quite reaches it. In plain language, when we’re discussing human behavior, we can’t ever really say there is a perfect zero chance someone will do something, nor can we say there’s 100% chance they will do something. Probabilities can approach these values, but never quite reach them. That probability is what we are trying to model with a logistic regression.</p>
+<p>Logistic regression can be a bit mathematically intimidating, but it is a very helpful procedure that shows up in a lot of contexts. One good example we discuss is the issue of whether someone gets an item correct or incorrect on an exam<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. In this chapter, we’ll talk a lot about whether an “event” happens. Usually in data sets, we use a 0 and 1 coding to establish our binary outcome.</p>
+<p>Take, for example, the dataset test item, where we have information about students from two different classes, their math ability on a standardized test, whether they are an international student, and whether they got a particular item correct on an exam. The item is coded as 1 if they get the question right, so we can think of the “event” we’re interested in as “answers the question correctly”:</p>
+<table class="caption-top table">
+<caption>The first few rows of the test item data set</caption>
+<thead>
+<tr class="header">
+<th>id</th>
+<th>class</th>
+<th>math_ability</th>
+<th>international</th>
+<th>item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>52</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2</td>
+<td>59</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>1</td>
+<td>57</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>1</td>
+<td>47</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>Imagine that this test item is a word problem intended to assess math ability. So, maybe our first question is whether a student’s math ability assessed with another test predicts whether a student will get this item right or wrong. A logistic regression is a good way to answer this question, but first, we need to touch on the topic of probability, odds, and logit.</p>
+<section id="probability-odds-and-logit" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="probability-odds-and-logit"><span class="header-section-number">15.1.1</span> Probability, Odds and Logit</h3>
+<p>Hopefully at this point, you are getting a little more comfortable with the concept of probability. Probability is all about the likelihood of something happening based on the total of events. If we grab a table way back from Chapter ?? where we looked at the association of violent media and aggression:</p>
+<table class="caption-top table">
+<caption>Contingency table of exposure to violent media and aggression</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 17%">
+<col style="width: 22%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Aggression</th>
+<th>No Aggression</th>
+<th>TOTAL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Exposed to Violent Media</strong></td>
+<td>90</td>
+<td>10</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td><strong>Not Exposed to Violent Media</strong></td>
+<td>60</td>
+<td>40</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td><strong>TOTAL</strong></td>
+<td>150</td>
+<td>50</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p>As you learned in Chapter ???, we can calculate a probability of an event by looking at the event compared to the total. So, if we want to know the probability of aggression among children exposed to violent media, we calculate:</p>
+<p><span class="math inline">\(p(Aggression|Exposed) =\frac{90}{100}=.90\)</span></p>
+<p>However, odds are different than probabilities. Odds are all about the comparison between something happening versus it not happening (rather than the total). This is calculated using probability:</p>
+<p><span class="math inline">\(odds=\frac{p}{1-p}\)</span></p>
+<p>Note how the denominator is different here – Instead of using the total as our denominator, we’re using the probability of the event <em>not</em> happening. So, for our example, the odds that a participant will be aggressive given that they are exposed to violent media is:</p>
+<p><span class="math inline">\(\frac{90}{10}=9\)</span>.0</p>
+<p>As you can see, whereas probabilities are squeezed into a limited range (they can only be between .00 and 1.00) odds can range from 0 to infinity. When an event is quite common in a group, the odds can be quite large.</p>
+<p>It will also be helpful to talk about risk ratios and odds ratios. These are essentially effect sizes for probabilities and odds. To calculate the risk ratio (also known as relative risk) of a child being aggressive when exposed to violent media, I take a ratio of the two probabilities (that is, the probability of aggression given a child is exposed to violent media, and the probability of aggression if a child is not exposed to violent media:</p>
+<p><span class="math inline">\(p(Aggression|Exposed)= \frac{90}{100}=.90\)</span></p>
+<p><span class="math inline">\(p(Aggression|Not\:Exposed)=\frac{60}{100}=.60\)</span></p>
+<p><span class="math inline">\(RR=\frac{.90}{.60}=1.50\)</span></p>
+<p>Practically speaking, I can state “Children with exposure to violent media are 1.50 times more likely to show aggression than those who are not exposed to violent media.”</p>
+<p>The odds ratio works the same way, except we use odds instead of probabilities for the comparison:</p>
+<p><span class="math inline">\(odds_{exposed}=\frac{.90}{.10}=9.0\)</span></p>
+<p><span class="math inline">\(odds_{not\:exposed}=\frac{.60}{.40}=1.5\)</span></p>
+<p><span class="math inline">\(OR=\frac{9.0}{1.5}=6.0\)</span></p>
+<p>Here, I can state “The <strong>odds</strong> of aggression among children who are exposed to violent media are 6 times the <strong>odds</strong> of children not exposed to violent media.” Note that we have to say “odds” here – <strong>not</strong> likelihood or probability! This also shows that when a certain outcome is common, odds and odds ratios are larger than probabilities and risk ratios, so it can sometimes mislead people into thinking an effect is larger than it actually is.</p>
+<p>OK, I need to add one more wrinkle to this discussion before we dive into logistic regression, and that is something known as a logit. This sometimes is a little difficult for students to absorb, because we don’t deal with logarithms often so it’s easy to forget how they work.</p>
+<p>You know how we have certain math procedures that are opposites? Like addition and subtraction, or like multiplication and division – these procedures “undo” each other. Logarithms are basically this except for exponents. So, if:</p>
+<p><span class="math inline">\(5^3=125\)</span></p>
+<p>then</p>
+<p><span class="math inline">\(log_5(125)=3\)</span></p>
+<p>The log returns the exponent we’d need to take the base number (5) and get it to equal the power (125). One specific type of log is the natural log (ln), where the base number is <span class="math inline">\(e\)</span> (roughly equal to 2.718… don’t worry too much about what e is, it has to do with how numbers compound over time). The logit, is the natural logarithm of the odds, which we calculate like this:</p>
+<p><span class="math inline">\(Logit(Y) = ln(odds)\)</span></p>
+<p>So for our example, if we need to get the logit of our odds, we would calculate:</p>
+<p><span class="math inline">\(logit(9) = ln(9.0)\approx2.20\)</span></p>
+<p>I admit that this can be a bit of a mindbender, so why are we doing this to ourselves?? The answer is twofold:</p>
+<ol type="1">
+<li><p>Using the logit essentially takes our curvy S-curve and maps it onto a regular line, which makes it a little easier for us to interpret. More on this in a little bit!</p></li>
+<li><p>Using the logit also helps move our probabilities and odds into a more symmetrical scale, which allows us to understand direction and magnitude more clearly. The table below translates different probabilities into odds and odds ratios. You’ll see that the logit rescales our values into something that has zero as its midpoint, and gives positive and negative values meaning.</p></li>
+</ol>
+<table class="caption-top table">
+<caption>Probability, Odds, and Log Odds</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Probability</th>
+<th>Odds</th>
+<th>Logit</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>.01</td>
+<td>.01</td>
+<td>-4.59</td>
+<td>Event is unlikely to occur</td>
+</tr>
+<tr class="even">
+<td>.50</td>
+<td>1</td>
+<td>0</td>
+<td>Event is equally likely to occur versus not occur</td>
+</tr>
+<tr class="odd">
+<td>.99</td>
+<td>99</td>
+<td>+4.59</td>
+<td>Event is very likely to occur</td>
+</tr>
+</tbody>
+</table>
+<p>I personally find looking at the probability of .50 helpful here – if we flip a coin, we have a 50% chance of getting tails. We have odds of 1 (sometimes known as even odds or 1:1). And we have a logit of zero. All of these values mean the same thing – the likelihood of heads and tails are equal. We are just re-translating that information to a different scale. It’s a little complicated, but very useful for logistic regression.</p>
+</section>
+<section id="conducting-a-simple-logistic-regression" class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="conducting-a-simple-logistic-regression"><span class="header-section-number">15.1.2</span> Conducting a simple Logistic Regression</h3>
+<p>Back to the research question at hand: “Does a student’s math score predict whether they will get this item correct?” Conducting a logistic regression allows us to fit an S-curve to the data and provides us with some estimates of how likely it is a student will answer the item correctly, given their score on the math exam. There are several pieces of information that can be very helpful in exploring this question. First, I find it very helpful to look at some contingency tables, which help us understand how our model can improve our accuracy.</p>
+<p>First, it’s very helpful to start with a baseline measure of how accurate we can be without using a predictor. When we had a continuous outcome, we would just use the average as our most basic model. However, with a binary outcome, this won’t work all that well – instead, what we do is we take the most common outcome, and assume this occurs for everyone. If we do that, how accurate are we?</p>
+<p>Here are the results we should get from our data:</p>
+<table class="caption-top table">
+<caption>Predicted and Observed Outcomes; bold values indicate where we have guessed the outcome correctly.</caption>
+<thead>
+<tr class="header">
+<th>Observed Values</th>
+<th>Predicted Values</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Incorrect answer</td>
+<td>Correct answer</td>
+</tr>
+<tr class="even">
+<td>Incorrect answer</td>
+<td><strong>54</strong></td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Correct answer</td>
+<td>46</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>In the case of the test item data, we can see that out of 100 participants, 54 participants answered the question incorrectly. So, if we went ahead and assumed that nobody answered the question correctly, we would only be right 54 out of 100 times, so we’d have 54% accuracy. Not great! But this is good news for us – this basic model is pretty lousy, so we have lots of room for improvement. If we had 90% of people answering the item incorrectly, just guessing that everyone got it wrong would mean we’d be right 90% of the time, and it would be difficult to improve on that accuracy.</p>
+<p>Next, we can use our statistical program to use our predictor to predict whether people get the answer right or wrong. Remember in Chapter ??? when we could use B values in a regression to provide a fitted value (i.e.&nbsp;where the point would be on our best fit line)? Our statistical program is doing basically the same thing here, except it’s calculating a probability and using that to guess whether they got the answer right – if the probability is over 50%, it guesses that they got the answer right, and if it’s below 50%, it guesses that they got it wrong. We can then use those fitted values to see if our accuracy improves.</p>
+<p>Here are the results we should get from our data:</p>
+<table class="caption-top table">
+<caption>Predicted and Observed Outcomes; bold values indicate where we have guessed an outcome correctly.</caption>
+<thead>
+<tr class="header">
+<th>Observed Values</th>
+<th>Predicted Values</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Incorrect answer</td>
+<td>Correct answer</td>
+</tr>
+<tr class="even">
+<td>Incorrect answer</td>
+<td><strong>40</strong></td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td>Correct answer</td>
+<td>13</td>
+<td><strong>33</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Using information from students’ math scores, we can see that our model accurately predicts incorrect answers in 73 cases, and accurately predicts correct answers in 33 cases. Our model isn’t perfect – it made an inaccurate prediction in 27 cases, but this means we have 73% accuracy, which is much better than our initial accuracy of 54%. So, in terms of practical implications, it seems like our model is useful!</p>
+<p>We also have some values known as pseudo-R squares that function mostly like a typical <span class="math inline">\(R^2\)</span> – one of the better statistics for this is known as the Nagelkerke R square (or some programs call it the Cragg and Uhler R square… it’s the same thing). In our example, we find Nagelkerke R square is .39, so about 39% of the differences in whether students get the question right is explained by their math score.</p>
+<p>If I’m trying to explain logistic regression to laypeople, this is usually where I stop, because from here on out, things get pretty technical. Unfortunately for you, I consider you to be a technical audience, so we’re going to dig into the results a little more. In most programs, you’ll get a table that might look something like this:</p>
+<p>[insert graphic]</p>
+<p>One useful value we get from most programs is something known as a Wald value<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. This is a type of chi-square value, and this is the value we typically use to determine whether the predictor’s influence is significant. In research, Wald values are often reported, along with their respective p-value.</p>
+<p>Just like with a regular regression, we also get an unstandardized coefficient (i.e.&nbsp;a B-value). But remember, our model isn’t linear, it’s an S-curve! So, we can’t treat these values the same way as we do in a normal regression. Back when we were doing a linear regression, we were able to predict someone’s score by using this equation:</p>
+<p><span class="math inline">\(\hat{y}=b_0+b_1(x)\)</span></p>
+<p>But, there’s an important difference in logistic regression! We can still input a y-intercept and a slope, but the outcome is no longer someone’s score. Instead, it is the logit of an event happening:</p>
+<p><span class="math inline">\(logit=b_0+b_1(x)\)</span></p>
+<p>Let’s walk through an example to understand how this works. Imagine that we have a student who has earned a score of 81 on the math test. We can input that score into this equation to figure out the logit of them getting that item correct:</p>
+<p><span class="math inline">\(logit=b_0+b_1(x)=-8.71+.17(81)=5.06\)</span></p>
+<p>So, if someone has a score of 81 on the math test, the logit of them getting this item correct is 5.06. If we have someone with a point higher on the test, an 82, we know their logit increases by .17 (remember, one reason we use logit is to put our data on a straight line, so the logit increases in a linear way).</p>
+<p>I don’t know about you, but I would prefer not to work in logits because they are confusing and hard to explain. Instead, I’d prefer to talk about odds or probability. The good news is that it’s pretty easy to calculate the odds – we just have to “exponentiate” this value:</p>
+<p><span class="math inline">\(e^{(b_0+b_1(x))}\)</span></p>
+<p>Going back to our example, if we want to know the odds of someone getting this question right if they have a math score of 81, we take <span class="math inline">\(e\)</span> to the 5.06 power:</p>
+<p><span class="math inline">\(e^{5.06}\approx157.59\)</span></p>
+<p>This means this person’s odds of getting the item right are over 157 to one – in other words, it seems reasonable to predict they will get the item correct. If you prefer probability instead of odds, that’s easy enough to convert:</p>
+<p><span class="math inline">\(probability=\frac{odds}{1+odds}\)</span></p>
+<p><span class="math inline">\(probability=\frac{157.59}{158.59}\approx .994\)</span></p>
+<p>The probability that this person will get that item correct are very high. Again, this value will never quite reach 100%, but it can get very close. If I were going to make a bet, I’d feel very comfortable betting that this person would get this test item correct.</p>
+<p>Odds and probability are really helpful for explaining how we can predict an outcome given a value on the predictor. However, one downside here is that once we move away from logits, we are back to dealing with a curvilinear relationship. So we can no longer say that a one point change on our predictor leads to a certain change in the odds or the probability of an outcome. The illustration below shows how the odds and probability change a lot in the mid-range values, but change only a little at the bottom and top ends of the predictor because of the S-curve.</p>
+<p>[applet]</p>
+<p>The main point here is that just like with a linear regression, those B values are very helpful for estimating what someone’s outcome is likely to be, but we don’t tend to report them much in reports or articles. We generally stick to the Wald value, or the odds ratio, which I’ll cover next.</p>
+<p>Most programs will provide you with an odds ratio (OR), sometimes labeled as Exp(B). This value is just the exponentiated slope in our equation ( <span class="math inline">\(e^{\:.17}\approx 1.19\)</span> ). This tells us for a one point change in our predictor variable, how many times higher the odds are the event will happen. So this means that if a student is one point higher on their math test, the odds they will get this question correct go up by 1.19. And remember that because we’re talking about odds, the “neutral point” for the odds ratio is a 1. Here, we see this value is a bit above 1, so this means that as math scores go up, the odds of getting this question right also increase. Odds ratios can be a little confusing when they are new to you, but researchers who deal with a lot of binary outcomes are used to seeing them and understanding them. For example, topics around healthcare and health behavior have a lot of binary outcomes, so those types of journals often have lists of odds ratios in their tables.</p>
+</section>
+<section id="multiple-logistic-regression" class="level3" data-number="15.1.3">
+<h3 data-number="15.1.3" class="anchored" data-anchor-id="multiple-logistic-regression"><span class="header-section-number">15.1.3</span> Multiple Logistic Regression</h3>
+<p>Just like with a standard linear regression, the beauty of logistic regression is that it’s quite flexible, so we can use it with multiple variables, and with multiple types of variables (e.g., continuous, dichotomous). We can also do things like hierarchical or exploratory regression. I’ll leave aside the hierarchical and exploratory pieces, but I do think walking through a multiple logistic regression can help solidify what you are learning in this chapter.</p>
+<p>Let’s return to the test item data set. Let’s redo our logistic regression, but let’s add the two additional predictors in – which class a participant is in, and whether or not they are international students. When I run a logistic regression, here is the output I see:</p>
+<table class="caption-top table">
+<caption>Predicted and Observed Outcomes; bold values indicate where we have guessed an outcome correctly.</caption>
+<thead>
+<tr class="header">
+<th>Observed Values</th>
+<th>Predicted Values</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Incorrect answer</td>
+<td>Correct answer</td>
+</tr>
+<tr class="even">
+<td>Incorrect answer</td>
+<td><strong>47</strong></td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>Correct answer</td>
+<td>7</td>
+<td><strong>39</strong></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<caption>Logistic Regression Coefficients</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th>B</th>
+<th>SE</th>
+<th>Wald</th>
+<th>df</th>
+<th>Sig.</th>
+<th>OR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>class</td>
+<td>.71</td>
+<td>.74</td>
+<td>.92</td>
+<td>1</td>
+<td>.34</td>
+<td>2.04</td>
+</tr>
+<tr class="even">
+<td>math_ability</td>
+<td>.27</td>
+<td>.07</td>
+<td>15.20</td>
+<td>1</td>
+<td>&lt;.001</td>
+<td>1.31</td>
+</tr>
+<tr class="odd">
+<td>international</td>
+<td>-4.14</td>
+<td>.88</td>
+<td>22.27</td>
+<td>1</td>
+<td>&lt;.001</td>
+<td>.016</td>
+</tr>
+<tr class="even">
+<td>constant</td>
+<td>-12.89</td>
+<td>4.34</td>
+<td>15.42</td>
+<td>1</td>
+<td>&lt;.001</td>
+<td>.000</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(R^2\)</span></td>
+<td>.73</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Let’s start with the easier findings. First, we can see from the significance values that class doesn’t appear to predict whether someone will answer this item correctly, but math ability and international status do. We can also see from our contingency table that we have continued to improve our predictions – with no predictors, we know that we’d only get it right about 54% of the time. With all three predictors, that value jumps up to 86%, so we also are going to be more accurate in making guesses about our participants outcomes if we have these predictors in our model. So, this is all good news for us so far!</p>
+<p>The odds ratios also tell us that as these values go up, the odds of getting the answer correct also go up. We already know from before that as someone’s math ability is higher, they are more likely to get the item correct. We also see that people in the class 2 are more likely to get the item correct (though it is too small of a difference to be statistically significant). Finally, and perhaps more worrisome here, is that our international students are unlikely to answer this item correctly (the B value is negative, and our odds ratio is less than 1). So, maybe we need to revisit the item to ensure it doesn’t have a cultural bias of some sort that’s preventing our international students from doing well.</p>
+<p>Finally, if I wanted to predict whether someone was apt to get a question correct if they were in class 1, they were an international student, and they had a math ability of 60, I could do so:</p>
+<p><span class="math inline">\(logit=b_0+b_1(x_1)+b_2(x_2)+b_3(x_3)=-12.88+(1\times.71)+(.27\times60)+(1\times-4.14) = -0.11\)</span></p>
+<p><span class="math inline">\(odds \approx e^{-.11}\approx.90\)</span></p>
+<p><span class="math inline">\(probability\approx\frac{.90}{1+.90}\approx .47\)</span></p>
+<p>In simple terms, it’s slightly more likely this student will get the question wrong than they will get it right.</p>
+</section>
+</section>
+<section id="writing-the-results-of-a-logistic-regression" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="writing-the-results-of-a-logistic-regression"><span class="header-section-number">15.2</span> Writing the Results of a Logistic Regression</h2>
+<p>There’s a little less consistency in how people share the results of a logistic regression.</p>
+<ul>
+<li><p>For a non-scientific audience, I recommend providing information about the contingency table, the pseudo-R square, and information about the odds or odds ratio.</p></li>
+<li><p>For a scientific audience, I recommend providing the Wald value, its significance, odds ratios, the pseudo-R square and information about the contingency table.</p></li>
+<li><p>Although b values are helpful in most applied situations, we don’t typically share them in scientific reports.</p></li>
+</ul>
+<blockquote class="blockquote">
+<p>A logistic regression indicates that the model improves prediction from 56% accuracy to 86% accuracy. Ultimately, we see that participants with high math scores and domestic students are more likely to answer the item correctly. About 73% of the differences in students answers can be explained by the variables in our model.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>A logistic regression indicates that international status and math ability significantly predict how participants answer the question (<em>p</em>&lt;.001). Class, however, is not predictive (<em>p</em>=.34). The model explains approximately 73% of the variance in responses. Refer to Table x for details about Wald values and odds ratios.</p>
+</blockquote>
+
+
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>If you have every heard of Item Response Theory (IRT), this is closely related to logistic regression – basically, we are hoping that the latent variable we are trying to measure relates to whether someone gets an item about that variable right or wrong, and that theory uses an S-shaped curve to model this relationship.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>SPSS provides a Wald test, but other programs, like R, provide a z-test instead. If you prefer to provide a Wald test value, the good news is you just square the z value to get the Wald test. The p-values are identical between the two tests, so you can report them as is.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter12.html" class="pagination-link" aria-label="Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Regression</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter14.html" class="pagination-link" aria-label="Mediation and Moderation">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mediation and Moderation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
