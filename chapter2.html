@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kristie Campana">
+
+<title>3&nbsp; Samples and Populations – Statistics for Social Scientists Who Are A Little Afraid of Them</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter3.html" rel="next">
+<link href="./chapter1.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-3e54a2ba524a9c641b796d074eb695a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter2.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Samples and Populations</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics for Social Scientists Who Are A Little Afraid of Them</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Why Write This Book?</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentals of Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Samples and Populations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Understanding Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Getting to Know Your Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">T-Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Between-Subject ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Within-Subject ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Factorial Designs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Non-Parametric Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Correlations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mediation and Moderation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-samples" id="toc-sec-samples" class="nav-link active" data-scroll-target="#sec-samples"><span class="header-section-number">3.1</span> Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#defining-a-population" id="toc-defining-a-population" class="nav-link" data-scroll-target="#defining-a-population"><span class="header-section-number">3.1.1</span> Defining a population</a></li>
+  <li><a href="#simple-random-samples" id="toc-simple-random-samples" class="nav-link" data-scroll-target="#simple-random-samples"><span class="header-section-number">3.1.2</span> Simple random samples</a></li>
+  <li><a href="#most-samples-are-not-simple-random-samples" id="toc-most-samples-are-not-simple-random-samples" class="nav-link" data-scroll-target="#most-samples-are-not-simple-random-samples"><span class="header-section-number">3.1.3</span> Most samples are not simple random samples</a></li>
+  <li><a href="#how-much-does-it-matter-if-you-dont-have-a-simple-random-sample" id="toc-how-much-does-it-matter-if-you-dont-have-a-simple-random-sample" class="nav-link" data-scroll-target="#how-much-does-it-matter-if-you-dont-have-a-simple-random-sample"><span class="header-section-number">3.1.4</span> How much does it matter if you don’t have a simple random sample?</a></li>
+  <li><a href="#population-parameters-and-sample-statistics" id="toc-population-parameters-and-sample-statistics" class="nav-link" data-scroll-target="#population-parameters-and-sample-statistics"><span class="header-section-number">3.1.5</span> Population parameters and sample statistics</a></li>
+  </ul></li>
+  <li><a href="#sampling-distributions-and-the-central-limit-theorem" id="toc-sampling-distributions-and-the-central-limit-theorem" class="nav-link" data-scroll-target="#sampling-distributions-and-the-central-limit-theorem"><span class="header-section-number">3.2</span> Sampling distributions and the central limit theorem</a>
+  <ul class="collapse">
+  <li><a href="#sampling-distribution-of-the-sample-means" id="toc-sampling-distribution-of-the-sample-means" class="nav-link" data-scroll-target="#sampling-distribution-of-the-sample-means"><span class="header-section-number">3.2.1</span> Sampling distribution of the sample means</a></li>
+  </ul></li>
+  <li><a href="#the-central-limit-theorem" id="toc-the-central-limit-theorem" class="nav-link" data-scroll-target="#the-central-limit-theorem"><span class="header-section-number">3.3</span> The central limit theorem</a></li>
+  <li><a href="#models-ways-of-understanding-the-world" id="toc-models-ways-of-understanding-the-world" class="nav-link" data-scroll-target="#models-ways-of-understanding-the-world"><span class="header-section-number">3.4</span> Models: Ways of Understanding the World</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Samples and Populations</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kristie Campana </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sec-samples" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-samples"><span class="header-section-number">3.1</span> Learning Objectives</h2>
+<ul>
+<li><p>Understand what a population is.</p></li>
+<li><p>Understand what a sample is, and some of the ways we might draw a sample from a population.</p></li>
+<li><p>Evaluate how a particular sampling method might lead a sample to be a poor representation of a population.</p></li>
+<li><p>Understand the concept of a distribution of sample means, and understand how the central limit theorem means that the sample mean distribution will be a normal curve regardless of the population distribution.</p></li>
+<li><p>Understand the concept of a “model” and how models can be used to adjust our understanding of social science phenomena.</p></li>
+</ul>
+<p>If you recall back in <a href="chapter1.html#sec-fundamentals" class="quarto-xref"><span>Section 2.1</span></a>, I noted that the definition of statistics is “The practice or science of collecting and analyzing numerical data in large quantities, especially for the purpose of inferring proportions in a whole from those in a representative sample.” In this chapter, we’re going to dive into the last part of that definition – our ability to infer something from a sample.</p>
+<p>Also, recall in <a href="chapter1.html#sec-design" class="quarto-xref"><span>Section 2.4.2</span></a> I introduced you to the concept of Theoryland and Dataland. There, we talked about how in Theoryland, we might have a construct we’d like to measure, but that we have to bridge the gap between Theoryland and Dataland by creating an operational definition of our construct, which allows us to measure that variable in the real world and obtain data about that variable.</p>
+<p>That analogy is useful in this chapter too, as we think about how we can bridge the gap between a sample we obtain in the real world (Dataland) and what that sample can tell us about the population at hand (Theoryland). In a nutshell, when we talk about “inferring” something from our sample, this is our bridge between Theoryland and Dataland in this context.</p>
+<section id="defining-a-population" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="defining-a-population"><span class="header-section-number">3.1.1</span> Defining a population</h3>
+<p>A sample is a concrete thing (i.e., it exists in Dataland). You can open up a data file, and there’s the data from your sample. A <strong>population</strong>, on the other hand, is a more abstract idea (i.e., it exists in Theoryland). It refers to the set of all possible people, or all possible observations, that you want to draw conclusions about, and is generally <strong>much</strong> bigger than the sample… so big that it is not possible for us to find everyone in this population if we want to conduct research. In an ideal world, the researcher would begin the study with a clear idea of what the population of interest is, since the process of designing a study and testing hypotheses about the data that it produces does depend on the population about which you want to make statements. However, that doesn’t always happen in practice: usually the researcher has a fairly vague idea of what the population is and designs the study as best they can on that basis.</p>
+<p>Sometimes it’s easy to state the population of interest. For instance, when researchers conduct political polls, the population is typically “all eligible voters at the a time of the study” – millions of people. So, if I want to learn more about voters, I can probably find a way to sample a few thousand of them to learn more about their opinions. However, a lot of research questions don’t necessarily focus on such a specific population. Suppose I run an experiment using 100 undergraduate students as my participants. My goal, as a professor, is to try to discover what teaching techniques are most effective for students. So, which of the following would count as “the population”:</p>
+<ul>
+<li><p>All of the undergraduate psychology students at my institution?</p></li>
+<li><p>Undergraduate students in general, anywhere in the world?</p></li>
+<li><p>Psychology undergraduate students anywhere in the world?</p></li>
+<li><p>People who could potentially become psychology students?</p></li>
+<li><p>Anyone currently alive?</p></li>
+<li><p>Any human being, past, present or future?</p></li>
+</ul>
+<p>Each of these defines a real group of mind-possessing entities and it’s not at all clear which one ought to be the true population of interest.</p>
+</section>
+<section id="simple-random-samples" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="simple-random-samples"><span class="header-section-number">3.1.2</span> Simple random samples</h3>
+<p>Regardless of how we define the population, the critical point is that the sample is a subset of the population, and our goal is to use our knowledge of the sample to draw inferences about the properties of the population. The relationship between the two depends on the <strong>procedure</strong> by which the sample was selected. This procedure is referred to as a <strong>sampling method</strong>, and it is important to understand why it matters.</p>
+<p>To keep things simple, imagine we have a bag containing 10 chips. Each chip has a unique letter printed on it, so we can distinguish between the 10 chips. The chips come in two colors, black and white.</p>
+<div id="fig-srs1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-srs1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/srs1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-srs1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Simple random sampling without replacement from a finite population
+</figcaption>
+</figure>
+</div>
+<p>This set of chips is the population of interest, and it is depicted graphically on the left of <a href="#fig-srs1" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>.</p>
+<p>As you can see from looking at the picture, there are 4 black chips and 6 white chips, but of course in real life we wouldn’t know that unless we looked in the bag. Now imagine you run the following “experiment”: you shake up the bag, close your eyes, and pull out 4 chips without putting any of them back into the bag. First out comes the <span class="math inline">\(a\)</span> chip (black), then the <span class="math inline">\(c\)</span> chip (white), then <span class="math inline">\(j\)</span> (white) and then finally <span class="math inline">\(b\)</span> (black). If you wanted, you could then put all the chips back in the bag and repeat the experiment, as depicted on the right hand side of <a href="#fig-srs1" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>. Each time you get different results, but the procedure is identical in each case. The fact that the same procedure can lead to different results each time, we refer to it as a <strong>random</strong> process. However, because we shook the bag before pulling any chips out, it seems reasonable to think that every chip has the same chance of being selected. A procedure in which every member of the population has the same chance of being selected is called a <strong>simple random sample</strong>. The fact that we did <strong>not</strong> put the chips back in the bag after pulling them out means that you can’t observe the same thing twice, and in such cases the observations are said to have been sampled <strong>without replacement</strong>.</p>
+<p>To help make sure you understand the importance of the sampling procedure, consider an alternative way in which the experiment could have been run. Suppose instead that I opened the bag, and decided to pull out four black chips without putting any of them back in the bag. This <strong>biased</strong> sampling scheme is depicted in <a href="#fig-brs" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>.</p>
+<div id="fig-brs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-brs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/brs.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Biased sampling without replacement from a finite population
+</figcaption>
+</figure>
+</div>
+<p>Now consider the evidentiary value of seeing 4 black chips and 0 white chips. Clearly, my biased sampling scheme is problematic. If I admit that I peeked in the bag ahead of time, you should know to be skeptical of my findings. However, if I don’t share that my sample is biased, or if I don’t realize that this is a bad way to sample, you may come away with the incorrect assumption that there are only black chips in the bag. For this reason, statisticians prefer it when we are transparent about how we sample our population, and ideally, we want a simple random sample because it makes the data analysis <strong>much</strong> easier.</p>
+<p>A third procedure is worth mentioning. This time around we close our eyes, shake the bag, and pull out a chip. This time, however, we record the observation and then put the chip back in the bag. Again we close our eyes, shake the bag, and pull out a chip. We then repeat this procedure until we have 4 chips. Data sets generated in this way are still simple random samples, but because we put the chips back in the bag immediately after drawing them it is referred to as a sample <strong>with replacement</strong>. The difference between this situation and the first one is that it is possible to observe the same population member multiple times, as illustrated in <a href="#fig-srs2" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>.</p>
+<div id="fig-srs2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-srs2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/srs2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-srs2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: Simple random sampling with replacement from a finite population
+</figcaption>
+</figure>
+</div>
+<p>Most psychology experiments tend to be sampling without replacement, because the same person is not allowed to participate in the experiment twice. However, most statistical theory is based on the assumption that the data arise from a simple random sample <strong>with</strong> replacement. In real life, this very rarely matters. If the population of interest is large (e.g., has more than 10 entities!) the difference between sampling with- and without- replacement is too small to be concerned with. The difference between simple random samples and biased samples, on the other hand, is not such an easy thing to dismiss.</p>
+</section>
+<section id="most-samples-are-not-simple-random-samples" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="most-samples-are-not-simple-random-samples"><span class="header-section-number">3.1.3</span> Most samples are not simple random samples</h3>
+<p>As you can see from looking at the list of possible populations that I showed above, it is almost impossible to obtain a simple random sample from most populations of interest. When I run experiments, I’d consider it a minor miracle if my participants turned out to be a random sampling of the undergraduate psychology students at Minnesota State University, even though this is by far the narrowest population that I might want to generalize to. A thorough discussion of other types of sampling schemes is beyond the scope of this book, but to give you a sense of what’s out there I’ll list a couple of common strategies:</p>
+<ul>
+<li><p><strong>Stratified sampling</strong> is helpful if we can divide the population into different sub-populations (strata). At my institution, the population of students is largely white, so if I wanted to make sure to ensure that other races are well-represented in my data, I might specifically identify other races on campus and purposely sample from those groups. If a group is particularly rare on campus (such as indigenous groups) I might even <strong>oversample</strong> by getting an overly large proportion of those people to ensure I hear their opinions.</p></li>
+<li><p><strong>Snowball sampling</strong> is useful when I need to find a population that is hidden or hard to access. This can be common in social sciences, because we often want to study populations like this. A good example is if I want to get opinions among transgender people – this population is relatively small, and some transgender people may not want to be identified as such because they may not be out to other people, or they may be worried about their safety. So, I would start by finding a group of transgender people who are willing to share their opinion. At the end of my survey, I ask participants to provide contact details for other transgender people who might want to participate. I contact those people, have them take my survey, and then ask them for more contact details. This process continues – much like a snowball rolling down a hill and growing larger as it collects more snow, my sample will “snowball” into a larger sample with the help of my participants. This gets us a lot of hard-to-obtain data. However, we have to be sensitive about the ethics of this sample (i.e., is it OK for a participant to give me someone’s contact information, or will they feel this violates their privacy?) It also is definitely <strong>not</strong> a random sample, because we tend to know people with whom we have a lot in common, so there might be other groups of transgender people I’m missing out on that might be very different from the sample I end up with.</p></li>
+<li><p><strong>Convenience sampling</strong> is more or less what it sounds like. The samples are chosen in a way that is convenient to the researcher, and not selected at random from the population of interest. Snowball sampling is one type of convenience sampling, but there are many others. A common example in psychology are studies that rely on undergraduate psychology students. These samples are generally non-random in two respects: firstly, reliance on undergraduate psychology students automatically means that your data are restricted to a single sub-population. Secondly, the students usually get to pick which studies they participate in, so the sample is a self selected subset of psychology students not a randomly selected subset. In real life, most studies are convenience samples of one form or another. This is sometimes a severe limitation, but not always.</p></li>
+</ul>
+</section>
+<section id="how-much-does-it-matter-if-you-dont-have-a-simple-random-sample" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="how-much-does-it-matter-if-you-dont-have-a-simple-random-sample"><span class="header-section-number">3.1.4</span> How much does it matter if you don’t have a simple random sample?</h3>
+<p>Okay, so real world data collection tends not to involve nice simple random samples. Does that matter? A little thought should make it clear to you that it <strong>can</strong> matter if your data are not a simple random sample: just think about the difference between <a href="#fig-srs1" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> and <a href="#fig-brs" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>. However, it’s not quite as bad as it sounds. Some types of biased samples are entirely unproblematic. For instance, when using a stratified sampling technique you actually <strong>know</strong> what the bias is because you created it deliberately, often to <strong>increase</strong> the effectiveness of your study, and there are statistical techniques that you can use to adjust for the biases you’ve introduced (not covered in this book!). So in those situations it’s not a problem.</p>
+<p>More generally though, it’s important to remember that random sampling is a means to an end, not the end in itself. Let’s assume you’ve relied on a convenience sample, and as such you can assume it’s biased. A bias in your sampling method is only a problem if it causes you to draw the wrong conclusions. When viewed from that perspective, I’d argue that we don’t need the sample to be randomly generated in <strong>every</strong> respect: we only need it to be random with respect to the psychologically-relevant phenomenon of interest. Suppose I’m doing a study looking at working memory capacity. In study 1, I actually have the ability to sample randomly from all human beings currently alive, with one exception: I can only sample people born on a Monday. In study 2, I am able to sample randomly from the Australian population. I want to generalize my results to the population of all living humans. Which study is better? The answer, obviously, is study 1. Why? Because we have no reason to think that being “born on a Monday” has any interesting relationship to working memory capacity. In contrast, I can think of several reasons why “being Australian” might matter. Australia is a wealthy, industrialized country with a very well-developed education system. People growing up in that system will have had life experiences much more similar to the experiences of the people who designed the tests for working memory capacity. This shared experience might easily translate into similar beliefs about how to “take a test”, a shared assumption about how psychological experimentation works, and so on. These things might actually matter. For instance, “test taking” style might have taught the Australian participants how to direct their attention exclusively on fairly abstract test materials relative to people that haven’t grown up in a similar environment; leading to a misleading picture of what working memory capacity is.</p>
+<p>There are two points hidden in this discussion. First, when designing your own studies, it’s important to think about what population you care about, and try hard to sample in a way that is appropriate to that population. In practice, you’re usually forced to put up with a “sample of convenience” (e.g., psychology lecturers sample psychology students because that’s the least expensive way to collect data, and our coffers aren’t exactly overflowing with gold), but if so you should at least spend some time thinking about what the dangers of this practice might be.</p>
+<p>Second, if you’re going to criticize someone else’s study because they’ve used a sample of convenience rather than laboriously sampling randomly from the entire human population, at least have the courtesy to offer a specific theory as to <strong>how</strong> this might have distorted the results. Remember, everyone in science is aware of this issue, and does what they can to alleviate it. Merely pointing out that “the study only included people from group X” is entirely unhelpful, and borders on being insulting to the researchers, who are aware of the issue. They just don’t happen to be in possession of the infinite supply of time and money required to construct the perfect sample. In short, if you want to offer a responsible critique of the sampling process, then be <strong>helpful</strong>. Rehashing the blindingly obvious truisms that I’ve been rambling on about in this section isn’t helpful.</p>
+</section>
+<section id="population-parameters-and-sample-statistics" class="level3" data-number="3.1.5">
+<h3 data-number="3.1.5" class="anchored" data-anchor-id="population-parameters-and-sample-statistics"><span class="header-section-number">3.1.5</span> Population parameters and sample statistics</h3>
+<p>Okay. Setting aside the thorny methodological issues associated with obtaining a random sample, let’s consider a slightly different issue, which is how that sample relates to the population. The easiest way to talk about this is for us to run a little simulation. Let’s say that I’m an all-knowing god-like figure who exists in Theoryland, and therefore I have access to the entire population I want to study. Let’s say the population I’m interested in is a tiny slice of people who experience both a button phobia (koumpounophobia) and a fear of otters (lutraphobia). These are both fairly unusual conditions, so let’s say that the entire population on the planet of these people is only 10,000 people. And let’s say that I want to study this population’s IQ. Here in Theoryland, because I’m an all-knowing being, I <strong>know</strong> that the IQ of this population is 100, with a standard deviation of 15. These characteristics of the population are known as <strong>population parameters</strong>. If you use R, it’s pretty simple to generate this population using this code:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>population<span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Unfortunately for us, we live here in Dataland, where it’s not possible for us to access the full population. So, instead, I draw a sample from this population. Let’s start with a sample of 25 people – a bit on the small side. When I use this code to draw this sample, I can take a look at the <strong>sample statistics</strong> – that is, things like the mean and standard deviation of that sample. I can also take a look at a histogram that shows me the frequency of scores:</p>
+<div id="fig-sample1histo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sample1histo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/sample1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample1histo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: A histogram of a random sample (n=25) of the population
+</figcaption>
+</figure>
+</div>
+<p>If you run this code, you’ll get a slightly different sample from what I did, but based on my findings, I see a mean of 102.09 and a standard deviation of 16.12. You can also see that this histogram is a bit lumpy, but it follows a basic bell curve with most scores in the middle, and a few scores that are on the high or low ends of the IQ scores. And we can see that the means and standard deviations are close to the population parameters, but they are not perfect.</p>
+<p>Let’s try this again with a really big sample – lets say I get 5,000 people.</p>
+<div id="fig-sample2histo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sample2histo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/sample2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample2histo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.5: A histogram of a random sample (n=5,000) of the population
+</figcaption>
+</figure>
+</div>
+<p>Here, my mean is 99.87 and my standard deviation is 15.06, which are closer to the parameter values. You’ll also notice my histogram is much smoother and looks even more like a normal distribution. Why did this happen?</p>
+<p>This phenomenon is known as the <strong>law of large numbers</strong>. The law of large numbers is a mathematical law that applies to many different sample statistics, but the simplest way to think about it is as a law about averages. The sample mean is the most obvious example of a statistic that relies on averaging (because that’s what the mean is… an average), so let’s look at that. <strong>When applied to the sample mean, what the law of large numbers states is that as the sample gets larger, the sample mean tends to get closer to the true population mean.</strong> Or, to say it a little bit more precisely, as the sample size “approaches” infinity (written as <span class="math inline">\(N \rightarrow \infty\)</span>) the sample mean approaches the population mean (<span class="math inline">\(\bar{X} \rightarrow \mu\)</span>).</p>
+<p>The main takeaway here is that a large sample tends to do a better job of approximating parameters compared to a small sample.</p>
+</section>
+</section>
+<section id="sampling-distributions-and-the-central-limit-theorem" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sampling-distributions-and-the-central-limit-theorem"><span class="header-section-number">3.2</span> Sampling distributions and the central limit theorem</h2>
+<p>The law of large numbers is a very powerful tool, but it’s not going to be good enough to answer all our questions. Among other things, all it gives us is a “long run guarantee”. In the long run, if we were somehow able to collect an infinite amount of data, then the law of large numbers guarantees that our sample statistics will be correct. But as John Maynard Keynes famously argued in economics, a long run guarantee is of little use in real life:</p>
+<blockquote class="blockquote">
+<p>[**The] long run is a misleading guide to current affairs. In the long run we are all dead. Economists set themselves too easy, too useless a task, if in tempestuous seasons they can only tell us, that when the storm is long past, the ocean is flat again.**&nbsp;<span class="citation" data-cites="Keynes1923">(<a href="#ref-Keynes1923" role="doc-biblioref">Keynes 1923</a>)</span></p>
+</blockquote>
+<p>This is true in social science generally. It is not enough to know that we will <strong>eventually</strong> arrive at the right answer when calculating the sample mean. Knowing that an infinitely large data set will tell me the exact value of the population mean is cold comfort when my <strong>actual</strong> data set has a sample size that is much less than infinity. In real life, then, we must know something about the behavior of the sample mean when it is calculated from a smaller data set!</p>
+<section id="sampling-distribution-of-the-sample-means" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="sampling-distribution-of-the-sample-means"><span class="header-section-number">3.2.1</span> Sampling distribution of the sample means</h3>
+<p>So far, we’ve been talking about a sample or two from a population. But imagine again that we are a god-like entity living in Theoryland. We have infinite resources and time, so imagine that we decide to take infinite samples from the population, and for each sample, I calculate the mean of that sample, and I put each sample mean into a data set. That data set that I create provides something we can call <strong>the sampling distribution of the sampling means.</strong> I know that name is long and awkward, but I don’t make the rules around here.</p>
+<p>I want to jump into a different example for this topic. Let’s say that I want to give a sample of 20 people a 10-sided die and ask them to roll it 10 times, and I record whatever value they roll. If this die is fair, it’s equally likely to land on each number, so we see a <strong>uniform distribution</strong> – that is, a flat line that indicates there’s a 10% chance of each value being rolled.</p>
+<div id="uniform" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/uniform.png" class="img-fluid figure-img" alt="A histogram that looks roughly uniform across a range of 1 to 20 for a die role"></p>
+<figcaption>A uniform distribution of 2,000 die rolls</figcaption>
+</figure>
+</div>
+<p>So now, let’s say that I decide to take 10,000 samples of 10 people rolling dice. For each sample, I record what value people roll, and I add that to my data set and calculate the mean. Here’s a little animation that shows how a few of these samples I collect with the mean of each sample indicated by the vertical line:</p>
+<div id="diesamplegif" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/diesamples.gif" class="img-fluid figure-img" alt="A gif shows that each sample has a uniform distribution, with the mean being somewhere between 5 and 6."></p>
+<figcaption>Three samples from our die rolling data</figcaption>
+</figure>
+</div>
+<p>First question: Are all the sample means the same? The answer to this is “No.” As you can see in the animation, the vertical line moves around a bit – it tends to stay relatively close to the middle values of 5 and 6, but sometimes it is much higher or lower than that.</p>
+<p>Second question: If I continued to do this for 10,000 samples and I kept a record of each sample’s mean and put it on a histogram, what would that histogram look like? It’s tempting to say that, because this data comes from a uniform distribution, that the distribution would also be uniform. In fact, this is what we see:</p>
+<div id="samplemeans" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/samplemeans.png" class="img-fluid figure-img" alt="A histogram of sample means that falls into a normal distribution curve"></p>
+<figcaption>A distribution of 10,000 sample means</figcaption>
+</figure>
+</div>
+<p>What the heck?! How did that happen? Why do we have a normal curve here? The answer is a fancy little thing called the <strong>central limit theorem.</strong> We’ll talk about that more in a moment, but let me walk through what exactly is happening here.</p>
+<p>First of all, let’s think about what the “average” would be if we rolled the dice 10 times and got a perfect uniform distribution where the die turned up each number once. So my data set would be:</p>
+<p>1 2 3 4 5 6 7 8 9 10</p>
+<p>What’s the mean of this? If we calculate it, we find:</p>
+<p><span class="math inline">\((1+2+3+4+5+6+7+8+9+10)/10 = 5.5\)</span></p>
+<p>So, this tells us the mean of each sample should generally be pretty close to 5.5. That won’t happen every time, but there are a lot of combinations of numbers that would lead to a sample having a mean of 5.5. For example:</p>
+<p>1 2 2 4 5 6 7 8 10 10</p>
+<p>3 3 4 4 5 5 7 8 8 8</p>
+<p>But there’s only one way to get a mean of 1:</p>
+<p>1 1 1 1 1 1 1 1 1 1</p>
+<p>And there’s only one way to get a mean of 10:</p>
+<p>10 10 10 10 10 10 10 10 10 10</p>
+<p>So, our distribution of sample means shows that it’s going to be fairly common to get a sample mean around 5.5, and that it’s unusual (but not impossible) to get a mean that’s closer to 1 or to 10. But the main point here is that even though our population distribution is uniform, the sampling distribution of sample means is going to be a normal distribution. OK, cool! But why do you need to care about this? The central limit theorem holds the key to this!</p>
+</section>
+</section>
+<section id="the-central-limit-theorem" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="the-central-limit-theorem"><span class="header-section-number">3.3</span> The central limit theorem</h2>
+<p>Now you’ve seen lots of sampling distributions, and you know what the sampling distribution of the mean is. Here, we’ll focus on <strong>how the sampling distribution of the mean changes as a function of sample size.</strong></p>
+<p>Intuitively, you already know part of the answer: if you only have a few observations, the sample mean is likely to be quite inaccurate (you’ve already seen it bounce around): if you replicate a small experiment and recalculate the mean you’ll get a very different answer. In other words, the sampling distribution is quite wide. If you replicate a large experiment and recalculate the sample mean you’ll probably get the same answer you got last time, so the sampling distribution will be very narrow.</p>
+<p>Let’s give ourselves a nice movie to see everything in action. Let’s return to the earlier example using IQ scores. <a href="#fig-sampdistgif" class="quarto-xref">Figure&nbsp;<span>3.6</span></a> has four panels, each panel represents a different sample size (n), including sample-sizes of 10, 50, 100, and 1000. The red line shows the shape of the normal distribution. The grey bars show a histogram of each of the samples that we take. The red line shows the mean of an individual sample (the middle of the grey bars). As you can see, the red line moves around a lot, especially when the sample size is small (10).</p>
+<p>The new bits are the blue bars and the blue lines. The blue bars represent the sampling distribution of the sample mean. For example, in the panel for sample-size 10, we see a bunch of blue bars. This is a histogram of 10 sample means, taken from 10 samples of size 10. In the 50 panel, we see a histogram of 50 sample means, taken from 50 samples of size 50, and so on. The blue line in each panel is the mean of the sample means (“aaagh, it’s a mean of means”, yes it is).</p>
+<div id="fig-sampdistgif" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sampdistgif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/sampleDistNormal-1.gif" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sampdistgif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.6: Animation of samples (grey histogram shows frequency counts of data in each sample), and the sampling distribution of the mean (histogram of the sampling means for many samples). Each sample is taken from the normal distribution shown in red. The moving red line is the mean of an individual sample. The blue line is the mean of the blue histogram, which represents the sampling distribution of the mean for many samples
+</figcaption>
+</figure>
+</div>
+<p>What should you notice? Look at how the range of the blue bars shrinks as sample size increases. The sampling distribution of the mean is quite wide when the sample size is 10, it narrows as sample size increases to 50 and 100. When we get to an enormous sample of 1000 participants, the distribution is just one blue bar in the middle. What we are seeing is that the mean of the sampling distribution approaches the mean of the population as sample size increases. This makes some intuitive sense – if I had a sample that was so big that I was only missing a couple of people from the population, you can bet that my sample mean would be almost exactly the population mean.</p>
+<p>The sampling distribution of the mean is just another kind of distribution, and we’ve already talked about the mean of that sampling distribution. The sampling distribution also has a standard deviation, which we call the <strong>standard error of the sample mean (SEM)</strong>. You can see in the animation that as our sample sizes get larger, the SEM (the range of the blue bars) gets smaller.</p>
+<p>Okay, so that’s one part of the story. However, there’s something we’ve been glossing over a little bit. We’ve seen it already, but it’s worth looking at it one more time. Here’s the thing: <strong>no matter what shape your population distribution is</strong>, as <span class="math inline">\(N\)</span> increases, the sampling distribution of the mean starts to look more like a normal distribution. This is the central limit theorem.</p>
+<p>To see the central limit theorem in action, we are going to look at some histograms of sample means from different kinds of distributions. It is very important to recognize that you are looking at distributions of sample means, not distributions of individual samples.</p>
+<p><a href="#fig-twonormals" class="quarto-xref">Figure&nbsp;<span>3.7</span></a> shows sampling from a normal distribution. The red line is the normal distribution where each sample is drawn from. The mean for each sample of numbers is computed, and the distribution of sample means is shown by the blue bars. Note that the shape of red line and the blue bars are similar, they both look like a normal distribution.</p>
+<div id="fig-twonormals" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-twonormals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/sampledistmeannorm-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twonormals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.7: Comparison of two normal distributions, and histograms for the sampling distribution of the mean for different samples-sizes. The range of sampling distribution of the mean shrinks as sample-size increases
+</figcaption>
+</figure>
+</div>
+<p>Here’s one more example with an exponential distribution (shown in red on <a href="#fig-expdist" class="quarto-xref">Figure&nbsp;<span>3.8</span></a>) where smaller numbers are more likely to be sampled than larger numbers. Even though way more of the numbers in a given sample will be smaller than larger, according to the sampling distribution of the mean does not look the red line. Instead, the sampling distribution of the mean looks like a bell-shaped normal curve. This is the central limit theorem in action.</p>
+<div id="fig-expdist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-expdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/expdist.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-expdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.8: Illustration that the shape of the sampling distribution of the mean is normal, even when the samples come from an exponential distribution
+</figcaption>
+</figure>
+</div>
+<p>On the basis of these figures, it seems like we have evidence for all of the following claims about the sampling distribution of the mean:</p>
+<ul>
+<li><p>The mean of the sampling distribution is the same as the mean of the population</p></li>
+<li><p>The standard deviation of the sampling distribution (i.e., the standard error) gets smaller as the sample size increases</p></li>
+<li><p>The shape of the sampling distribution becomes normal as the sample size increases</p></li>
+</ul>
+<p>As it happens, not only are all of these statements true, there is a very famous theorem in statistics that proves all three of them, known as the <strong>central limit theorem</strong>. Among other things, the central limit theorem tells us that if the population distribution has mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, then the sampling distribution of the mean also has mean <span class="math inline">\(\mu\)</span>, and the standard error of the mean is:</p>
+<p><span id="eq-sem"><span class="math display">\[{S_{\bar X}} = \frac{\sigma}{ \sqrt{N} } \tag{3.1}\]</span></span></p>
+<p>Because we divide the population standard deviation <span class="math inline">\(\sigma\)</span> by the square root of the sample size <span class="math inline">\(N\)</span>, the <span class="math inline">\(S_{\bar{X}}\)</span> gets smaller as the sample size increases. It also tells us that the shape of the sampling distribution becomes normal.</p>
+<p>This result is useful for all sorts of things. It tells us why large experiments are more reliable than small ones, and because it gives us an explicit formula for the standard error it tells us <strong>how much</strong> <strong>more</strong> <strong>reliable</strong> a large experiment is. It tells us why the normal distribution is, well, normal. In real experiments, many of the things that we want to measure are actually averages of lots of different quantities (e.g., arguably, “general” intelligence as measured by IQ is an average of a large number of “specific” skills and abilities), and when that happens, the averaged quantity should follow a normal distribution. Because of this mathematical law, the normal distribution pops up over and over again in real data.</p>
+</section>
+<section id="models-ways-of-understanding-the-world" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="models-ways-of-understanding-the-world"><span class="header-section-number">3.4</span> Models: Ways of Understanding the World</h2>
+<p>There’s one more concept that fits well here, and that’s the concept of creating a <strong>model</strong>. It sounds fancy, but all it means is that I’m using my data to try and predict and/or understand some sort of variable in the world. If you can measure something, you can build a model around it. For example, if I want to understand why some students procrastinate on their homework and others don’t, I might measure a number of variables (personality, perfectionism, smartphone addiction, physical activity) and some of those variables might help me predict which students are likely to procrastinate.</p>
+<p>One of the simplest models we can build is simply using the mean. If I know nothing at all about a student, and I’m asked to make a guess about how much the procrastinate, I might get a sample of participants and see what the average level of procrastination is for them, and use that as my best guess for how this mystery student will behave. As I learn more about procrastination, I might be able to adjust my estimate up or down if I know something about this student. For example, if I know they are highly perfectionistic, I might expect that they will be higher in procrastination; if I know they don’t have a smartphone, I might expect they will be lower in procrastination. Ultimately, if another variable provides a better prediction than just the average score on procrastination, it’s likely a useful variable. Building models is ultimately the goal of statistics in social sciences, so we’ll talk a lot about models and how well data fits a model in future chapters.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Keynes1923" class="csl-entry" role="listitem">
+Keynes, John Maynard. 1923. <em>A Tract on Monetary Reform</em>. <span>Macmillan and Company</span>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter1.html" class="pagination-link" aria-label="Fundamentals of Statistics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentals of Statistics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter3.html" class="pagination-link" aria-label="Understanding Probability">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Understanding Probability</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

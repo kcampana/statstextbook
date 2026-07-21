@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kristie Campana">
+
+<title>6&nbsp; Getting to Know Your Data – Statistics for Social Scientists Who Are A Little Afraid of Them</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter6.html" rel="next">
+<link href="./chapter4.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-3e54a2ba524a9c641b796d074eb695a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter5.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Getting to Know Your Data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics for Social Scientists Who Are A Little Afraid of Them</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Why Write This Book?</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentals of Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Samples and Populations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Understanding Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter5.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Getting to Know Your Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">T-Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Between-Subject ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Within-Subject ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Factorial Designs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Non-Parametric Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Correlations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mediation and Moderation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">6.1</span> Learning Objectives</a></li>
+  <li><a href="#assumptions-of-parametric-tests" id="toc-assumptions-of-parametric-tests" class="nav-link" data-scroll-target="#assumptions-of-parametric-tests"><span class="header-section-number">6.2</span> Assumptions of Parametric Tests</a>
+  <ul class="collapse">
+  <li><a href="#assumption-1-one-variable-is-interval-or-ratio-data" id="toc-assumption-1-one-variable-is-interval-or-ratio-data" class="nav-link" data-scroll-target="#assumption-1-one-variable-is-interval-or-ratio-data"><span class="header-section-number">6.2.1</span> Assumption 1: One Variable is Interval or Ratio Data</a></li>
+  <li><a href="#assumption-2-errors-should-be-independent" id="toc-assumption-2-errors-should-be-independent" class="nav-link" data-scroll-target="#assumption-2-errors-should-be-independent"><span class="header-section-number">6.2.2</span> Assumption 2: Errors should be independent</a></li>
+  <li><a href="#assumption-3-the-data-is-normally-distributed" id="toc-assumption-3-the-data-is-normally-distributed" class="nav-link" data-scroll-target="#assumption-3-the-data-is-normally-distributed"><span class="header-section-number">6.2.3</span> Assumption 3: The data is normally distributed</a></li>
+  <li><a href="#assumption-4-we-have-homogeneity-of-variance-homoscedasticity" id="toc-assumption-4-we-have-homogeneity-of-variance-homoscedasticity" class="nav-link" data-scroll-target="#assumption-4-we-have-homogeneity-of-variance-homoscedasticity"><span class="header-section-number">6.2.4</span> Assumption 4: We have homogeneity of variance (homoscedasticity)</a></li>
+  </ul></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization"><span class="header-section-number">6.3</span> Data Visualization</a></li>
+  <li><a href="#resolving-issues" id="toc-resolving-issues" class="nav-link" data-scroll-target="#resolving-issues"><span class="header-section-number">6.4</span> Resolving Issues</a>
+  <ul class="collapse">
+  <li><a href="#example-1-head-size-and-math-score" id="toc-example-1-head-size-and-math-score" class="nav-link" data-scroll-target="#example-1-head-size-and-math-score"><span class="header-section-number">6.4.1</span> Example 1: Head size and math score</a></li>
+  <li><a href="#example-2-scuba-diving" id="toc-example-2-scuba-diving" class="nav-link" data-scroll-target="#example-2-scuba-diving"><span class="header-section-number">6.4.2</span> Example 2: Scuba Diving</a></li>
+  <li><a href="#example-3-reaction-time" id="toc-example-3-reaction-time" class="nav-link" data-scroll-target="#example-3-reaction-time"><span class="header-section-number">6.4.3</span> Example 3: Reaction time</a></li>
+  </ul></li>
+  <li><a href="#ethics" id="toc-ethics" class="nav-link" data-scroll-target="#ethics"><span class="header-section-number">6.5</span> Ethics</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Getting to Know Your Data</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kristie Campana </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="learning-objectives" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">6.1</span> Learning Objectives</h2>
+<ul>
+<li><p>Understand what the assumptions are for parametric tests.</p></li>
+<li><p>Diagnose problems with normality (such as skew or kurtosis) in a data set.</p></li>
+<li><p>Diagnose problems with heteroscedasticity in a data set.</p></li>
+<li><p>Use data visualization to understand the nature of data so you can diagnose and resolve problems</p></li>
+<li><p>Apply methods for resolving data that is non-normal and/or heteroscedastic</p></li>
+</ul>
+<p>We’ve spent a lot of time familiarizing ourselves with the concept of data and how statistics help us bridge the gap between a theoretical population and a concrete sample. We’re almost ready to start diving into learning about specific statistical tests, but first, I must emphasize the importance of getting to know a data set and getting a data set ready for analysis. Quite frankly, data cleaning and preparation is much more difficult and time-consuming than running the analyses! Once you know how to run a test, it’s quite easy to do so. But if our data is a bunch of garbage, we can’t expect to get meaningful results from our analysis, so data cleaning and preparation is a tedious but vital step of the process.</p>
+</section>
+<section id="assumptions-of-parametric-tests" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="assumptions-of-parametric-tests"><span class="header-section-number">6.2</span> Assumptions of Parametric Tests</h2>
+<p>The vast majority of statistics I cover in this text are what are known as <strong>parametric tests</strong> – that is, at least one variable is a continuous variable that we’d expect to be normally distributed in the population. This is generally true in most social sciences – most variables will have the majority of people clustered near the mean, with smaller proportions of people in the very high and very low ends of that variable. So, parametric tests are quite common in social science fields. However, in order to confidently use a parametric test, there are a few <strong>assumptions</strong> (i.e.&nbsp;expectations) we have of our continuous variables.</p>
+<section id="assumption-1-one-variable-is-interval-or-ratio-data" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="assumption-1-one-variable-is-interval-or-ratio-data"><span class="header-section-number">6.2.1</span> Assumption 1: One Variable is Interval or Ratio Data</h3>
+<p>I noted in the previous section that parametric tests have at least one variable that is continuous. As you might recall from our previous chapter, this means that our data needs to be either an interval or ratio data. For the most part, this requirement is straightforward – if none of your variables are continuous, you need to find a non-parametric test to use. One area where some people get into trouble is assuming that ordinal variables are continuous – they are not! You should not treat ordinal variables the same way because with ordinal variables, we don’t have precise information about the amount of the variable at hand – we only know the rank order of participants, so it is not appropriate to pretend that ordinal variables are appropriate for parametric tests.</p>
+</section>
+<section id="assumption-2-errors-should-be-independent" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="assumption-2-errors-should-be-independent"><span class="header-section-number">6.2.2</span> Assumption 2: Errors should be independent</h3>
+<p>We also want to make sure that my observations are independent of one another. In other words, one participants’ score should not affect the score of another participant. If I found out after the fact that, for example, one of my participants was sharing answers on a test or that they were pressuring other participants to answer in a certain way, this is a problem for my data! In some cases, this makes my data unusable, because by allowing participants to influence one another, they’ve introduced systematic bias into the data, which makes it difficult to distinguish error from effects.</p>
+<p>Sometimes, this assumption is impossible to avoid because of something called <strong>dependencies</strong> in data. For example, if I’m collecting data on workers in a manufacturing plant, many employees might share the same supervisor, and perhaps there’s something about that supervisor that causes them to answer in a certain way. Or, if I’m measuring the same person multiple times, their responses might share error because some people have certain tendencies in how they respond (e.g., some people stick to the middle of a scale, others are more strict or lenient in their ratings). While this does violate an assumption, if we have information collected about how errors might be related (e.g., we keep a record of employee supervisors or we have an ID variable that allows me to track one respondent’s ratings across multiple time periods) we can incorporate those variables into our analyses. One solution to this problem is something known as multi-level modeling, which is far beyond the scope of this book. But suffice it to say that there are ways that we can work with this assumption if we’re careful about recording potential dependencies in our data.</p>
+</section>
+<section id="assumption-3-the-data-is-normally-distributed" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="assumption-3-the-data-is-normally-distributed"><span class="header-section-number">6.2.3</span> Assumption 3: The data is normally distributed</h3>
+<p>We’ve talked a little bit about normal distributions, but as reminder, the normal distribution is where our data is symmetrical, with most people clustered close to the mean, and the number of people tapering out as we get further from that mean.</p>
+<div id="fig-normaldist" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A histogram where the curve is normal, with balanced shoulders and tails.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normaldist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/normaldist.png" class="img-fluid figure-img" alt="A histogram where the curve is normal, with balanced shoulders and tails." width="412">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normaldist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: A normal distribution.
+</figcaption>
+</figure>
+</div>
+<p>In small samples, this normal curve can look a little funky, but we typically hope it will somewhat replicate a normal curve. It won’t always! Sometimes we might have an <strong>outlier</strong> or an <strong>extreme value</strong> where one data point is very far away from everything else, which will pull the mean away from the center. We might also have a <strong>ceiling effect</strong> or a <strong>floor effect</strong>, where one end of our normal distribution gets squashed. For example, household income often has a <strong>positively skewed distribution</strong>, where the curve is flattened on the left side (because minimum wage produces a floor effect) and the tail might be very long on the right side if we have a few millionaires in our sample.</p>
+<div id="posskew" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/posskew.png" class="img-fluid figure-img" alt="This histogram shows a flattened curve on the left side, and a long tail to the right side."></p>
+<figcaption>A positively skewed distribution.</figcaption>
+</figure>
+</div>
+<p>Exam scores can sometimes produce a <strong>negatively skewed distribution</strong>, where the right side of the distribution is squashed (especially if my test was too easy or students cheat, so too many people get perfect scores) and the left side has a long tail (a few students getting a zero on the test because they missed it).</p>
+<div id="negskew" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/negskew.png" class="img-fluid figure-img" alt="This histogram shows a flattened right side, with a long tail to the left."></p>
+<figcaption>A negatively skewed distribution.</figcaption>
+</figure>
+</div>
+<p>Sometimes we might also get <strong>kurtosis</strong> in our data, where we don’t have many people right in the middle of my distribution, which produces a flat top and thicker shoulder and tails on my distribution (we sometimes call this platykurtic). Or alternatively, maybe I have too many people in the middle of my distribution, producing a sharp peak in the middle, with short tails (also known as leptokurtic).</p>
+<p>This assumption we will want to check prior to doing any analyses, as if we violate that assumption, we might want to make some adjustments or use a different type of test. More on this later!</p>
+</section>
+<section id="assumption-4-we-have-homogeneity-of-variance-homoscedasticity" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="assumption-4-we-have-homogeneity-of-variance-homoscedasticity"><span class="header-section-number">6.2.4</span> Assumption 4: We have homogeneity of variance (homoscedasticity)</h3>
+<p>Homoscedasticity is a long and fancy name for a relatively simple concept: We want the variance in our sample to be roughly similar at all values of a predictor. Consider the graph below:</p>
+<div id="fig-homosk" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot where the points are a uniform distance from the line.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-homosk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/homoskplot.png" class="img-fluid figure-img" alt="A scatterplot where the points are a uniform distance from the line." width="450">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-homosk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: Data with homogeneity of variance (homoscedastic)
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-homosk" class="quarto-xref">Figure&nbsp;<span>6.2</span></a>, you can see that the data spreads out similarly from the line as you move from left to right. This is good – it shows homogeneity of variance, or homoscedasticity, which means our assumption is met.</p>
+<div id="fig-heterosk" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot that demonstrates a trumpet shape, with dots deviating from the midline more on the right side than the left.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-heterosk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/heteroskplot.png" class="img-fluid figure-img" alt="A scatterplot that demonstrates a trumpet shape, with dots deviating from the midline more on the right side than the left.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-heterosk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.3: Data with heterogeneity of variance (heteroscedastic)
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-heterosk" class="quarto-xref">Figure&nbsp;<span>6.3</span></a>, you’ll notice that the points sit very close to the line on the left side, and spread out a lot toward the right side, producing a trumpet shape. This indicates that we do not have homogeneity of variance (heteroscedasticity). This is not so good! What this means is that at the low end of our predictor, we’re pretty accurate with how people will score on our outcome, but we are less and less accurate as our predictor increases. Heterogeneity can cause some problems with estimates, so if we have heterogeneity, we might need to make some adjustments to our test to get more accurate estimates of parameters.</p>
+<p>So, how will we know if our data is violating any assumptions? There are a few different ways you’ll want to get to know your data to help you catch these issues and understand your data better.</p>
+</section>
+</section>
+<section id="data-visualization" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="data-visualization"><span class="header-section-number">6.3</span> Data Visualization</h2>
+<p>One of the simplest ways to check out your data is by visualizing it. This can be helpful for you as you try to understand what your data is trying to tell you. It can also be helpful to an audience if you are trying to explain your data or your findings.</p>
+<p>One common visualization of data is the <strong>histogram</strong> – in fact, I’ve been showing you these already! Here’s another just for fun:</p>
+<div id="fig-bimodal" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A histogram where there are two separate peaks.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bimodal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/bimodal.png" class="img-fluid figure-img" alt="A histogram where there are two separate peaks.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bimodal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.4: A histogram of a bimodal distribution
+</figcaption>
+</figure>
+</div>
+<p>Right away, we can see some weirdness in this data – it is certainly not normally distributed, as we can see two humps rather than one (also known as a bimodal distribution). So, this is a quick way to see what’s going on with a single variable.</p>
+<p>Another way we can examine data is through a <strong>boxplot</strong> (also known as a box and whisker plot). With a box plot, there’s typically a line in the middle denoting the mean. The rest of the scores are broken into 4 equally-sized groups (also known as quartiles). The middle quartiles are noted by the box, and the outer quartiles (the lowest and highest quartiles) are noted by the whiskers. Some programs also provide a symbol (like an asterisk) to indicate outliers or extreme scores that go way beyond the end of the whisker. This can be helpful for identifying incorrect or unusual data that might need to be addressed:</p>
+<div id="skewbox" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/skewbox.png" class="img-fluid figure-img" alt="A boxplot that shows a flattened whisker at the bottom and a trail of outliers at the top."></p>
+<figcaption>A boxplot of positively skewed data.</figcaption>
+</figure>
+</div>
+<p>This example shows we have some skew in our data– the whisker on the bottom end is squashed, and the whisker at the top is quite long, with a trail of dots indicating some outliers.</p>
+<p>Sometimes we might want to examine several groups at once. For example, maybe I want to look at the averages across three different groups. One way to do this is through a <strong>bar chart</strong>:</p>
+<div id="fig-bar" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A bar chart showing that Eisenhower matrix technique is best for STEM students, while Time Blocking is most effective for Humanities students">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/factorialbar.png" class="img-fluid figure-img" alt="A bar chart showing that Eisenhower matrix technique is best for STEM students, while Time Blocking is most effective for Humanities students" width="457">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.5: A bar chart showing effectiveness of time management technique.
+</figcaption>
+</figure>
+</div>
+<p>Here, the bar charts provide the average for each group. They also have an error bar – error bars can mean different things, so for this example, I’ve set it up to provide a 95% confidence interval for each mean.</p>
+<p>Another similar option is the line chart:</p>
+<div id="fig-linechart" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A line chart that shows sleep increases as time goes on, with a sharp decline at a follow up measure.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linechart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/linegraph.png" class="img-fluid figure-img" alt="A line chart that shows sleep increases as time goes on, with a sharp decline at a follow up measure." width="466">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linechart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.6: A line chart of sleep across multiple time periods.
+</figcaption>
+</figure>
+</div>
+<p>Each point provides the mean for each group, and some programs allow you to also provide an error range for those lines as well. Generally, we use bar charts when we’re trying to show differences between groups, and line charts if we are charting how something changes across time. This is not a hard and fast rule, so if you prefer one over the other, that’s fine.</p>
+<p>Finally, if we wanted to see the relationship between two variables, a scatterplot is a helpful option:</p>
+<div id="fig-scatterplot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot that shows a positive correlation between variables.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/scatterplot.png" class="img-fluid figure-img" alt="A scatterplot that shows a positive correlation between variables." width="461">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.7: A scatterplot of sleep times at a baseline measure and at a follow up measure.
+</figcaption>
+</figure>
+</div>
+<p>Here, we can see that there seems to be an upward trend, with those who get more sleep at the baseline measure also getting more sleep during the follow up.</p>
+<p>I’m being very utilitarian right now, and showing you the plots I generally use to explore my data. If you are presenting to an audience, there are dozens of snazzy ways to present data. Looking up information on “data visualization” will give you plenty of creative ways to show off your data. But for our purposes, these four provide us with a lot of information about our data.</p>
+</section>
+<section id="resolving-issues" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="resolving-issues"><span class="header-section-number">6.4</span> Resolving Issues</h2>
+<p>So, what do we do if we are violating an assumption? What do we do if our data looks funky? What you do really depends on a lot of things:</p>
+<ul>
+<li><p>What does this variable usually look like?</p></li>
+<li><p>How was it collected? Could there be problems with how we collected the data?</p></li>
+<li><p>Is it possible some data is inaccurate and needs to be corrected?</p></li>
+<li><p>Is the data coming from one source/group, or several?</p></li>
+<li><p>Does the data need to be manipulated or transformed in some way?</p></li>
+<li><p>What tests are we conducting, and are they sensitive to assumption violations?</p></li>
+</ul>
+<p>Let’s walk through a few examples where my data looks weird and ways I might choose to approach it.</p>
+<section id="example-1-head-size-and-math-score" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="example-1-head-size-and-math-score"><span class="header-section-number">6.4.1</span> Example 1: Head size and math score</h3>
+<p>Imagine that I have collected some data by measuring my participants’ head size (circumference in inches) and their score on a 20-point math quiz. Here are my results:</p>
+<div id="fig-simpson1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot that shows a positive relationship, but dots are clumping into 3 chunks.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simpson1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/simpson1.png" class="img-fluid figure-img" alt="A scatterplot that shows a positive relationship, but dots are clumping into 3 chunks.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simpson1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.8: A scatterplot of the relationship between head size and math score.
+</figcaption>
+</figure>
+</div>
+<p>At first glance, this chart seems to be telling me a straightforward story – the bigger your head, the better you are at math, right? Not so fast! There might be some nuance to this data. Perhaps I learn that there are actually three different groups in this data set – toddlers, children, and adults. If I separate out these groups, I get a completely different story…</p>
+<div id="fig-simpson2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The same scatterplot, but now that age groups are indicated by color, we can see that there isn't actually a relationship between head size and math score, it was just an artifact of the age groups being lumped together.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simpson2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/simpson2.png" class="img-fluid figure-img" alt="The same scatterplot, but now that age groups are indicated by color, we can see that there isn't actually a relationship between head size and math score, it was just an artifact of the age groups being lumped together.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simpson2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.9: A scatterplot with details and the three age groups
+</figcaption>
+</figure>
+</div>
+<p>Oh, whoops! It turns out that age was a bit of a confounding variable here – when I separate out groups, suddenly what looked like a strong relationship is mostly an artifact of the different groups. In fact, within groups, there’s a weak negative relationship between head size and math score. In fact, <a href="#fig-simpson2" class="quarto-xref">Figure&nbsp;<span>6.9</span></a> illustrates the Simpson paradox – when we combine data from different groups, it can obscure the effect going on within a group. So, always be careful about combining different groups!</p>
+</section>
+<section id="example-2-scuba-diving" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="example-2-scuba-diving"><span class="header-section-number">6.4.2</span> Example 2: Scuba Diving</h3>
+<p>For our next example, let’s imagine that I’ve collected data on different sports experiences people have tried, and I have this result when I ask people how many times my participants have gone scuba diving:</p>
+<div id="fig-diveout" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A histogram of dives, with a normal curve on the left and an extreme value at 234">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diveout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/dives.png" class="img-fluid figure-img" alt="A histogram of dives, with a normal curve on the left and an extreme value at 234">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diveout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.10: Histogram of number of dives.
+</figcaption>
+</figure>
+</div>
+<p>This is a pretty small sample, so I know that I’m not going to get a great looking normal distribution, but we have a pretty extreme value popping up here! It’s possible that this data point is a mistake – maybe this was an online survey, so the 234 might be a typo (perhaps they meant 23, or 24, or 34?) In this case, if I’m not sure, perhaps the safest approach is to simply trim the data by deleting the data point:</p>
+<div id="fig-divetrim" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A histogram demonstrating a roughly normal curve.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-divetrim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/divestrim.png" class="img-fluid figure-img" alt="A histogram demonstrating a roughly normal curve.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-divetrim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.11: A histogram of dives with the outlier removed.
+</figcaption>
+</figure>
+</div>
+<p>That seems to have cleared up the problem. However, let’s say that instead, I’m able to get in touch with this person, and they say the number is accurate because they are a scuba instructor! But I still have the problem with this value skewing my data – if I report the mean with this data point it is 28.22, and if I report it without this value, it is 24.02. So, I probably shouldn’t leave this value as is. But I have a small data set, and I would like to keep this person in the data set because their other data might prove instructive, but I can’t have her value be so extreme! Another option I can use is called <strong>winsorizing.</strong> When we winsorize a data point, we take an extreme value and replace it with a less-extreme value. There are a few different ways you might do this. One option is to find the next highest score (here, that would be 35) and make the extreme value just higher than that score. So in this case, we might replace the 234 with 36. Another option that is common is to use z-scores and replace the outlier with whatever is a z-score of 3. In this example, the z-score for this scuba instructor is 6.84, which is pretty extreme! So, instead I can take the mean (28.22) and use the data standard deviation (30.10… this is large due to that outlier!) to reassign the value:</p>
+<p><span class="math inline">\((3 \times 30.10?) + 28.22 = 121.3\)</span></p>
+<p>So, I could replace that extreme value with 121, which is less extreme. Either ways is fine, but you absolutely <u>must</u> explain in your results that you have winsorized the data and how you have done so.</p>
+</section>
+<section id="example-3-reaction-time" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="example-3-reaction-time"><span class="header-section-number">6.4.3</span> Example 3: Reaction time</h3>
+<p>For my third example, let’s imagine that I conducted a study on reaction times and I have the following results:</p>
+<div id="fig-react" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A histogram of reaction time, which shows a strong positive skew">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-react-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/reaction.png" class="img-fluid figure-img" alt="A histogram of reaction time, which shows a strong positive skew">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-react-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.12: Reaction time data.
+</figcaption>
+</figure>
+</div>
+<p>We can certainly see this data has a lot of positive skew! In some cases, this might be a cause for concern, but reaction time is just one of those variables that tends to be skewed. Humans can only be so fast, and there’s almost always a few slowpokes in the data set that lead to a long tail in the positive direction. Because this is such a common issue, almost every article on reaction time applies something called a <strong>transformation</strong> to the data. Transformations are ways we can manipulate the data to rescale it and push it towards more of a normal curve. There are many transformations out there (square root, reciprocal, and reverse hyperbolic to name a few) but the most common one we use on reaction times is a log transformation (that is, I take the natural log of this value). When I do that, here’s what my new histogram looks like:</p>
+<div id="fig-logreact" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A histogram of the log-transformed reaction time data, which shows much less positive skew">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-logreact-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/logreact.png" class="img-fluid figure-img" alt="A histogram of the log-transformed reaction time data, which shows much less positive skew">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-logreact-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.13: Log-transformed reaction time.
+</figcaption>
+</figure>
+</div>
+<p>As you can see, the log transformation squashes that long tail down a bit to make it more normal. Here’s the issue though – when I do this, I can no longer call this variable “reaction time,” it has to be called “log reaction time” to remind my readers about the transformation. So if I want to talk about how sleep correlates with reaction time, I now have to talk about the correlation between “sleep and log reaction time” instead, which makes it harder for people to interpret in practical terms. So, transforming the data is sometimes more trouble than it’s worth. The benefit of applying a transformation is that you get a more accurate estimate of the population and whether your finding is statistically significant, but the downside is that it’s harder to interpret and explain.</p>
+<p>There are no hard and fast rules for when to use a transformation. With my own data, I usually use the following approach to decide whether to use one:</p>
+<ul>
+<li><p>Does my data have a lot of skew or kurtosis? If the skew/kurtosis is less than 2, I typically don’t worry too much about it. If the skew/kurtosis is greater than 2, I take a look at a histogram to see what’s causing the issue. If it’s an outlier, I made a decision about how to address the outlier. If it looks like the variable is just skewed in general and I think I need to address it, I would use a Kolmogorov-Smirnoff test to see if it is significant. If so, I might consider using a transformation.</p></li>
+<li><p>Does my data have homoscedasticity? I take a look at a graph first (either a scatterplot or some boxplots/histograms) to see if it looks really heteroscedastic. If I’m concerned about it, I apply a Levene’s test to see if it is statistically significant.</p></li>
+<li><p>Who needs to understand this data? If I’m working with a lay audience, the trade off for accuracy versus clarity is probably not worth a transformation. If I’m working with a scientific audience, or if I’m working with a variable that is often transformed (like salary or reaction time) then I am more likely to apply a transformation.</p></li>
+</ul>
+</section>
+</section>
+<section id="ethics" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="ethics"><span class="header-section-number">6.5</span> Ethics</h2>
+<p>While having no hard-and-fast rules when it comes to data cleaning gives us a lot of flexibility, it also can sometimes tempt people into bending the rules when it comes to statistics. There are plenty of gray areas out there, but here are a few things that I would advise against if you want to maintain a good code of ethics around data cleaning and analysis.</p>
+<p>First, don’t falsify data! You’d think this would be obvious, but here in 2026, we’ve had a spate of fairly high-visibility cases of wholesale fabrication of data, as well as unexplained data manipulation. (I don’t want to name names, but if you want the hot gossip, datacolada.org has some fascinating articles about questionable data practices). So, don’t make up data! If you remove data points or replace them through winsorizing, be transparent about what you are doing and your rationale for doing so.</p>
+<p>Second, establish a clear research plan and stick to it! If we are doing things completely above board, we should:</p>
+<ul>
+<li><p>Have a specific hypothesis (or several hypotheses) we intend to test with our sample. We should know ahead of time whether our hypothesis is one- or two-tailed.</p></li>
+<li><p>We should use a power analysis to establish what sample size we need to detect an effect size of interest. And we should stick to that number – we shouldn’t wrap up a project early once we get the findings we want, and we shouldn’t collect additional data with the goal of “making” something significant just by increasing power in our study.</p></li>
+<li><p>If we are using a frequentist approach, this means that the p-value must be under .050 to be significant; technically, .051 is not less than .050, so we shouldn’t treat it as significant. Sharing effect sizes and confidence intervals can help our audience understand our findings with more nuance than we get with just plain null hypothesis significance testing.</p></li>
+<li><p>If we are doing multiple tests, we should apply a Bonferroni correction where appropriate to avoid finding something significance based on chance. You will learn more about this in <a href="chapter7.html#sec-bwanova" class="quarto-xref"><span>Section 8.1</span></a>.</p></li>
+</ul>
+<p>Do researchers fudge these details? Yeah, they probably do. Will you someday find yourself in a position where you engage in some not perfectly ethical behaviors? Maybe! But at least you should know when you’re doing something that is not above board. Hopefully, as researchers and journals demand more transparency and accountability, some of this will disappear. But I at least want you to know if you’re doing something you’re not supposed to do!!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter4.html" class="pagination-link" aria-label="Hypothesis Testing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter6.html" class="pagination-link" aria-label="T-Tests">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">T-Tests</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kristie Campana">
+
+<title>13&nbsp; Regression – Statistics for Social Scientists Who Are A Little Afraid of Them</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter13.html" rel="next">
+<link href="./chapter11.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e36a2370e89736b0049a41eecb653fc1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter12.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Regression</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics for Social Scientists Who Are A Little Afraid of Them</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Why Write This Book?</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentals of Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Samples and Populations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Understanding Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Getting to Know Your Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">T-Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Between-Subject ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Within-Subject ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Factorial Designs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Non-Parametric Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Correlations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter12.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mediation and Moderation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-regress" id="toc-sec-regress" class="nav-link active" data-scroll-target="#sec-regress"><span class="header-section-number">14</span> Chapter 12: Regression</a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">14.1</span> Learning Objectives</a></li>
+  <li><a href="#simple-regression" id="toc-simple-regression" class="nav-link" data-scroll-target="#simple-regression"><span class="header-section-number">14.2</span> Simple Regression</a>
+  <ul class="collapse">
+  <li><a href="#assumptions-of-a-regression" id="toc-assumptions-of-a-regression" class="nav-link" data-scroll-target="#assumptions-of-a-regression"><span class="header-section-number">14.2.1</span> Assumptions of a Regression</a></li>
+  <li><a href="#a-simple-regression-between-two-continuous-variables" id="toc-a-simple-regression-between-two-continuous-variables" class="nav-link" data-scroll-target="#a-simple-regression-between-two-continuous-variables"><span class="header-section-number">14.2.2</span> A Simple Regression Between Two Continuous Variables</a></li>
+  <li><a href="#a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion" id="toc-a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion" class="nav-link" data-scroll-target="#a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion"><span class="header-section-number">14.2.3</span> A Simple Regression Between a Dichotomous Predictor and a Continuous Criterion</a></li>
+  <li><a href="#wait-can-i-do-a-regression-with-a-polytomous-variable" id="toc-wait-can-i-do-a-regression-with-a-polytomous-variable" class="nav-link" data-scroll-target="#wait-can-i-do-a-regression-with-a-polytomous-variable"><span class="header-section-number">14.2.4</span> Wait… can I do a regression with a polytomous variable?</a></li>
+  </ul></li>
+  <li><a href="#multiple-regression" id="toc-multiple-regression" class="nav-link" data-scroll-target="#multiple-regression"><span class="header-section-number">14.3</span> Multiple Regression</a>
+  <ul class="collapse">
+  <li><a href="#shared-variance-and-multicollinearity" id="toc-shared-variance-and-multicollinearity" class="nav-link" data-scroll-target="#shared-variance-and-multicollinearity"><span class="header-section-number">14.3.1</span> Shared Variance and Multicollinearity</a></li>
+  <li><a href="#an-entry-multiple-regression-with-two-predictors" id="toc-an-entry-multiple-regression-with-two-predictors" class="nav-link" data-scroll-target="#an-entry-multiple-regression-with-two-predictors"><span class="header-section-number">14.3.2</span> An Entry Multiple Regression with Two Predictors</a></li>
+  <li><a href="#hierarchical-regression" id="toc-hierarchical-regression" class="nav-link" data-scroll-target="#hierarchical-regression"><span class="header-section-number">14.3.3</span> Hierarchical Regression</a></li>
+  <li><a href="#exploratory-regressions-forwards-and-backwards-regression" id="toc-exploratory-regressions-forwards-and-backwards-regression" class="nav-link" data-scroll-target="#exploratory-regressions-forwards-and-backwards-regression"><span class="header-section-number">14.3.4</span> Exploratory Regressions: Forwards and Backwards Regression</a></li>
+  </ul></li>
+  <li><a href="#writing-the-results-of-a-regression" id="toc-writing-the-results-of-a-regression" class="nav-link" data-scroll-target="#writing-the-results-of-a-regression"><span class="header-section-number">14.4</span> Writing the Results of a Regression</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Regression</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kristie Campana </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sec-regress" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Chapter 12: Regression</h1>
+<section id="learning-objectives" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">14.1</span> Learning Objectives</h2>
+<ul>
+<li>Know what a simple regression is and what types of data it requires.</li>
+<li>Know the assumptions of a regression.</li>
+<li>Know how to interpret regression values like b-values, beta weights, and <span class="math inline">\(R^2\)</span> .</li>
+<li>Know how a multiple regression differs from a simple regression, and know how to interpret its values</li>
+<li>Know the different approaches to regression (entry, hierarchical, forward and backward) and their pros and cons.</li>
+<li>Know what multicollinearity is and how it can cause problems in regressions</li>
+<li>How to write up the results of a regression.</li>
+</ul>
+</section>
+<section id="simple-regression" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="simple-regression"><span class="header-section-number">14.2</span> Simple Regression</h2>
+<p>I often like to say that correlations and regressions are sisters – they are very similar procedures, but they have a slightly different vibe in terms of what information they provide to you. In many cases, you are better off running a regression instead of a correlation because it gives you more information, and it tends to be more flexible than correlations in terms of the types of data it can handle. But correlations do have their place in statistics – you see them all the time, especially in tables providing a general overview of how variables in a study are related aside from the specific hypotheses a researcher is investigating.</p>
+<section id="assumptions-of-a-regression" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="assumptions-of-a-regression"><span class="header-section-number">14.2.1</span> Assumptions of a Regression</h3>
+<p>Regression assumptions are quite similar to what we’ve seen with other parametric tests:</p>
+<ol type="1">
+<li><p>The relationships between variables are linear (i.e., not curvilinear).</p></li>
+<li><p>Continuous variables should be roughly normally distributed and we don’t see major outliers</p></li>
+<li><p>The relationship between variables indicates homoscedasticity</p></li>
+<li><p>The data demonstrate independence (i.e., we don’t have participants influencing one anothers’ responses).</p></li>
+</ol>
+<p>Regression tends to be less robust than t-tests and ANOVAs when these assumptions are violated, so if you have funky data, you may need to adjust it (addressing outliers, transforming variables) or consider an alternative approach like bootstrapping. It’s also worth taking a look at your data to see if there are any data points that might be influential. For example, consider the scatterplot below:</p>
+<div id="fig-scatterout" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot with one outlier that is moderately high on the predictor but extremely low on the criterion">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scatterout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/scatteroutlier.png" class="img-fluid figure-img" alt="A scatterplot with one outlier that is moderately high on the predictor but extremely low on the criterion">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.1: A scatterplot with an outlier
+</figcaption>
+</figure>
+</div>
+<p>As you can see in the graph, the large arrow is pointing to a data point that is far outside of the scatterplot (and is extraordinarily low on the criterion). This data point would have an outsized effect on the results, so we may want to recheck our data to make sure there’s not a mistake or that these responses aren’t from a different population. There are some helpful diagnostic tools we can use to search for influential data points:</p>
+<ul>
+<li><p>Adjusted predicted value</p></li>
+<li><p>Deleted residual</p></li>
+<li><p>Studentized deleted residual</p></li>
+<li><p>Cook’s distance</p></li>
+<li><p>Leverage</p></li>
+<li><p>Mahalanobis distances</p></li>
+</ul>
+<p>So, it’s worth checking to make sure your data is clean and that you are aware of any influential data points before you start your analysis.</p>
+</section>
+<section id="a-simple-regression-between-two-continuous-variables" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="a-simple-regression-between-two-continuous-variables"><span class="header-section-number">14.2.2</span> A Simple Regression Between Two Continuous Variables</h3>
+<p>Let’s go back to our example from <a href="chapter11.html" class="quarto-xref"><span>Chapter 13</span></a>, where we explored the relationship between meditation and happiness using <a href="chapter11.html#tbl-meditate" class="quarto-xref">Table&nbsp;<span>13.1</span></a>.</p>
+<p>As you may recall, we looked over a scatterplot (<a href="chapter11.html#fig-simplescatter" class="quarto-xref">Figure&nbsp;<span>13.1</span></a>) to confirm that the data was linear and met the assumptions of a parametric test.</p>
+<p>What a simple regression does, in a nutshell, is it plots a “best fit” line to the data. There is one, and only one, line that minimizes the vertical distance between each data point and a straight line. I won’t cover the math of how a statistical program determines what this line is here. But you may have learned in other math classes the basic formula for a line, often written as:</p>
+<p><span class="math inline">\(mx+b=y\)</span></p>
+<p>In most statistical notation, this formula is written as:</p>
+<p><span class="math inline">\(\hat{y}=b_0+b_1(x)\)</span></p>
+<p>But it’s ultimately the same thing despite the change in the notation. In this formula, <span class="math inline">\(\hat{y}\)</span> indicates our predicted value for the dependent variable, and this is based on the <span class="math inline">\(b_0\)</span>, which is the y intercept (that is, if x=0, what would we predict someone’s score on y would be?) and <span class="math inline">\(b_1\)</span>, which is the slope of the line (that is, for a one-point change in x, how much do we expect y to change?)</p>
+<p>This ability to predict is one feature that is an advantage of regression – while with a correlation, all we can do is state the relationship between variables, with a regression, this line allows us to provide a predicted value on the dependent variable if we have someone’s score on the independent variable. So, let’s plot a regression line on our meditation data:</p>
+<div id="fit-bestfitline" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/bestfit.png" class="img-fluid figure-img" alt="A scatterplot with a best fit line. The dots don't conform well to the best fit line, which indicates a moderate positive trend."></p>
+<figcaption>A scatterplot with a best fit line.</figcaption>
+</figure>
+</div>
+<p>We can see right away that, while our prediction is not perfect, there is certainly a positive relationship between variables. But perhaps we want to know something more specific – if someone meditates for 60 minutes a week, what can we expect their level of happiness to be, based on these data?</p>
+<p>When we conduct a regression, we get quite a bit if information from the output. Most statistical programs will provide some unstandardized coefficients (sometimes referred to as b-values). These values are what we can use in the formula to figure out where a point might lay on that best fit line (often known as a “fitted value”). Take, for example, the outputs below from SPSS:</p>
+<div id="fig-spssregress" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A table of results, which provides unstandardized and standardized coefficients, and significance values.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-spssregress-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/spssregress.png" class="img-fluid figure-img" alt="A table of results, which provides unstandardized and standardized coefficients, and significance values.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spssregress-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.2: Regression output from SPSS
+</figcaption>
+</figure>
+</div>
+<p>While we don’t tend to report unstandardized coefficients, they have a lot of practical use. For example, let’s say that we do, indeed, want to make a prediction about how stressed someone is if they meditate for 80 minutes a week. We can simply use the unstandardized slope (.20) and the y-intercept (36.07) to create the formula for a line, and then we input 80 in the place of x:</p>
+<p><span class="math inline">\(\hat{y} = (.20)(80)+36.07 = 52.07\)</span></p>
+<p>Sure enough, if you go back to the scatterplot, you’ll see on the regression line that for a score of 80 minutes of meditation, we see the line is right at about 52. Of course, this is just a guess – you can see that one participant who spends 80 minutes meditating only gets a happiness score of about 44, but we know at this point to expect some error in any statistic.</p>
+<p>While the unstandardized coefficients are practically useful, more often, in scientific writing researchers report the standardized values, often referred to as <span class="math inline">\(\beta\)</span> values. What is happening behind the scenes is that the statistical program transforms both the predictor and the criterion into z-scores, and then calculates the regression and provides these standardized values. These are beneficial because they are on a roughly -1.00 to +1.00 scale<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, so they are more comparable. Here, we see that <span class="math inline">\(\beta=.49\)</span> , which is a decently strong relationship. If you have an amazing memory, you may also remember that in <a href="chapter11.html" class="quarto-xref"><span>Chapter 13</span></a>, we found that <span class="math inline">\(r=.49\)</span> too! So for a simple regression, the <span class="math inline">\(\beta\)</span> value is the same as the Pearson correlation. This will change as we move into multiple regression, but it’s a nice way to see the connection between regression and correlation.</p>
+<p>Most programs also provide a measure of the effect size, often represented as <span class="math inline">\(R^2\)</span>, which is an indication of how much variance is explained by the model. For these data, we find that <span class="math inline">\(R^2=.24\)</span> (which is .49 squared). So, in other words, about 24% of the differences we see in stress levels can be explained by meditation, which is quite a large amount indeed!</p>
+</section>
+<section id="a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion" class="level3" data-number="14.2.3">
+<h3 data-number="14.2.3" class="anchored" data-anchor-id="a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion"><span class="header-section-number">14.2.3</span> A Simple Regression Between a Dichotomous Predictor and a Continuous Criterion</h3>
+<p>Regressions are also good about handling a dichotomous predictor. Let’s take, as an example, the item data from <a href="chapter11.html" class="quarto-xref"><span>Chapter 13</span></a>, which you can see in <a href="chapter11.html#tbl-pbs" class="quarto-xref">Table&nbsp;<span>13.3</span></a>.</p>
+<p>If we wanted to, we can use regression to answer the question “If someone gets this item correct, what would their score be on the exam?” We can run a regression in the same way we would for a continuous predictor, and we also get output that provides us with some unstandardized and standardized coefficients. The intepretation is a little bit different here, but it’s conceptually the same. The unstandardized values still indicate the y-intercept and the slope, but if we code our predictor using 0 and 1, we’ll notice something interesting. Here’s the formula we get from conducting this regression:</p>
+<p><span class="math inline">\(\hat{y}=31.41(x)+41.22\)</span></p>
+<p>You’ll notice if we solve for people who didn’t get the question correctly, we find:</p>
+<p><span class="math inline">\(\hat{y}=31.41(0)+41.22= 41.22\)</span></p>
+<p>Aha! The solution is the y-intercept, which makes perfect sense if you think about it: The y-intercept is what y equals when x equals zero, and x equals zero when someone doesn’t solve the item correctly, so 41.22 is, in fact, the average for the group that didn’t answer the item correctly. When we solve for the equation for people who did get the question right, we find:</p>
+<p><span class="math inline">\(\hat{y}=31.41(1)+41.22=72.63\)</span></p>
+<p>This also makes sense, because the slope tells us how much of a change in y occurs for a one-point change in x, and a one point change in x just means that someone got the item correct. Sure enough, if you look at the data, you’ll find the exam average for people who got this item correct is also 72.63.</p>
+<p>As you think this over, you might find yourself asking “Wait, isn’t this regression basically the same as an independent t-test?” Yep! It is the same, it’s just a different way of thinking about it. You might also find yourself saying “How is this different from a point-biserial correlation?” It’s not different, actually! If you look at the <span class="math inline">\(\beta\)</span> value, you’ll find <span class="math inline">\(\beta=.74\)</span>, which is the same correlation we found for this data back in <span class="quarto-unresolved-ref">?sec-pbcorr</span>! So, now you have three tools you can use to understand the difference in means between two groups.</p>
+<p>We can also understand variance explained by looking at the <span class="math inline">\(R^2\)</span>. Here, <span class="math inline">\(R^2=.55\)</span>, which means about 55% of the variance in student scores is explained by whether they get this question correct.</p>
+</section>
+<section id="wait-can-i-do-a-regression-with-a-polytomous-variable" class="level3" data-number="14.2.4">
+<h3 data-number="14.2.4" class="anchored" data-anchor-id="wait-can-i-do-a-regression-with-a-polytomous-variable"><span class="header-section-number">14.2.4</span> Wait… can I do a regression with a polytomous variable?</h3>
+<p>You can! But it’s a bit fiddly to do. Essentially, you’d need to dummy code your variable into dichotomous yes/no categories. For example, if we wanted to include religion in a regression, and people choose among 4 categories (Christian, Muslim, Buddhist, Hindu), you would need to set up 3 dichotomous variables with 0=no and 1=yes:</p>
+<div id="tbl-dummycodes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dummycodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.1: A table demonstrating how different religions would be represented using dummy codes.
+</figcaption>
+<div aria-describedby="tbl-dummycodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Christian</th>
+<th>Muslim</th>
+<th>Buddhist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>In this example table, we have one of each religion I listed. You’ll also notice that one category (Hindu in my example) doesn’t have a column. Basically, someone who is Hindu is listed as a “none of the above” category. This is necessary to do; if you included a Hindu category, you’d end up with something called “Perfect Multicollinearity” (I’ll explain this in the next section) and your regression won’t run. So, we can think of the Hindu group here as more of a “baseline” group.</p>
+<p>We can also do this if a variable is not mutually exclusive. Take, for example, when we assess race in a survey – if we use a “check all that apply” instruction, someone who is multiracial might check several boxes. That’s not a problem – we can make a decision if we want to use the dummy coding approach and just allow them to have a 1 in multiple categories, or if we want to create an additional “multiracial” group in our data that would be a 1 if someone checks more than one box. This depends on how that variable is typically treated, the nature of that variable, and the nature of your question.</p>
+<p>But to analyze this, you now have more variables, so you wouldn’t be able to use simple regression to examine a polytomous variable – you’d need a multiple regression. Let’s talk about that next.</p>
+</section>
+</section>
+<section id="multiple-regression" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="multiple-regression"><span class="header-section-number">14.3</span> Multiple Regression</h2>
+<p>Simple regression shares a lot of DNA with correlations. However, remember that in <a href="chapter11.html" class="quarto-xref"><span>Chapter 13</span></a>, we were only able to do correlations between two variables, so as a statistical analysis tool, it is limited in that way. But multiple regressions are not – we can put in several variables of different types into our model to see how they all work together to predict some outcome. But in order to make the jump from simple to multiple regression, we need to discuss something called “shared variance.”</p>
+<section id="shared-variance-and-multicollinearity" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="shared-variance-and-multicollinearity"><span class="header-section-number">14.3.1</span> Shared Variance and Multicollinearity</h3>
+<p>In most social sciences, we recognize that nearly all variables will have some relationship with one another. For example, imagine I’m trying to predict happiness using minutes of meditation and stress levels. But almost certainly, my predictors (meditation and stress) share a relationship. So, when we try to use both variables at the same time, their correlation with each other means that they probably also both explain some aspects of variance in meditation for people.</p>
+<div id="fig-corrvenn" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A venn diagram with three circles, labeled &quot;Happiness&quot;, &quot;Meditation&quot; and &quot;Stress&quot;. They all overlap one another.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corrvenn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/corrvenn.png" class="img-fluid figure-img" alt="A venn diagram with three circles, labeled &quot;Happiness&quot;, &quot;Meditation&quot; and &quot;Stress&quot;. They all overlap one another.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corrvenn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.3: An illustration of how our predictors and criterion might overlap
+</figcaption>
+</figure>
+</div>
+<p>In fact, in this data these predictors share a decent correlation with one another (<em>r</em>=-.41, <em>p</em>=.08); this is visually represented in <a href="#fig-corrvenn" class="quarto-xref">Figure&nbsp;<span>14.3</span></a> by the mauve-colored overlap between the stress and meditation circles . This means that when we attempt to predict happiness, these two variables will compete with one another in our model, because both of them explain some aspects of happiness (represented by the grayish purple triangle where all circles overlap) . If we were to run separate simple regressions with just one predictor, we’d find significant results. But when we put them in a model together, they may look like they are not as useful as predictors because they share this variance.</p>
+<p>When predictors have a high correlation with each other (and by high, I mean <em>r</em>=+/-.80 or stronger) we have a situation known as <strong>multicollinearity.</strong> This causes problems with regression because they make our estimates unstable (the <span class="math inline">\(\beta\)</span> values bounce around as you change the model, or we start to find <span class="math inline">\(\beta\)</span> values that are larger than +/-1.00). It also makes it hard to know which variable is important.</p>
+<p>You can imagine that at the extreme end where two predictors share a perfect +1.00 correlation, there’s no point in putting them both into our regression, because they tell us the same thing. At the less extreme end, predictors with a .80 or stronger correlation will overlap a lot, and you won’t get a lot of <strong>incremental validity</strong> out of using both predictors (incremental validity is represented by the greenish overlap between meditation and happiness, and by the purpleish overlap between stress and happiness in <a href="#fig-corrvenn" class="quarto-xref">Figure&nbsp;<span>14.3</span></a>; it is the unique variance explained by each predictor).</p>
+<p>So, before you build a model, it’s a good idea to check for high intercorrelations among predictors. Some statistical programs will provide a variance inflation factor (VIF); a VIF of greater than 10 indicates multicollinearity, so you might want to reconsider what predictors you are using in your model.</p>
+<p>In our example, our predictors share a moderate correlation, so we don’t have multicollinearity, but as we will see, they do compete over variance in an interesting way.</p>
+</section>
+<section id="an-entry-multiple-regression-with-two-predictors" class="level3" data-number="14.3.2">
+<h3 data-number="14.3.2" class="anchored" data-anchor-id="an-entry-multiple-regression-with-two-predictors"><span class="header-section-number">14.3.2</span> An Entry Multiple Regression with Two Predictors</h3>
+<p>As we move from simple to multiple regression, we’re still just charting a best fit line, but now the line is taking place in three or more dimensions, so it gets a little tricky to illustrate. In our example, we are working in three dimensions, with happiness on the y axis, meditation time on the x axis, and stress on the z axis:</p>
+<p>[insert 3D illustration]</p>
+<p>There is still one, and only one, best fit line that tries to minimize the distances between each point and the prediction line. The equation for our line gets a bit more complex, as we now need to add an additional variable:</p>
+<p><span class="math inline">\(\hat{y}=b_0+b_1(x_1)+b_2(x_2)\)</span></p>
+<p>When we conduct our regression, we get these results:</p>
+<div id="fig-multireg" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A regression table with unstandardized and standardized coefficients, and significance values.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-multireg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/multiregspss.png" class="img-fluid figure-img" alt="A regression table with unstandardized and standardized coefficients, and significance values.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multireg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.4: SPSS Output of multiple regression
+</figcaption>
+</figure>
+</div>
+<p>We still have a y intercept, but now we have a slope assigned to each predictor in our model. Again, the output provides us with b-values, which allow us to make a prediction on someone’s score on the outcome given their scores on the predictors. It also gives us <span class="math inline">\(\beta\)</span> values which help us understand the relative “importance” of each variable in the model.</p>
+<p>In this particular model, we see that whereas meditation time predicted happiness in our simple regression, it no longer is a significant predictor once we add stress into the model. Because our two predictors are (negatively) correlated, it seem that they are fighting over variance in the happiness variable, which leads them to drop out of significance (we also are working with a very small data set for this example, so as you’ve learned, we don’t have a lot of power here, which means it’s easy for large effects to be non-significant). Despite the lack of significance, we can still use the equation to guess what someone’s happiness level would be if they spend 40 minutes meditating and rate their stress as a 57:</p>
+<p><span class="math inline">\(\hat{y}=57.91+.15(40)+ -.34(57)=44.53\)</span></p>
+<p>And given the <span class="math inline">\(\beta\)</span> values, we can see that they are relatively similar in how important they are in predicting outcomes, but in opposite directions (meditation time is positively related to happiness, while stress is negatively related to happiness).</p>
+<p>The regression we’ve just done here is often known as an <strong>entry regression</strong>; we start with a specific model we want to test, and just test it all at once. However, this is not your only option!</p>
+</section>
+<section id="hierarchical-regression" class="level3" data-number="14.3.3">
+<h3 data-number="14.3.3" class="anchored" data-anchor-id="hierarchical-regression"><span class="header-section-number">14.3.3</span> Hierarchical Regression</h3>
+<p>Another option we have with regression is we can add more predictors to our model in several steps. This is a great option if there’s a variable we know probably relates to our outcome, and we want to know whether another variable predicts above and beyond that first variable. This gets right at the question of incremental validity – if we have one variable in our model and then add two more, this tells us whether the addition of those variables is at all helpful for predicting outcomes. We can compare models to see how our equation and the beta weights change as we add predictors. We can also look at a change in <span class="math inline">\(R^2\)</span> (sometimes notated as <span class="math inline">\(\Delta R^2\)</span> ) to see how much more variance we can explain with an additional variable.</p>
+<p>To illustrate how this works, it’s helpful to have a larger data set, so you can check out the data set “Meditation 2” to understand what’s going on in our analyses. In this example, imagine we still want to study happiness, but now we’ve collected some data on gender, household income, meditation, stress, and motivation. The first five lines of the data are provided below:</p>
+<div id="tbl-meditation2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-meditation2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.2: Table of the first five lines of the dataset Meditation 2
+</figcaption>
+<div aria-describedby="tbl-meditation2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 16%">
+<col style="width: 14%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 13%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>id</th>
+<th>meditation</th>
+<th>happiness</th>
+<th>stress</th>
+<th>liking</th>
+<th>gender</th>
+<th>hhincome</th>
+<th>motivation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>107</td>
+<td>54</td>
+<td>43</td>
+<td>41</td>
+<td>0</td>
+<td>57</td>
+<td>6.61</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>13</td>
+<td>42</td>
+<td>69</td>
+<td>48</td>
+<td>1</td>
+<td>120</td>
+<td>2.15</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>93</td>
+<td>58</td>
+<td>43</td>
+<td>51</td>
+<td>0</td>
+<td>111</td>
+<td>6.37</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>90</td>
+<td>48</td>
+<td>51</td>
+<td>41</td>
+<td>0</td>
+<td>78</td>
+<td>8.71</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>76</td>
+<td>37</td>
+<td>61</td>
+<td>62</td>
+<td>0</td>
+<td>70</td>
+<td>7.73</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>In our research, perhaps we recognize there is some relationship between demographics like gender and income on happiness, and we’re interested in whether meditation will help above and beyond those factors. So, we can put gender and income into the first step of our model (Model 1), then add meditation in the second step (Model 2). We can also generate information about how much of a change we see in variance we can explain once we add meditation in the second step. Output might look something similar to this:</p>
+<div id="tbl-regress1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-regress1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.3: Regression coefficients for Model 1
+</figcaption>
+<div aria-describedby="tbl-regress1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>B</th>
+<th><span class="math inline">\(\beta\)</span></th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Intercept</td>
+<td>49.86</td>
+<td>–</td>
+<td>&lt;.001</td>
+</tr>
+<tr class="even">
+<td>gender</td>
+<td>3.03</td>
+<td>.12</td>
+<td>.06</td>
+</tr>
+<tr class="odd">
+<td>hhincome</td>
+<td>.03</td>
+<td>.07</td>
+<td>.28</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="tbl-regress2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-regress2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.4: Regression coefficients for Model 2
+</figcaption>
+<div aria-describedby="tbl-regress2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>B</th>
+<th><span class="math inline">\(\beta\)</span></th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Intercept</td>
+<td>29.98</td>
+<td>–</td>
+<td>&lt;.001</td>
+</tr>
+<tr class="even">
+<td>gender</td>
+<td>-.37</td>
+<td>-.01</td>
+<td>.79</td>
+</tr>
+<tr class="odd">
+<td>hhincome</td>
+<td>.02</td>
+<td>.03</td>
+<td>.54</td>
+</tr>
+<tr class="even">
+<td>meditation</td>
+<td>.25</td>
+<td>.59</td>
+<td>&lt;.001</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="tbl-r2change" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-r2change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.5: R2 changes between Model 1 and Model 2
+</figcaption>
+<div aria-describedby="tbl-r2change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th><span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Model 1</td>
+<td>.02</td>
+</tr>
+<tr class="even">
+<td>Model 2</td>
+<td>.34</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\Delta R^2\)</span></td>
+<td>&lt;.001</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>These results tell us a few things. First, we can see that in our first model, gender and household income don’t provide much prediction on happiness. When we add meditation in, we can see that our coefficients in the model change a little, but the outcome is the same, and we see that meditation is significant. Indeed, if we compare the <span class="math inline">\(R^2\)</span> between models, we see it jumps up quite a bit (and an ANOVA conducted on these models indicates a significant change, <em>p</em>&lt;.001). So, this tells us that gender and income are not helpful predictors, but that our model improves once we add meditation.</p>
+</section>
+<section id="exploratory-regressions-forwards-and-backwards-regression" class="level3" data-number="14.3.4">
+<h3 data-number="14.3.4" class="anchored" data-anchor-id="exploratory-regressions-forwards-and-backwards-regression"><span class="header-section-number">14.3.4</span> Exploratory Regressions: Forwards and Backwards Regression</h3>
+<p>There is one additional way we can use regression, but I want to emphasize here that this is not a great approach in terms of scientific rigor. Ideally, when we conduct research, we have a hypothesis in mind, and we collect data to see if there’s support for that hypothesis. But sometimes we just have data that’s been collected for other purposes, and we might be curious about what different factors might predict an outcome. In this case, we can take advantage of exploratory regressions that examine what relationships exist, and use that to test several models to come up with the best model to explain the outcome. The problem with this approach is that it takes advantage of chance – if we had 20 variables in our initial model, we may accidentally identify one of them as important just because of the 5% chance of a Type I error. So, in order to feel confident in our findings, we really should replicate our study with a sample drawn specifically to retest our model. Hopefully we’d find the same outcome, but there certainly is a chance we won’t!</p>
+<p>There are several approaches we can take to these exploratory regressions, but two are popular enough in the literature to merit an example. Sometimes, we start with and empty model and allow our statistical program to choose variables that perform the best and add them to the model until adding variables no longer improves our prediction. This approach is known as a forward regression. We can also do the opposite – we start with all possible variables in the model, and the statistical program removes them one by one until removing one produces a significant change in the variance it can predict. This approach is known as backward regression.</p>
+<p>Sometimes, you will get slightly different findings if you do a forwards versus backwards regression. I generally recommend people use a backward regression if they want to explore data, because it’s better at discovering something called a suppressor variable. A suppressor variable is when it makes the relationship between two variables stronger when it’s added to the model. Take for example in our Meditation 2 data, imagine I am trying to predict happiness, and I don’t have a good theory for what might be happening, so I conduct a backward regression with all other variables as a predictor. My initial model will include all variables, and each subsequent model removes the least useful predictor. My final model looks like this:</p>
+<div id="tbl-bkwdreg" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bkwdreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.6: Regression coefficients for a backward regression
+</figcaption>
+<div aria-describedby="tbl-bkwdreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>B</th>
+<th><span class="math inline">\(\beta\)</span></th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Intercept</td>
+<td>74.46</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>meditation</td>
+<td>.15</td>
+<td>.36</td>
+<td>&lt;.001</td>
+</tr>
+<tr class="odd">
+<td>stress</td>
+<td>-.53</td>
+<td>-.43</td>
+<td>&lt;.001</td>
+</tr>
+<tr class="even">
+<td>liking</td>
+<td>-.21</td>
+<td>-.17</td>
+<td>&lt;.001</td>
+</tr>
+<tr class="odd">
+<td>gender</td>
+<td>3.77</td>
+<td>.15</td>
+<td>.003</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Here, we see that household income and motivation don’t end up predicting anything significantly, so they drop out of the model. However, this certainly might just be due to chance, so whenever you use an exploratory method like this, it’s best practice to do a follow up study using these variables and an entry regression to confirm that your findings are dependable.</p>
+</section>
+</section>
+<section id="writing-the-results-of-a-regression" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="writing-the-results-of-a-regression"><span class="header-section-number">14.4</span> Writing the Results of a Regression</h2>
+<p>When writing the results of a regression, you typically want to indicate the following:</p>
+<ul>
+<li><p>Provide information about the regression – what variables are included, and explain whether you’ve used an entry, hierarchical, or exploratory approach. If you don’t specify anything, most people will assume an entry regression.</p></li>
+<li><p>Although b values are helpful in most applied situations, we don’t tend to report them in scientific reports.</p></li>
+<li><p><span class="math inline">\(\beta\)</span> values are more helpful in a scientific context, so we typically report those, with their related significance value.</p></li>
+<li><p>The <span class="math inline">\(R^2\)</span> value is helpful to understand how much variance is explained by your regression.</p></li>
+<li><p>If you are doing a hierarchical regression, you must provide all the <span class="math inline">\(\beta\)</span> weights and their significance at each step. It also is helpful to either provide an <span class="math inline">\(R^2\)</span> value or a <span class="math inline">\(\Delta R^2\)</span> value so that your audience understands how adding predictors changes how each variable contributes to the prediction, and whether the addition of new predictors helps us better predict the outcome. Often, tables make it much easier to convey this information briefly and clearly.</p></li>
+</ul>
+<blockquote class="blockquote">
+<p>A multiple regression indicates that meditation does not significantly predict happiness ( <span class="math inline">\(\beta\)</span>=??, <em>p</em>=.??) and ??? ( <span class="math inline">\(\beta\)</span>=?? , <em>p</em>=.??) .</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>I conducted a hierarchical regression with xxx in the first step, and xxx in the second step. Results are presented in Table 1. The final model suggests that the addition of ??? :::::</p>
+</blockquote>
+
+
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>There are some occasions where you might see a <span class="math inline">\(\beta\)</span> value that is greater in magnitude than +/- 1.00; we’ll talk about that later in this chapter when we discuss assumptions of a regression.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter11.html" class="pagination-link" aria-label="Correlations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Correlations</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter13.html" class="pagination-link" aria-label="Logistic Regression">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

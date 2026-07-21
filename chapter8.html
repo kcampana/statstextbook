@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kristie Campana">
+
+<title>9&nbsp; Within-Subject ANOVA – Statistics for Social Scientists Who Are A Little Afraid of Them</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter9.html" rel="next">
+<link href="./chapter7.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-3e54a2ba524a9c641b796d074eb695a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter8.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Within-Subject ANOVA</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics for Social Scientists Who Are A Little Afraid of Them</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Why Write This Book?</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentals of Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Samples and Populations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Understanding Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Getting to Know Your Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">T-Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Between-Subject ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter8.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Within-Subject ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Factorial Designs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Non-Parametric Tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Correlations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mediation and Moderation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-winanova" id="toc-sec-winanova" class="nav-link active" data-scroll-target="#sec-winanova"><span class="header-section-number">9.1</span> Learning Objectives</a></li>
+  <li><a href="#the-basics-of-within-subjects-anovas" id="toc-the-basics-of-within-subjects-anovas" class="nav-link" data-scroll-target="#the-basics-of-within-subjects-anovas"><span class="header-section-number">9.2</span> The Basics of Within-Subjects ANOVAs</a></li>
+  <li><a href="#the-anova-approach-to-within-subject-data" id="toc-the-anova-approach-to-within-subject-data" class="nav-link" data-scroll-target="#the-anova-approach-to-within-subject-data"><span class="header-section-number">9.3</span> The ANOVA Approach to Within-Subject Data</a>
+  <ul class="collapse">
+  <li><a href="#the-assumption-of-sphericity" id="toc-the-assumption-of-sphericity" class="nav-link" data-scroll-target="#the-assumption-of-sphericity"><span class="header-section-number">9.3.1</span> The Assumption of Sphericity</a></li>
+  <li><a href="#contrasts" id="toc-contrasts" class="nav-link" data-scroll-target="#contrasts"><span class="header-section-number">9.3.2</span> Contrasts</a></li>
+  </ul></li>
+  <li><a href="#the-linear-model-approach-to-repeated-measures" id="toc-the-linear-model-approach-to-repeated-measures" class="nav-link" data-scroll-target="#the-linear-model-approach-to-repeated-measures"><span class="header-section-number">9.4</span> The Linear Model Approach to Repeated Measures</a>
+  <ul class="collapse">
+  <li><a href="#what-to-do-if-your-assumption-of-normality-andor-homoscedasticity-are-violated" id="toc-what-to-do-if-your-assumption-of-normality-andor-homoscedasticity-are-violated" class="nav-link" data-scroll-target="#what-to-do-if-your-assumption-of-normality-andor-homoscedasticity-are-violated"><span class="header-section-number">9.4.1</span> What to do if your assumption of normality and/or homoscedasticity are violated</a></li>
+  <li><a href="#calculating-an-effect-size-for-within-subject-t-tests" id="toc-calculating-an-effect-size-for-within-subject-t-tests" class="nav-link" data-scroll-target="#calculating-an-effect-size-for-within-subject-t-tests"><span class="header-section-number">9.4.2</span> Calculating an Effect Size for Within-Subject T-Tests</a></li>
+  <li><a href="#writing-the-results-of-a-within-subject-anova" id="toc-writing-the-results-of-a-within-subject-anova" class="nav-link" data-scroll-target="#writing-the-results-of-a-within-subject-anova"><span class="header-section-number">9.4.3</span> Writing the Results of a Within-Subject ANOVA</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Within-Subject ANOVA</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kristie Campana </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sec-winanova" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="sec-winanova"><span class="header-section-number">9.1</span> Learning Objectives</h2>
+<ul>
+<li><p>Know what a Within-Subject (Repeated) ANOVA is, and what kinds of research questions it can address.</p></li>
+<li><p>Using an ANOVA approach to analyzing the data</p></li>
+<li><p>Using a linear approach to analyzing the data</p></li>
+<li><p>Using contrasts and post-hoc tests to describe differences in the data</p></li>
+<li><p>Writing a within-subject ANOVA</p></li>
+</ul>
+<p>If you will recall, I dropped a little note in Chapter ?? that indicated that with all of these “difference” models we’re talking about, you can also conceptualize them as linear models. For the most part, it won’t make a big difference between using difference versus linear approaches, but that is not the case for within-subject ANOVAs. So, first, we’ll talk about when we might use a repeated ANOVA, and then we’ll talk about how these two approaches differ, and how using one approach versus the other will affect your findings.</p>
+</section>
+<section id="the-basics-of-within-subjects-anovas" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="the-basics-of-within-subjects-anovas"><span class="header-section-number">9.2</span> The Basics of Within-Subjects ANOVAs</h2>
+<p>Just as I noted in <a href="chapter7.html#sec-bwanova" class="quarto-xref"><span>Section 8.1</span></a> that between subject ANOVAs are analogous to independent t-tests, I’ll note here that within-subject ANOVAs (also known as “repeated ANOVAs”) are analogous to dependent t-tests. Instead of re-testing our sample once, we retest them 2 or more times, which means we will have a minimum of 3 scores for each participant who completes our study.</p>
+<p>And just as I noted in the dependent t-test, we are not too interested in differences between participants; instead, we are interested in how each participant changes across the different testing sessions. This is going to be hugely helpful for interventions and treatments, because our participants or patients might be wildly different in, for example, the symptoms they experience, but if we can improve the experience for all our participants, it’s not necessarily a concern if some participants don’t improve quite as much as someone who had a more severe issue.</p>
+<p>Let’s walk through an example together to understand what this might look like. Imagine that we are working in a sleep clinic, and one problem a lot of our clients have is that they don’t have great “sleep hygiene” – that is, we know there are a lot of ways to improve your sleep habits (having bedtime rituals, using your bedroom only for sleeping, avoiding screens for at least an hour before bed) and we know our clients are not great about following these habits. So, we design a training program with several modules:</p>
+<ul>
+<li><p>Module 1: Making your bedroom a sleep sanctuary</p></li>
+<li><p>Module 2: Developing effective bedtime rituals</p></li>
+<li><p>Module 3: Reducing screen use in the evening</p></li>
+</ul>
+<p>Imagine that we get a baseline of how many hours per night, on average, our participants get before they begin our intervention, after each module, and than a 3-month follow up to see if the improvements are sticking. After our study, we might end up with a data set that looks like the Sleep Study data set I’ve created here.</p>
+<div id="tbl-sleepdata" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sleepdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.1: Example data from the Sleep Study data set
+</figcaption>
+<div aria-describedby="tbl-sleepdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>baseline</th>
+<th>module1</th>
+<th>module2</th>
+<th>module3</th>
+<th>followup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>6.02</td>
+<td>6.46</td>
+<td>6.21</td>
+<td>6.43</td>
+<td>4.73</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>7.00</td>
+<td>7.70</td>
+<td>7.71</td>
+<td>8.20</td>
+<td>7.93</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>5.58</td>
+<td>6.39</td>
+<td>6.92</td>
+<td>8.26</td>
+<td>6.89</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>You can see in this data that people are very diverse – some are getting a lot of sleep in general, and others are not. However, our goal is to help everyone in our sample get more sleep overall, so this data can help us learn about what modules improve their sleep, and whether they are able to maintain these improvements over time. So, we need to learn more about how changes between each measurement look across all our participants.</p>
+</section>
+<section id="the-anova-approach-to-within-subject-data" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="the-anova-approach-to-within-subject-data"><span class="header-section-number">9.3</span> The ANOVA Approach to Within-Subject Data</h2>
+<p>One option for analysis is to basically extend a repeated t-test into a repeated ANOVA, where we simply calculate the differences between each score and establish if those differences are large enough and consistent enough for us to feel confident that a change is occurring. Here, this would look very similar to what we discussed in <a href="chapter6.html#sec-withinT" class="quarto-xref"><span>Section 7.4</span></a> – we would calculate the difference between each measurement and use that to establish whether any time period produced a large enough change to be significant. However, if we take this approach, we have a new assumption that we need to consider: sphericity</p>
+<section id="the-assumption-of-sphericity" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="the-assumption-of-sphericity"><span class="header-section-number">9.3.1</span> The Assumption of Sphericity</h3>
+<p>As we estimate the differences between each measurement period, we can also estimate the variance of these difference scores. For example, from the data provided in <a href="#tbl-diffs" class="quarto-xref">Table&nbsp;<span>9.2</span></a>, we can see some (but not all) of the comparisons between measures in the table below:</p>
+<div id="tbl-diffs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-diffs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.2: Difference scores in Sleep Study data
+</figcaption>
+<div aria-describedby="tbl-diffs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>baseline - module 1</th>
+<th>baseline - module 2</th>
+<th>baseline - module 3</th>
+<th>baseline - followup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>-.44</td>
+<td>-.19</td>
+<td>-.41</td>
+<td>1.29</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>-.7</td>
+<td>-.71</td>
+<td>-1.2</td>
+<td>-.93</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>-.81</td>
+<td>-1.34</td>
+<td>-2.68</td>
+<td>-1.31</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td><strong>Variance of Difference Scores:</strong></td>
+<td>.05</td>
+<td>.32</td>
+<td>-2.75</td>
+<td>-2.16</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>We would have these comparisons across all measurements, and establish the variance of these difference scores. The assumption of sphericity indicates that these variances between difference scores should be roughly equal for all comparisons (that is, the average scores can be very different across each measure, but the variance in how much they change should be similar across all measures). We can see here, that doesn’t seem to be the case! So, in order to establish whether this is the case, we can conduct a test known as the Mauchly’s Test. The details of how this test is calculated is not particularly important; suffice it to say that if this test is significant, we need to make some adjustments to our results.</p>
+<p>There are typically two corrections people use if there are issues with sphericity– the Greenhouse Geisser correction (which is a bit conservative) and the Huynh-Feldt correction. If you don’t use a correction when sphericity is violated, just know that you won’t have quite as much power, and it can lead to some funky results for your post-hoc tests. <span class="citation" data-cites="pituch2016">Pituch and Stephens (<a href="#ref-pituch2016" role="doc-biblioref">2016</a>)</span> recommends taking the average of the Greenhouse-Geisser and Huynh-Feldt values; <span class="citation" data-cites="field2009">Field (<a href="#ref-field2009" role="doc-biblioref">2009</a>)</span> astutely makes the argument that if there is a difference between the estimates (as in, the Greenhouse-Geisser yields a non-significant result while the Huynh-Feldt results in a significant result) that it’s a good idea to look at effect sizes to understand whether the result is important from a practical standpoint. I tend to take that approach.</p>
+<p>In the case of this data, we see that there is a significant Mauchly’s test, and both the Greenhouse-Geisser and the Huynh-Feldt lead to significant findings, so the Greenhouse-Geisser correction is a good choice here. We obtain the following results:</p>
+<div id="tbl-repANOVA" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-repANOVA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.3: Results of a Greenhouse-Geisser corrected repeated ANOVA
+</figcaption>
+<div aria-describedby="tbl-repANOVA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>SS</th>
+<th>df</th>
+<th>MS</th>
+<th>F</th>
+<th>Sig.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Variable</td>
+<td>23.97</td>
+<td>1.65</td>
+<td>14.56</td>
+<td>19.57</td>
+<td>&lt;.001</td>
+</tr>
+<tr class="even">
+<td>Error</td>
+<td>47.77</td>
+<td>64.20</td>
+<td>.74</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>So, these results indicate we have a significant ANOVA. Just as with other types of ANOVAs, a significant result simply indicates there is a significant difference between at least two measurements, but we’d need to use a contrast or a post-hoc to learn more about the nature of these differences. Just as with a one-way ANOVA, contrasts are best if we have specific comparisons we’d like to make, while a post-hoc is best if we want to compare all groups to one another. Post-hocs are generally the same as what we saw with a one-way ANOVA, but with contrasts, there are some common contrasts that are worth discussing.</p>
+</section>
+<section id="contrasts" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="contrasts"><span class="header-section-number">9.3.2</span> Contrasts</h3>
+<p>While you certainly can program custom contrasts as you did with a one-way ANOVA, many programs allow you to use some pre-programmed contrasts with your data.</p>
+<p>The first, and probably most straightforward, is what we generally call a simple contrast. With a simple contrast, we designate a particular measurement as our comparison group (usually this is the first or the last measurement in your data set, but it doesn’t have to be). In our example, perhaps we are curious about whether all time periods demonstrate a difference from our baseline measure. If that’s our question, a simple contrast makes a lot of sense:</p>
+<div id="simple" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/simplecont.jpg" class="img-fluid figure-img" alt="Graphic with 4 arrows, from baseline to module 1, baseline to module 2, baseline to module 3, and baseline to follow up."></p>
+<figcaption>Simple contrast</figcaption>
+</figure>
+</div>
+<p>If you run this, you’ll find these results:</p>
+<div id="tbl-simplecont" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-simplecont-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.4: Results of a simple contrast
+</figcaption>
+<div aria-describedby="tbl-simplecont-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Comparison</th>
+<th>F</th>
+<th>Sig.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Baseline - Module 1</td>
+<td>171.24</td>
+<td>&lt;.001</td>
+</tr>
+<tr class="even">
+<td>Baseline - Module 2</td>
+<td>93.20</td>
+<td>&lt;.001</td>
+</tr>
+<tr class="odd">
+<td>Baseline - Module 3</td>
+<td>43.63</td>
+<td>&lt;.001</td>
+</tr>
+<tr class="even">
+<td>Baseline - Followup</td>
+<td>10.20</td>
+<td>.003</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>It can also help to look at a graph to understand the direction of the differences:</p>
+<div id="sleeptime" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/sleepresults.png" class="img-fluid figure-img" alt="A graph showing sleep times increase from baseline to module 1, module 3, and module 4. The mean for follow up is lower, just a bit higher than the mean of module 1."></p>
+<figcaption>Average Sleep Times</figcaption>
+</figure>
+</div>
+<p>Ultimately, we see sleep improves during this program and stays higher than what it was at the baseline. Thus, we might conclude this training is helpful for improving sleep.</p>
+<p>Another common option is what’s known as a repeated contrast. This is where you compare each adjacent measure. If our question is whether people keep improving over time, a repeated contrast is a good option:</p>
+<div id="repeatedcont" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/repeatedcont.jpg" class="img-fluid figure-img" alt="A graphic showing a repeated contrast. An arrow goes from Baseline to Module 1, another goes from Module 2 to Module 3, and another goes from Module 3 to Followup."></p>
+<figcaption>Repeated contrast</figcaption>
+</figure>
+</div>
+<p>If we chose to use this approach, we’d find the following results:</p>
+<div id="tbl-rptcontrast" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rptcontrast-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.5: Results of a repeated Contrast
+</figcaption>
+<div aria-describedby="tbl-rptcontrast-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Comparison</th>
+<th>F</th>
+<th>Sig.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Baseline - Module 1</td>
+<td>171.24</td>
+<td>&lt;.001</td>
+</tr>
+<tr class="even">
+<td>Module 1 - Module 2</td>
+<td>24.92</td>
+<td>&lt;.001</td>
+</tr>
+<tr class="odd">
+<td>Module 2 - Module 3</td>
+<td>1.55</td>
+<td>.22</td>
+</tr>
+<tr class="even">
+<td>Module 3 - Followup</td>
+<td>28.55</td>
+<td>&lt;.001</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Here, we have a slightly different conclusion, because our question is different. In this case, we see that sleep improves after module 1 and module 2, but doesn’t significantly improve after people participate in module 3. So, perhaps students have learned what they need to learn, and there’s no need for module 3. We also see a significant drop between module 3 and the followup. It doesn’t go back to baseline, but it does seem to line up with where students were after module 1, so clearly some of the improvements are not sticking around for the long-term.</p>
+<p>Another option that exists is the Helmert contrast. Here, you would compare each testing period to the mean of all periods that come before it:</p>
+<div id="helmert" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/helmert.jpg" class="img-fluid figure-img" alt="A graphic of a Helmert contrast, with brackets showing that we compare baseline to module 1, then average baseline and module 1 to compare to module 2 and so on."></p>
+<figcaption>A Helmert contrast (the braces indicate means of multiple groups)</figcaption>
+</figure>
+</div>
+<p>This doesn’t make as much sense for our example, but you can imagine if we were conducting research where each measurement built on the ones before it (like if we were gradually increasing the dosage of a drug, or if we expected people to build on a skill over time) then the Helmert is a good option.</p>
+</section>
+</section>
+<section id="the-linear-model-approach-to-repeated-measures" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="the-linear-model-approach-to-repeated-measures"><span class="header-section-number">9.4</span> The Linear Model Approach to Repeated Measures</h2>
+<p>Throughout this book, you are going to learn that sometimes we might have several tests that do the same thing. This is the first example of this (and unfortunately, the most complicated). If you are taking a class, your instructor will hopefully tell you whether you need to read this section. I am going to warn those of you who feel nervous about math that it’s going to get a little bananas in this section. I’m sharing this with you to make two main points:</p>
+<ul>
+<li><p>Linear models are often more accurate and appropriate, but sometimes they are a bigger pain in the neck than they are worth, depending on the statistical program you are using (e.g., linear models are annoying in SPSS, but are pretty easy in RStudio)</p></li>
+<li><p>Sometimes (but not always) your results will be very different between an ANOVA and a linear model depending on what is going on in your data.</p></li>
+</ul>
+<p>So here’s the deal:</p>
+<p>Although historically we have treated repeated measures as ANOVAs, sometimes that is not exactly accurate. Part of what’s going on here is that we are, in some ways, violating the assumption of independence. One way to think about this is that we need to consider that humans are different from each other, and all of us have some idiosyncratic ways that we respond to items.</p>
+<div id="mlm" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/mlm.jpg" class="img-fluid figure-img" alt="A graphic shows two people, Alan and Benoit, each of whom have several measures of sleep associated with them."></p>
+<figcaption>An illustration of nested data</figcaption>
+</figure>
+</div>
+<p>For example, maybe Alan is taking medications that make sleep difficult, and maybe Benoit is an athlete who feels drowsy even after getting 8 hours of sleep. What this means is that we will see some correlations among the scores that come from an individual; Alan will tend to have less sleep overall compared to Benoit. When that’s the case, we are dealing with something known as a multi-level model. Basically, we can think of each individual’s response (Level 1) as nested within that individual (Level 2). So, there are differences between each measure people provide, but there are also perhaps some meaningful differences between participants that we ought to consider (versus using an ANOVA, where those differences are basically tossed aside and ignored).</p>
+<p>The main point I’m making here is this: an ANOVA is primarily focused on differences within an individual, and ignores differences between individuals. Meanwhile, a linear model allows us to look at changes within an individual plus differences between individuals. A linear model would allow us to answer more questions, such as:</p>
+<ul>
+<li><p>Are there variables that lead to some people getting more sleep than others in general? (For example, maybe athletes get more sleep in general).</p></li>
+<li><p>Are there variables that can explain how much a person is likely to change? (For example, maybe students who have busy schedules don’t improve much because they simply don’t have enough time for sleep, regardless of their sleep hygiene).</p></li>
+</ul>
+<p>The math that goes into this is much too complex for our purposes, but if you are curious, I recommend taking a look at a book covering multi-level modeling, such as <span class="citation" data-cites="luke_multilevel_2026">Luke (<a href="#ref-luke_multilevel_2026" role="doc-biblioref">2026</a>)</span>. Anyway, what matters here for our purposes is two key points:</p>
+<ul>
+<li><p>Sometimes the results for an ANOVA versus a linear model can be quite different!</p></li>
+<li><p>If you use a linear approach, it does not have sphericity as an assumptions. So all that stuff about Greenhouse-Geisser and Huynh-Feldt? You get to skip that and just report an uncorrected F-test result!</p></li>
+</ul>
+<p>In our case, if we run a linear model on the sleep data set, we end up with results that look like this:</p>
+<div id="tbl-sleepanova" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sleepanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.6: Results table for linear model analysis
+</figcaption>
+<div aria-describedby="tbl-sleepanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>df1</th>
+<th>df2</th>
+<th>F</th>
+<th>Sig.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sleep Hours</td>
+<td>4</td>
+<td>156</td>
+<td>19.57</td>
+<td>&lt;.001</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>And here’s a repeated contrast for comparison with our results in the last section:</p>
+<div id="tbl-sleepcont" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sleepcont-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.7: Repeated contrast for sleep data
+</figcaption>
+<div aria-describedby="tbl-sleepcont-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Comparison</th>
+<th>T-ratio</th>
+<th>Sig.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Baseline - Module 1</td>
+<td>3.88</td>
+<td>&lt;.001</td>
+</tr>
+<tr class="even">
+<td>Module 1 - Module 2</td>
+<td>3.05</td>
+<td>.01</td>
+</tr>
+<tr class="odd">
+<td>Module 2 - Module 3</td>
+<td>1.13</td>
+<td>1.00</td>
+</tr>
+<tr class="even">
+<td>Module 3 - Followup</td>
+<td>-3.70</td>
+<td>.001</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As we compare our results here with those from the previous section, we can see that the degrees of freedom are quite different, and we have some slightly different estimates for our contrast, but ultimately, we come to the same conclusion.</p>
+<p>So, which approach should you use? Linear approaches are a more accurate way to model the data, but sometimes it can be more trouble than it’s worth if the difference is minor. It also matters which statistical program you are using – for example, it’s easier to run ANOVAs in SPSS, while it’s easier to run linear models in RStudio. For most students in an introductory stats class, the real answer is that you should do whatever approach your instructor recommends, and you can learn more about these two approaches in an advanced class later on if you want. :)</p>
+<section id="what-to-do-if-your-assumption-of-normality-andor-homoscedasticity-are-violated" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="what-to-do-if-your-assumption-of-normality-andor-homoscedasticity-are-violated"><span class="header-section-number">9.4.1</span> What to do if your assumption of normality and/or homoscedasticity are violated</h3>
+<p>I have some good news for you! We aren’t too concerned about normality or homoscedasticity in the variables themselves, we are more worried about this in the difference scores (sphericity). As I mentioned, if you are using an ANOVA, you can apply the Greenhouse-Geisser or Huynh-Feldt corrections if sphericity is a concern. If you are using a linear model, you don’t need to concern yourself wit sphericity at all.</p>
+</section>
+<section id="calculating-an-effect-size-for-within-subject-t-tests" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="calculating-an-effect-size-for-within-subject-t-tests"><span class="header-section-number">9.4.2</span> Calculating an Effect Size for Within-Subject T-Tests</h3>
+<p>Even more good news – the effect size is calculated the same way as for a between-subject t-test – we use <span class="math inline">\(\hat{\omega}^2\)</span> :</p>
+<p><span class="math inline">\(\hat{\omega}^2=\frac{SS_M-(df_M)MS_R}{SS_T+MS_R}\)</span></p>
+</section>
+<section id="writing-the-results-of-a-within-subject-anova" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="writing-the-results-of-a-within-subject-anova"><span class="header-section-number">9.4.3</span> Writing the Results of a Within-Subject ANOVA</h3>
+<p>When sharing the results of a between-subject ANOVA, you want to convey several pieces of information to your audience:</p>
+<ul>
+<li><p>You should indicate that you are conducting a within-subject ANOVA or a repeated ANOVA (they mean the same thing). It is also helpful to explain whether you are using an ANOVA or a linear model approach.</p></li>
+<li><p>What the means and standard deviations are for each testing period.</p></li>
+<li><p>The F-test value, its degrees of freedom, and its significance;</p></li>
+<li><p>In some cases, the effect size</p></li>
+<li><p>If you find a significant omnibus test, you should conduct a contrast or post-hoc test and explain your results. Depending on the software you use and which post-hoc you choose, you may not have access to t-test results for the individual post-hoc tests. Provide as much information as you can, with the p-value being the bare minimum.</p></li>
+</ul>
+<p>Here are a couple of examples of how we might write our results</p>
+<blockquote class="blockquote">
+<p>To examine the effect of our intervention on sleep, I conducted a repeated ANOVA with a Greenhouse-Geisser correction ( <span class="math inline">\(\epsilon\)</span> = .41) , which was significant, <em>F</em>(1.65, 64.20)=19.57, <em>p</em>&lt;.001. A repeated contrast indicated that there were significant improvements in sleep from the baseline to after the first module (<em>p</em>&lt;.001) and between the first module and the second module (<em>p</em>&lt;.001). The improvements tapered off between the second module and the third module (<em>p</em>=.22), and there was a significant decrease in sleep between module 3 and the follow up (<em>p</em>&lt;.001).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>A linear model ANOVA revealed a significant effect, <em>F</em>(4, 156)=19.57, <em>p</em>&lt;.001. As shown in <a href="chapter5.html#fig-linechart" class="quarto-xref">Figure&nbsp;<span>6.6</span></a>, participants experienced an increase in sleep after each module, but a decrease in sleep at the follow up. However, a simple contrast indicates that all time periods demonstrate significantly more sleep compared to the baseline, suggesting that the treatment produces lasting improvements in sleep among participants.</p>
+</blockquote>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-field2009" class="csl-entry" role="listitem">
+Field, Andy. 2009. <em>Discovering Statistics Using SPSS : (And Sex and Drugs and Rock ’n’ Roll)</em>. 3rd ed. Introducing Statistical Methods. SAGE Publications.
+</div>
+<div id="ref-luke_multilevel_2026" class="csl-entry" role="listitem">
+Luke, Douglas. 2026. <em>Multilevel Modeling</em>. <span>SAGE</span> Publications, Inc. <a href="https://doi.org/10.4135/9781412985147">https://doi.org/10.4135/9781412985147</a>.
+</div>
+<div id="ref-pituch2016" class="csl-entry" role="listitem">
+Pituch, Keenan, and James Stephens. 2016. <em>Applied Multivariate Statistics for the Social Sciences</em>. 6th ed. Routledge.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter7.html" class="pagination-link" aria-label="Between-Subject ANOVA">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Between-Subject ANOVA</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter9.html" class="pagination-link" aria-label="Factorial Designs">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Factorial Designs</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
