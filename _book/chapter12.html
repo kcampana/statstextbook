@@ -131,6 +131,25 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Statistics for Social Scientists Who Are A Little Afraid of Them</a> 
+        <div class="sidebar-tools-main">
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistics-for-Social-Scientists-Who-Are-A-Little-Afraid-of-Them.pdf">
+              <i class="bi bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistics-for-Social-Scientists-Who-Are-A-Little-Afraid-of-Them.epub">
+              <i class="bi bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -258,25 +277,22 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-regress" id="toc-sec-regress" class="nav-link active" data-scroll-target="#sec-regress"><span class="header-section-number">14</span> Chapter 12: Regression</a>
+  <li><a href="#sec-regress" id="toc-sec-regress" class="nav-link active" data-scroll-target="#sec-regress"><span class="header-section-number">13.1</span> Learning Objectives</a></li>
+  <li><a href="#simple-regression" id="toc-simple-regression" class="nav-link" data-scroll-target="#simple-regression"><span class="header-section-number">13.2</span> Simple Regression</a>
   <ul class="collapse">
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">14.1</span> Learning Objectives</a></li>
-  <li><a href="#simple-regression" id="toc-simple-regression" class="nav-link" data-scroll-target="#simple-regression"><span class="header-section-number">14.2</span> Simple Regression</a>
+  <li><a href="#assumptions-of-a-regression" id="toc-assumptions-of-a-regression" class="nav-link" data-scroll-target="#assumptions-of-a-regression"><span class="header-section-number">13.2.1</span> Assumptions of a Regression</a></li>
+  <li><a href="#a-simple-regression-between-two-continuous-variables" id="toc-a-simple-regression-between-two-continuous-variables" class="nav-link" data-scroll-target="#a-simple-regression-between-two-continuous-variables"><span class="header-section-number">13.2.2</span> A Simple Regression Between Two Continuous Variables</a></li>
+  <li><a href="#a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion" id="toc-a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion" class="nav-link" data-scroll-target="#a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion"><span class="header-section-number">13.2.3</span> A Simple Regression Between a Dichotomous Predictor and a Continuous Criterion</a></li>
+  <li><a href="#wait-can-i-do-a-regression-with-a-polytomous-variable" id="toc-wait-can-i-do-a-regression-with-a-polytomous-variable" class="nav-link" data-scroll-target="#wait-can-i-do-a-regression-with-a-polytomous-variable"><span class="header-section-number">13.2.4</span> Wait… can I do a regression with a polytomous variable?</a></li>
+  </ul></li>
+  <li><a href="#multiple-regression" id="toc-multiple-regression" class="nav-link" data-scroll-target="#multiple-regression"><span class="header-section-number">13.3</span> Multiple Regression</a>
   <ul class="collapse">
-  <li><a href="#assumptions-of-a-regression" id="toc-assumptions-of-a-regression" class="nav-link" data-scroll-target="#assumptions-of-a-regression"><span class="header-section-number">14.2.1</span> Assumptions of a Regression</a></li>
-  <li><a href="#a-simple-regression-between-two-continuous-variables" id="toc-a-simple-regression-between-two-continuous-variables" class="nav-link" data-scroll-target="#a-simple-regression-between-two-continuous-variables"><span class="header-section-number">14.2.2</span> A Simple Regression Between Two Continuous Variables</a></li>
-  <li><a href="#a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion" id="toc-a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion" class="nav-link" data-scroll-target="#a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion"><span class="header-section-number">14.2.3</span> A Simple Regression Between a Dichotomous Predictor and a Continuous Criterion</a></li>
-  <li><a href="#wait-can-i-do-a-regression-with-a-polytomous-variable" id="toc-wait-can-i-do-a-regression-with-a-polytomous-variable" class="nav-link" data-scroll-target="#wait-can-i-do-a-regression-with-a-polytomous-variable"><span class="header-section-number">14.2.4</span> Wait… can I do a regression with a polytomous variable?</a></li>
+  <li><a href="#shared-variance-and-multicollinearity" id="toc-shared-variance-and-multicollinearity" class="nav-link" data-scroll-target="#shared-variance-and-multicollinearity"><span class="header-section-number">13.3.1</span> Shared Variance and Multicollinearity</a></li>
+  <li><a href="#an-entry-multiple-regression-with-two-predictors" id="toc-an-entry-multiple-regression-with-two-predictors" class="nav-link" data-scroll-target="#an-entry-multiple-regression-with-two-predictors"><span class="header-section-number">13.3.2</span> An Entry Multiple Regression with Two Predictors</a></li>
+  <li><a href="#hierarchical-regression" id="toc-hierarchical-regression" class="nav-link" data-scroll-target="#hierarchical-regression"><span class="header-section-number">13.3.3</span> Hierarchical Regression</a></li>
+  <li><a href="#exploratory-regressions-forwards-and-backwards-regression" id="toc-exploratory-regressions-forwards-and-backwards-regression" class="nav-link" data-scroll-target="#exploratory-regressions-forwards-and-backwards-regression"><span class="header-section-number">13.3.4</span> Exploratory Regressions: Forwards and Backwards Regression</a></li>
   </ul></li>
-  <li><a href="#multiple-regression" id="toc-multiple-regression" class="nav-link" data-scroll-target="#multiple-regression"><span class="header-section-number">14.3</span> Multiple Regression</a>
-  <ul class="collapse">
-  <li><a href="#shared-variance-and-multicollinearity" id="toc-shared-variance-and-multicollinearity" class="nav-link" data-scroll-target="#shared-variance-and-multicollinearity"><span class="header-section-number">14.3.1</span> Shared Variance and Multicollinearity</a></li>
-  <li><a href="#an-entry-multiple-regression-with-two-predictors" id="toc-an-entry-multiple-regression-with-two-predictors" class="nav-link" data-scroll-target="#an-entry-multiple-regression-with-two-predictors"><span class="header-section-number">14.3.2</span> An Entry Multiple Regression with Two Predictors</a></li>
-  <li><a href="#hierarchical-regression" id="toc-hierarchical-regression" class="nav-link" data-scroll-target="#hierarchical-regression"><span class="header-section-number">14.3.3</span> Hierarchical Regression</a></li>
-  <li><a href="#exploratory-regressions-forwards-and-backwards-regression" id="toc-exploratory-regressions-forwards-and-backwards-regression" class="nav-link" data-scroll-target="#exploratory-regressions-forwards-and-backwards-regression"><span class="header-section-number">14.3.4</span> Exploratory Regressions: Forwards and Backwards Regression</a></li>
-  </ul></li>
-  <li><a href="#writing-the-results-of-a-regression" id="toc-writing-the-results-of-a-regression" class="nav-link" data-scroll-target="#writing-the-results-of-a-regression"><span class="header-section-number">14.4</span> Writing the Results of a Regression</a></li>
-  </ul></li>
+  <li><a href="#writing-the-results-of-a-regression" id="toc-writing-the-results-of-a-regression" class="nav-link" data-scroll-target="#writing-the-results-of-a-regression"><span class="header-section-number">13.4</span> Writing the Results of a Regression</a></li>
   </ul>
 </nav>
     </div>
@@ -308,10 +324,8 @@ window.Quarto = {
 </header>
 
 
-<section id="sec-regress" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> Chapter 12: Regression</h1>
-<section id="learning-objectives" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">14.1</span> Learning Objectives</h2>
+<section id="sec-regress" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="sec-regress"><span class="header-section-number">13.1</span> Learning Objectives</h2>
 <ul>
 <li>Know what a simple regression is and what types of data it requires.</li>
 <li>Know the assumptions of a regression.</li>
@@ -322,11 +336,11 @@ window.Quarto = {
 <li>How to write up the results of a regression.</li>
 </ul>
 </section>
-<section id="simple-regression" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="simple-regression"><span class="header-section-number">14.2</span> Simple Regression</h2>
+<section id="simple-regression" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="simple-regression"><span class="header-section-number">13.2</span> Simple Regression</h2>
 <p>I often like to say that correlations and regressions are sisters – they are very similar procedures, but they have a slightly different vibe in terms of what information they provide to you. In many cases, you are better off running a regression instead of a correlation because it gives you more information, and it tends to be more flexible than correlations in terms of the types of data it can handle. But correlations do have their place in statistics – you see them all the time, especially in tables providing a general overview of how variables in a study are related aside from the specific hypotheses a researcher is investigating.</p>
-<section id="assumptions-of-a-regression" class="level3" data-number="14.2.1">
-<h3 data-number="14.2.1" class="anchored" data-anchor-id="assumptions-of-a-regression"><span class="header-section-number">14.2.1</span> Assumptions of a Regression</h3>
+<section id="assumptions-of-a-regression" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="assumptions-of-a-regression"><span class="header-section-number">13.2.1</span> Assumptions of a Regression</h3>
 <p>Regression assumptions are quite similar to what we’ve seen with other parametric tests:</p>
 <ol type="1">
 <li><p>The relationships between variables are linear (i.e., not curvilinear).</p></li>
@@ -341,7 +355,7 @@ window.Quarto = {
 <img src="images/scatteroutlier.png" class="img-fluid figure-img" alt="A scatterplot with one outlier that is moderately high on the predictor but extremely low on the criterion">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.1: A scatterplot with an outlier
+Figure&nbsp;13.1: A scatterplot with an outlier
 </figcaption>
 </figure>
 </div>
@@ -356,10 +370,10 @@ Figure&nbsp;14.1: A scatterplot with an outlier
 </ul>
 <p>So, it’s worth checking to make sure your data is clean and that you are aware of any influential data points before you start your analysis.</p>
 </section>
-<section id="a-simple-regression-between-two-continuous-variables" class="level3" data-number="14.2.2">
-<h3 data-number="14.2.2" class="anchored" data-anchor-id="a-simple-regression-between-two-continuous-variables"><span class="header-section-number">14.2.2</span> A Simple Regression Between Two Continuous Variables</h3>
-<p>Let’s go back to our example from <a href="chapter11.html" class="quarto-xref"><span>Section 1</span></a>, where we explored the relationship between meditation and happiness using <a href="chapter11.html#tbl-meditate" class="quarto-xref">Table&nbsp;<span>1.1</span></a>.</p>
-<p>As you may recall, we looked over a scatterplot (<a href="chapter11.html#fig-simplescatter" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>) to confirm that the data was linear and met the assumptions of a parametric test.</p>
+<section id="a-simple-regression-between-two-continuous-variables" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="a-simple-regression-between-two-continuous-variables"><span class="header-section-number">13.2.2</span> A Simple Regression Between Two Continuous Variables</h3>
+<p>Let’s go back to our example from <a href="chapter11.html#sec-correlation" class="quarto-xref"><span>Section 12.1</span></a>, where we explored the relationship between meditation and happiness using <a href="chapter11.html#tbl-meditate" class="quarto-xref">Table&nbsp;<span>12.1</span></a>.</p>
+<p>As you may recall, we looked over a scatterplot (<a href="chapter11.html#fig-simplescatter" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>) to confirm that the data was linear and met the assumptions of a parametric test.</p>
 <p>What a simple regression does, in a nutshell, is it plots a “best fit” line to the data. There is one, and only one, line that minimizes the vertical distance between each data point and a straight line. I won’t cover the math of how a statistical program determines what this line is here. But you may have learned in other math classes the basic formula for a line, often written as:</p>
 <p><span class="math inline">\(mx+b=y\)</span></p>
 <p>In most statistical notation, this formula is written as:</p>
@@ -380,19 +394,19 @@ Figure&nbsp;14.1: A scatterplot with an outlier
 <img src="images/spssregress.png" class="img-fluid figure-img" alt="A table of results, which provides unstandardized and standardized coefficients, and significance values.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spssregress-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.2: Regression output from SPSS
+Figure&nbsp;13.2: Regression output from SPSS
 </figcaption>
 </figure>
 </div>
 <p>While we don’t tend to report unstandardized coefficients, they have a lot of practical use. For example, let’s say that we do, indeed, want to make a prediction about how stressed someone is if they meditate for 80 minutes a week. We can simply use the unstandardized slope (.20) and the y-intercept (36.07) to create the formula for a line, and then we input 80 in the place of x:</p>
 <p><span class="math inline">\(\hat{y} = (.20)(80)+36.07 = 52.07\)</span></p>
 <p>Sure enough, if you go back to the scatterplot, you’ll see on the regression line that for a score of 80 minutes of meditation, we see the line is right at about 52. Of course, this is just a guess – you can see that one participant who spends 80 minutes meditating only gets a happiness score of about 44, but we know at this point to expect some error in any statistic.</p>
-<p>While the unstandardized coefficients are practically useful, more often, in scientific writing researchers report the standardized values, often referred to as <span class="math inline">\(\beta\)</span> values. What is happening behind the scenes is that the statistical program transforms both the predictor and the criterion into z-scores, and then calculates the regression and provides these standardized values. These are beneficial because they are on a roughly -1.00 to +1.00 scale<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, so they are more comparable. Here, we see that <span class="math inline">\(\beta=.49\)</span> , which is a decently strong relationship. If you have an amazing memory, you may also remember that in <a href="chapter11.html" class="quarto-xref"><span>Section 1</span></a>, we found that <span class="math inline">\(r=.49\)</span> too! So for a simple regression, the <span class="math inline">\(\beta\)</span> value is the same as the Pearson correlation. This will change as we move into multiple regression, but it’s a nice way to see the connection between regression and correlation.</p>
+<p>While the unstandardized coefficients are practically useful, more often, in scientific writing researchers report the standardized values, often referred to as <span class="math inline">\(\beta\)</span> values. What is happening behind the scenes is that the statistical program transforms both the predictor and the criterion into z-scores, and then calculates the regression and provides these standardized values. These are beneficial because they are on a roughly -1.00 to +1.00 scale<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, so they are more comparable. Here, we see that <span class="math inline">\(\beta=.49\)</span> , which is a decently strong relationship. If you have an amazing memory, you may also remember that in <a href="chapter11.html#sec-correlation" class="quarto-xref"><span>Section 12.1</span></a>, we found that <span class="math inline">\(r=.49\)</span> too! So for a simple regression, the <span class="math inline">\(\beta\)</span> value is the same as the Pearson correlation. This will change as we move into multiple regression, but it’s a nice way to see the connection between regression and correlation.</p>
 <p>Most programs also provide a measure of the effect size, often represented as <span class="math inline">\(R^2\)</span>, which is an indication of how much variance is explained by the model. For these data, we find that <span class="math inline">\(R^2=.24\)</span> (which is .49 squared). So, in other words, about 24% of the differences we see in stress levels can be explained by meditation, which is quite a large amount indeed!</p>
 </section>
-<section id="a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion" class="level3" data-number="14.2.3">
-<h3 data-number="14.2.3" class="anchored" data-anchor-id="a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion"><span class="header-section-number">14.2.3</span> A Simple Regression Between a Dichotomous Predictor and a Continuous Criterion</h3>
-<p>Regressions are also good about handling a dichotomous predictor. Let’s take, as an example, the item data from <a href="chapter11.html" class="quarto-xref"><span>Section 1</span></a>, which you can see in <a href="chapter11.html#tbl-pbs" class="quarto-xref">Table&nbsp;<span>1.3</span></a>.</p>
+<section id="a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion" class="level3" data-number="13.2.3">
+<h3 data-number="13.2.3" class="anchored" data-anchor-id="a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion"><span class="header-section-number">13.2.3</span> A Simple Regression Between a Dichotomous Predictor and a Continuous Criterion</h3>
+<p>Regressions are also good about handling a dichotomous predictor. Let’s take, as an example, the item data from <a href="chapter11.html#sec-correlation" class="quarto-xref"><span>Section 12.1</span></a>, which you can see in <a href="chapter11.html#tbl-pbs" class="quarto-xref">Table&nbsp;<span>12.3</span></a>.</p>
 <p>If we wanted to, we can use regression to answer the question “If someone gets this item correct, what would their score be on the exam?” We can run a regression in the same way we would for a continuous predictor, and we also get output that provides us with some unstandardized and standardized coefficients. The intepretation is a little bit different here, but it’s conceptually the same. The unstandardized values still indicate the y-intercept and the slope, but if we code our predictor using 0 and 1, we’ll notice something interesting. Here’s the formula we get from conducting this regression:</p>
 <p><span class="math inline">\(\hat{y}=31.41(x)+41.22\)</span></p>
 <p>You’ll notice if we solve for people who didn’t get the question correctly, we find:</p>
@@ -400,16 +414,16 @@ Figure&nbsp;14.2: Regression output from SPSS
 <p>Aha! The solution is the y-intercept, which makes perfect sense if you think about it: The y-intercept is what y equals when x equals zero, and x equals zero when someone doesn’t solve the item correctly, so 41.22 is, in fact, the average for the group that didn’t answer the item correctly. When we solve for the equation for people who did get the question right, we find:</p>
 <p><span class="math inline">\(\hat{y}=31.41(1)+41.22=72.63\)</span></p>
 <p>This also makes sense, because the slope tells us how much of a change in y occurs for a one-point change in x, and a one point change in x just means that someone got the item correct. Sure enough, if you look at the data, you’ll find the exam average for people who got this item correct is also 72.63.</p>
-<p>As you think this over, you might find yourself asking “Wait, isn’t this regression basically the same as an independent t-test?” Yep! It is the same, it’s just a different way of thinking about it. You might also find yourself saying “How is this different from a point-biserial correlation?” It’s not different, actually! If you look at the <span class="math inline">\(\beta\)</span> value, you’ll find <span class="math inline">\(\beta=.74\)</span>, which is the same correlation we found for this data back in <a href="chapter11.html#sec-pbcorr" class="quarto-xref"><span>Section 1.3.2</span></a>! So, now you have three tools you can use to understand the difference in means between two groups.</p>
+<p>As you think this over, you might find yourself asking “Wait, isn’t this regression basically the same as an independent t-test?” Yep! It is the same, it’s just a different way of thinking about it. You might also find yourself saying “How is this different from a point-biserial correlation?” It’s not different, actually! If you look at the <span class="math inline">\(\beta\)</span> value, you’ll find <span class="math inline">\(\beta=.74\)</span>, which is the same correlation we found for this data back in <a href="chapter11.html#sec-pbcorr" class="quarto-xref"><span>Section 12.3.2</span></a>! So, now you have three tools you can use to understand the difference in means between two groups.</p>
 <p>We can also understand variance explained by looking at the <span class="math inline">\(R^2\)</span>. Here, <span class="math inline">\(R^2=.55\)</span>, which means about 55% of the variance in student scores is explained by whether they get this question correct.</p>
 </section>
-<section id="wait-can-i-do-a-regression-with-a-polytomous-variable" class="level3" data-number="14.2.4">
-<h3 data-number="14.2.4" class="anchored" data-anchor-id="wait-can-i-do-a-regression-with-a-polytomous-variable"><span class="header-section-number">14.2.4</span> Wait… can I do a regression with a polytomous variable?</h3>
+<section id="wait-can-i-do-a-regression-with-a-polytomous-variable" class="level3" data-number="13.2.4">
+<h3 data-number="13.2.4" class="anchored" data-anchor-id="wait-can-i-do-a-regression-with-a-polytomous-variable"><span class="header-section-number">13.2.4</span> Wait… can I do a regression with a polytomous variable?</h3>
 <p>You can! But it’s a bit fiddly to do. Essentially, you’d need to dummy code your variable into dichotomous yes/no categories. For example, if we wanted to include religion in a regression, and people choose among 4 categories (Christian, Muslim, Buddhist, Hindu), you would need to set up 3 dichotomous variables with 0=no and 1=yes:</p>
 <div id="tbl-dummycodes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dummycodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;14.1: A table demonstrating how different religions would be represented using dummy codes.
+Table&nbsp;13.1: A table demonstrating how different religions would be represented using dummy codes.
 </figcaption>
 <div aria-describedby="tbl-dummycodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -456,11 +470,11 @@ Table&nbsp;14.1: A table demonstrating how different religions would be represen
 <p>But to analyze this, you now have more variables, so you wouldn’t be able to use simple regression to examine a polytomous variable – you’d need a multiple regression. Let’s talk about that next.</p>
 </section>
 </section>
-<section id="multiple-regression" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="multiple-regression"><span class="header-section-number">14.3</span> Multiple Regression</h2>
-<p>Simple regression shares a lot of DNA with correlations. However, remember that in <a href="chapter11.html" class="quarto-xref"><span>Section 1</span></a>, we were only able to do correlations between two variables, so as a statistical analysis tool, it is limited in that way. But multiple regressions are not – we can put in several variables of different types into our model to see how they all work together to predict some outcome. But in order to make the jump from simple to multiple regression, we need to discuss something called “shared variance.”</p>
-<section id="shared-variance-and-multicollinearity" class="level3" data-number="14.3.1">
-<h3 data-number="14.3.1" class="anchored" data-anchor-id="shared-variance-and-multicollinearity"><span class="header-section-number">14.3.1</span> Shared Variance and Multicollinearity</h3>
+<section id="multiple-regression" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="multiple-regression"><span class="header-section-number">13.3</span> Multiple Regression</h2>
+<p>Simple regression shares a lot of DNA with correlations. However, remember that in <a href="chapter11.html#sec-correlation" class="quarto-xref"><span>Section 12.1</span></a>, we were only able to do correlations between two variables, so as a statistical analysis tool, it is limited in that way. But multiple regressions are not – we can put in several variables of different types into our model to see how they all work together to predict some outcome. But in order to make the jump from simple to multiple regression, we need to discuss something called “shared variance.”</p>
+<section id="shared-variance-and-multicollinearity" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="shared-variance-and-multicollinearity"><span class="header-section-number">13.3.1</span> Shared Variance and Multicollinearity</h3>
 <p>In most social sciences, we recognize that nearly all variables will have some relationship with one another. For example, imagine I’m trying to predict happiness using minutes of meditation and stress levels. But almost certainly, my predictors (meditation and stress) share a relationship. So, when we try to use both variables at the same time, their correlation with each other means that they probably also both explain some aspects of variance in meditation for people.</p>
 <div id="fig-corrvenn" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A venn diagram with three circles, labeled &quot;Happiness&quot;, &quot;Meditation&quot; and &quot;Stress&quot;. They all overlap one another.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -468,18 +482,18 @@ Table&nbsp;14.1: A table demonstrating how different religions would be represen
 <img src="images/corrvenn.png" class="img-fluid figure-img" alt="A venn diagram with three circles, labeled &quot;Happiness&quot;, &quot;Meditation&quot; and &quot;Stress&quot;. They all overlap one another.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corrvenn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.3: An illustration of how our predictors and criterion might overlap
+Figure&nbsp;13.3: An illustration of how our predictors and criterion might overlap
 </figcaption>
 </figure>
 </div>
-<p>In fact, in this data these predictors share a decent correlation with one another (<em>r</em>=-.41, <em>p</em>=.08); this is visually represented in <a href="#fig-corrvenn" class="quarto-xref">Figure&nbsp;<span>14.3</span></a> by the mauve-colored overlap between the stress and meditation circles . This means that when we attempt to predict happiness, these two variables will compete with one another in our model, because both of them explain some aspects of happiness (represented by the grayish purple triangle where all circles overlap) . If we were to run separate simple regressions with just one predictor, we’d find significant results. But when we put them in a model together, they may look like they are not as useful as predictors because they share this variance.</p>
+<p>In fact, in this data these predictors share a decent correlation with one another (<em>r</em>=-.41, <em>p</em>=.08); this is visually represented in <a href="#fig-corrvenn" class="quarto-xref">Figure&nbsp;<span>13.3</span></a> by the mauve-colored overlap between the stress and meditation circles . This means that when we attempt to predict happiness, these two variables will compete with one another in our model, because both of them explain some aspects of happiness (represented by the grayish purple triangle where all circles overlap) . If we were to run separate simple regressions with just one predictor, we’d find significant results. But when we put them in a model together, they may look like they are not as useful as predictors because they share this variance.</p>
 <p>When predictors have a high correlation with each other (and by high, I mean <em>r</em>=+/-.80 or stronger) we have a situation known as <strong>multicollinearity.</strong> This causes problems with regression because they make our estimates unstable (the <span class="math inline">\(\beta\)</span> values bounce around as you change the model, or we start to find <span class="math inline">\(\beta\)</span> values that are larger than +/-1.00). It also makes it hard to know which variable is important.</p>
-<p>You can imagine that at the extreme end where two predictors share a perfect +1.00 correlation, there’s no point in putting them both into our regression, because they tell us the same thing. At the less extreme end, predictors with a .80 or stronger correlation will overlap a lot, and you won’t get a lot of <strong>incremental validity</strong> out of using both predictors (incremental validity is represented by the greenish overlap between meditation and happiness, and by the purpleish overlap between stress and happiness in <a href="#fig-corrvenn" class="quarto-xref">Figure&nbsp;<span>14.3</span></a>; it is the unique variance explained by each predictor).</p>
+<p>You can imagine that at the extreme end where two predictors share a perfect +1.00 correlation, there’s no point in putting them both into our regression, because they tell us the same thing. At the less extreme end, predictors with a .80 or stronger correlation will overlap a lot, and you won’t get a lot of <strong>incremental validity</strong> out of using both predictors (incremental validity is represented by the greenish overlap between meditation and happiness, and by the purpleish overlap between stress and happiness in <a href="#fig-corrvenn" class="quarto-xref">Figure&nbsp;<span>13.3</span></a>; it is the unique variance explained by each predictor).</p>
 <p>So, before you build a model, it’s a good idea to check for high intercorrelations among predictors. Some statistical programs will provide a variance inflation factor (VIF); a VIF of greater than 10 indicates multicollinearity, so you might want to reconsider what predictors you are using in your model.</p>
 <p>In our example, our predictors share a moderate correlation, so we don’t have multicollinearity, but as we will see, they do compete over variance in an interesting way.</p>
 </section>
-<section id="an-entry-multiple-regression-with-two-predictors" class="level3" data-number="14.3.2">
-<h3 data-number="14.3.2" class="anchored" data-anchor-id="an-entry-multiple-regression-with-two-predictors"><span class="header-section-number">14.3.2</span> An Entry Multiple Regression with Two Predictors</h3>
+<section id="an-entry-multiple-regression-with-two-predictors" class="level3" data-number="13.3.2">
+<h3 data-number="13.3.2" class="anchored" data-anchor-id="an-entry-multiple-regression-with-two-predictors"><span class="header-section-number">13.3.2</span> An Entry Multiple Regression with Two Predictors</h3>
 <p>As we move from simple to multiple regression, we’re still just charting a best fit line, but now the line is taking place in three or more dimensions, so it gets a little tricky to illustrate. In our example, we are working in three dimensions, with happiness on the y axis, meditation time on the x axis, and stress on the z axis:</p>
 <p>[insert 3D illustration]</p>
 <p>There is still one, and only one, best fit line that tries to minimize the distances between each point and the prediction line. The equation for our line gets a bit more complex, as we now need to add an additional variable:</p>
@@ -491,7 +505,7 @@ Figure&nbsp;14.3: An illustration of how our predictors and criterion might over
 <img src="images/multiregspss.png" class="img-fluid figure-img" alt="A regression table with unstandardized and standardized coefficients, and significance values.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multireg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.4: SPSS Output of multiple regression
+Figure&nbsp;13.4: SPSS Output of multiple regression
 </figcaption>
 </figure>
 </div>
@@ -501,14 +515,14 @@ Figure&nbsp;14.4: SPSS Output of multiple regression
 <p>And given the <span class="math inline">\(\beta\)</span> values, we can see that they are relatively similar in how important they are in predicting outcomes, but in opposite directions (meditation time is positively related to happiness, while stress is negatively related to happiness).</p>
 <p>The regression we’ve just done here is often known as an <strong>entry regression</strong>; we start with a specific model we want to test, and just test it all at once. However, this is not your only option!</p>
 </section>
-<section id="hierarchical-regression" class="level3" data-number="14.3.3">
-<h3 data-number="14.3.3" class="anchored" data-anchor-id="hierarchical-regression"><span class="header-section-number">14.3.3</span> Hierarchical Regression</h3>
+<section id="hierarchical-regression" class="level3" data-number="13.3.3">
+<h3 data-number="13.3.3" class="anchored" data-anchor-id="hierarchical-regression"><span class="header-section-number">13.3.3</span> Hierarchical Regression</h3>
 <p>Another option we have with regression is we can add more predictors to our model in several steps. This is a great option if there’s a variable we know probably relates to our outcome, and we want to know whether another variable predicts above and beyond that first variable. This gets right at the question of incremental validity – if we have one variable in our model and then add two more, this tells us whether the addition of those variables is at all helpful for predicting outcomes. We can compare models to see how our equation and the beta weights change as we add predictors. We can also look at a change in <span class="math inline">\(R^2\)</span> (sometimes notated as <span class="math inline">\(\Delta R^2\)</span> ) to see how much more variance we can explain with an additional variable.</p>
 <p>To illustrate how this works, it’s helpful to have a larger data set, so you can check out the data set “Meditation 2” to understand what’s going on in our analyses. In this example, imagine we still want to study happiness, but now we’ve collected some data on gender, household income, meditation, stress, and motivation. The first five lines of the data are provided below:</p>
 <div id="tbl-meditation2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-meditation2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;14.2: Table of the first five lines of the dataset Meditation 2
+Table&nbsp;13.2: Table of the first five lines of the dataset Meditation 2
 </figcaption>
 <div aria-describedby="tbl-meditation2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -594,7 +608,7 @@ Table&nbsp;14.2: Table of the first five lines of the dataset Meditation 2
 <div id="tbl-regress1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-regress1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;14.3: Regression coefficients for Model 1
+Table&nbsp;13.3: Regression coefficients for Model 1
 </figcaption>
 <div aria-describedby="tbl-regress1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -633,7 +647,7 @@ Table&nbsp;14.3: Regression coefficients for Model 1
 <div id="tbl-regress2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-regress2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;14.4: Regression coefficients for Model 2
+Table&nbsp;13.4: Regression coefficients for Model 2
 </figcaption>
 <div aria-describedby="tbl-regress2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -678,7 +692,7 @@ Table&nbsp;14.4: Regression coefficients for Model 2
 <div id="tbl-r2change" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-r2change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;14.5: R2 changes between Model 1 and Model 2
+Table&nbsp;13.5: R2 changes between Model 1 and Model 2
 </figcaption>
 <div aria-describedby="tbl-r2change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -708,15 +722,15 @@ Table&nbsp;14.5: R2 changes between Model 1 and Model 2
 </div>
 <p>These results tell us a few things. First, we can see that in our first model, gender and household income don’t provide much prediction on happiness. When we add meditation in, we can see that our coefficients in the model change a little, but the outcome is the same, and we see that meditation is significant. Indeed, if we compare the <span class="math inline">\(R^2\)</span> between models, we see it jumps up quite a bit (and an ANOVA conducted on these models indicates a significant change, <em>p</em>&lt;.001). So, this tells us that gender and income are not helpful predictors, but that our model improves once we add meditation.</p>
 </section>
-<section id="exploratory-regressions-forwards-and-backwards-regression" class="level3" data-number="14.3.4">
-<h3 data-number="14.3.4" class="anchored" data-anchor-id="exploratory-regressions-forwards-and-backwards-regression"><span class="header-section-number">14.3.4</span> Exploratory Regressions: Forwards and Backwards Regression</h3>
+<section id="exploratory-regressions-forwards-and-backwards-regression" class="level3" data-number="13.3.4">
+<h3 data-number="13.3.4" class="anchored" data-anchor-id="exploratory-regressions-forwards-and-backwards-regression"><span class="header-section-number">13.3.4</span> Exploratory Regressions: Forwards and Backwards Regression</h3>
 <p>There is one additional way we can use regression, but I want to emphasize here that this is not a great approach in terms of scientific rigor. Ideally, when we conduct research, we have a hypothesis in mind, and we collect data to see if there’s support for that hypothesis. But sometimes we just have data that’s been collected for other purposes, and we might be curious about what different factors might predict an outcome. In this case, we can take advantage of exploratory regressions that examine what relationships exist, and use that to test several models to come up with the best model to explain the outcome. The problem with this approach is that it takes advantage of chance – if we had 20 variables in our initial model, we may accidentally identify one of them as important just because of the 5% chance of a Type I error. So, in order to feel confident in our findings, we really should replicate our study with a sample drawn specifically to retest our model. Hopefully we’d find the same outcome, but there certainly is a chance we won’t!</p>
 <p>There are several approaches we can take to these exploratory regressions, but two are popular enough in the literature to merit an example. Sometimes, we start with and empty model and allow our statistical program to choose variables that perform the best and add them to the model until adding variables no longer improves our prediction. This approach is known as a forward regression. We can also do the opposite – we start with all possible variables in the model, and the statistical program removes them one by one until removing one produces a significant change in the variance it can predict. This approach is known as backward regression.</p>
 <p>Sometimes, you will get slightly different findings if you do a forwards versus backwards regression. I generally recommend people use a backward regression if they want to explore data, because it’s better at discovering something called a suppressor variable. A suppressor variable is when it makes the relationship between two variables stronger when it’s added to the model. Take for example in our Meditation 2 data, imagine I am trying to predict happiness, and I don’t have a good theory for what might be happening, so I conduct a backward regression with all other variables as a predictor. My initial model will include all variables, and each subsequent model removes the least useful predictor. My final model looks like this:</p>
 <div id="tbl-bkwdreg" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bkwdreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;14.6: Regression coefficients for a backward regression
+Table&nbsp;13.6: Regression coefficients for a backward regression
 </figcaption>
 <div aria-describedby="tbl-bkwdreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -767,8 +781,8 @@ Table&nbsp;14.6: Regression coefficients for a backward regression
 <p>Here, we see that household income and motivation don’t end up predicting anything significantly, so they drop out of the model. However, this certainly might just be due to chance, so whenever you use an exploratory method like this, it’s best practice to do a follow up study using these variables and an entry regression to confirm that your findings are dependable.</p>
 </section>
 </section>
-<section id="writing-the-results-of-a-regression" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="writing-the-results-of-a-regression"><span class="header-section-number">14.4</span> Writing the Results of a Regression</h2>
+<section id="writing-the-results-of-a-regression" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="writing-the-results-of-a-regression"><span class="header-section-number">13.4</span> Writing the Results of a Regression</h2>
 <p>When writing the results of a regression, you typically want to indicate the following:</p>
 <ul>
 <li><p>Provide information about the regression – what variables are included, and explain whether you’ve used an entry, hierarchical, or exploratory approach. If you don’t specify anything, most people will assume an entry regression.</p></li>
@@ -785,7 +799,6 @@ Table&nbsp;14.6: Regression coefficients for a backward regression
 </blockquote>
 
 
-</section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
