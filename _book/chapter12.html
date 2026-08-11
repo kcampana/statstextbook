@@ -251,20 +251,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mediation and Moderation</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
     </ul>
@@ -372,7 +366,7 @@ Figure&nbsp;13.1: A scatterplot with an outlier
 </section>
 <section id="a-simple-regression-between-two-continuous-variables" class="level3" data-number="13.2.2">
 <h3 data-number="13.2.2" class="anchored" data-anchor-id="a-simple-regression-between-two-continuous-variables"><span class="header-section-number">13.2.2</span> A Simple Regression Between Two Continuous Variables</h3>
-<p>Let’s go back to our example from <a href="chapter11.html#sec-correlation" class="quarto-xref"><span>Section 12.1</span></a>, where we explored the relationship between meditation and happiness using <a href="chapter11.html#tbl-meditate" class="quarto-xref">Table&nbsp;<span>12.1</span></a>.</p>
+<p>Let’s go back to our example from <a href="chapter11.html#sec-correlation" class="quarto-xref"><span>Section 12.1</span></a>, where we explored the relationship between meditation and happiness using <a href="chapter11.html#tbl-meditate" class="quarto-xref">Table&nbsp;<span>12.1</span></a>. <a href="https://github.com/kcampana/statstextbook/blob/3e611ee3719c5feadfbc11a9ff955bda1fd35087/data%20files/meditation%20example.csv">Here’s</a> the data set.</p>
 <p>As you may recall, we looked over a scatterplot (<a href="chapter11.html#fig-simplescatter" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>) to confirm that the data was linear and met the assumptions of a parametric test.</p>
 <p>What a simple regression does, in a nutshell, is it plots a “best fit” line to the data. There is one, and only one, line that minimizes the vertical distance between each data point and a straight line. I won’t cover the math of how a statistical program determines what this line is here. But you may have learned in other math classes the basic formula for a line, often written as:</p>
 <p><span class="math inline">\(mx+b=y\)</span></p>
@@ -407,7 +401,7 @@ Figure&nbsp;13.2: Regression output from SPSS
 <section id="a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion" class="level3" data-number="13.2.3">
 <h3 data-number="13.2.3" class="anchored" data-anchor-id="a-simple-regression-between-a-dichotomous-predictor-and-a-continuous-criterion"><span class="header-section-number">13.2.3</span> A Simple Regression Between a Dichotomous Predictor and a Continuous Criterion</h3>
 <p>Regressions are also good about handling a dichotomous predictor. Let’s take, as an example, the item data from <a href="chapter11.html#sec-correlation" class="quarto-xref"><span>Section 12.1</span></a>, which you can see in <a href="chapter11.html#tbl-pbs" class="quarto-xref">Table&nbsp;<span>12.3</span></a>.</p>
-<p>If we wanted to, we can use regression to answer the question “If someone gets this item correct, what would their score be on the exam?” We can run a regression in the same way we would for a continuous predictor, and we also get output that provides us with some unstandardized and standardized coefficients. The intepretation is a little bit different here, but it’s conceptually the same. The unstandardized values still indicate the y-intercept and the slope, but if we code our predictor using 0 and 1, we’ll notice something interesting. Here’s the formula we get from conducting this regression:</p>
+<p>Check out <a href="https://github.com/kcampana/statstextbook/blob/b0595638e13746e7a2d4294feae84d13e1d46a18/data%20files/test%20item.csv">this data set</a> about how people perform on an exam item. If we wanted to, we can use regression to answer the question “If someone gets this item correct, what would their score be on the exam?” We can run a regression in the same way we would for a continuous predictor, and we also get output that provides us with some unstandardized and standardized coefficients. The intepretation is a little bit different here, but it’s conceptually the same. The unstandardized values still indicate the y-intercept and the slope, but if we code our predictor using 0 and 1, we’ll notice something interesting. Here’s the formula we get from conducting this regression:</p>
 <p><span class="math inline">\(\hat{y}=31.41(x)+41.22\)</span></p>
 <p>You’ll notice if we solve for people who didn’t get the question correctly, we find:</p>
 <p><span class="math inline">\(\hat{y}=31.41(0)+41.22= 41.22\)</span></p>
@@ -494,8 +488,7 @@ Figure&nbsp;13.3: An illustration of how our predictors and criterion might over
 </section>
 <section id="an-entry-multiple-regression-with-two-predictors" class="level3" data-number="13.3.2">
 <h3 data-number="13.3.2" class="anchored" data-anchor-id="an-entry-multiple-regression-with-two-predictors"><span class="header-section-number">13.3.2</span> An Entry Multiple Regression with Two Predictors</h3>
-<p>As we move from simple to multiple regression, we’re still just charting a best fit line, but now the line is taking place in three or more dimensions, so it gets a little tricky to illustrate. In our example, we are working in three dimensions, with happiness on the y axis, meditation time on the x axis, and stress on the z axis:</p>
-<p>[insert 3D illustration]</p>
+<p>As we move from simple to multiple regression, we’re still just charting a best fit line, but now the line is taking place in three or more dimensions, so it gets a little tricky to illustrate.</p>
 <p>There is still one, and only one, best fit line that tries to minimize the distances between each point and the prediction line. The equation for our line gets a bit more complex, as we now need to add an additional variable:</p>
 <p><span class="math inline">\(\hat{y}=b_0+b_1(x_1)+b_2(x_2)\)</span></p>
 <p>When we conduct our regression, we get these results:</p>
@@ -518,7 +511,7 @@ Figure&nbsp;13.4: SPSS Output of multiple regression
 <section id="hierarchical-regression" class="level3" data-number="13.3.3">
 <h3 data-number="13.3.3" class="anchored" data-anchor-id="hierarchical-regression"><span class="header-section-number">13.3.3</span> Hierarchical Regression</h3>
 <p>Another option we have with regression is we can add more predictors to our model in several steps. This is a great option if there’s a variable we know probably relates to our outcome, and we want to know whether another variable predicts above and beyond that first variable. This gets right at the question of incremental validity – if we have one variable in our model and then add two more, this tells us whether the addition of those variables is at all helpful for predicting outcomes. We can compare models to see how our equation and the beta weights change as we add predictors. We can also look at a change in <span class="math inline">\(R^2\)</span> (sometimes notated as <span class="math inline">\(\Delta R^2\)</span> ) to see how much more variance we can explain with an additional variable.</p>
-<p>To illustrate how this works, it’s helpful to have a larger data set, so you can check out the data set “Meditation 2” to understand what’s going on in our analyses. In this example, imagine we still want to study happiness, but now we’ve collected some data on gender, household income, meditation, stress, and motivation. The first five lines of the data are provided below:</p>
+<p>To illustrate how this works, it’s helpful to have a larger data set, so you can check out the data set <a href="https://github.com/kcampana/statstextbook/blob/b0595638e13746e7a2d4294feae84d13e1d46a18/data%20files/meditation%20example%202.csv">meditation example 2</a> to understand what’s going on in our analyses. In this example, imagine we still want to study happiness, but now we’ve collected some data on gender, household income, meditation, stress, and motivation. The first five lines of the data are provided below:</p>
 <div id="tbl-meditation2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-meditation2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

@@ -341,7 +341,7 @@ Figure&nbsp;14.2: The same distribution fit with an s-curve
 </div>
 <p>At the leftmost side of this S-curve, the line is very close to zero, but it never quite reaches zero. In the middle of the curve, we see a fairly steep curvy line, and that leads to the rightmost side where our line creeps closer and closer to 1, but never quite reaches it. In plain language, when we’re discussing human behavior, we can’t ever really say there is a perfect zero chance someone will do something, nor can we say there’s 100% chance they will do something. Probabilities can approach these values, but never quite reach them. That probability is what we are trying to model with a logistic regression.</p>
 <p>Logistic regression can be a bit mathematically intimidating, but it is a very helpful procedure that shows up in a lot of contexts. One good example we discuss is the issue of whether someone gets an item correct or incorrect on an exam<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. In this chapter, we’ll talk a lot about whether an “event” happens. Usually in data sets, we use a 0 and 1 coding to establish our binary outcome.</p>
-<p>Take, for example, the data set test item, where we have information about students from two different classes, their math ability on a standardized test, whether they are an international student, and whether they got a particular item correct on an exam. The item is coded as 1 if they get the question right, so we can think of the “event” we’re interested in as “answers the question correctly”:</p>
+<p>Take, for example, the data set <a href="https://github.com/kcampana/statstextbook/blob/b0595638e13746e7a2d4294feae84d13e1d46a18/data%20files/test%20item.csv">test item</a>, where we have information about students from two different classes, their math ability on a standardized test, whether they are an international student, and whether they got a particular item correct on an exam. The item is coded as 1 if they get the question right, so we can think of the “event” we’re interested in as “answers the question correctly”:</p>
 <table class="caption-top table">
 <caption>The first few rows of the test item data set</caption>
 <thead>
@@ -469,7 +469,7 @@ Figure&nbsp;14.2: The same distribution fit with an s-curve
 <col style="width: 24%">
 <col style="width: 24%">
 <col style="width: 24%">
-<col style="width: 27%">
+<col style="width: 26%">
 </colgroup>
 <thead>
 <tr class="header">

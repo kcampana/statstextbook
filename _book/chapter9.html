@@ -251,20 +251,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mediation and Moderation</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
     </ul>
@@ -328,7 +322,7 @@ window.Quarto = {
 </section>
 <section id="a-two-way-anova" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="a-two-way-anova"><span class="header-section-number">10.2</span> A Two Way ANOVA</h2>
-<p>As an example, let’s say that we want to examine several different time management techniques for college students: Pomodoro technique, Eisenhower matrix, and Time blocking. However, perhaps we also believe that which technique works might depend on whether the student is majoring in a STEM field versus a Humanities field. We get a sample of students in both STEM and Humanities, and assign them to the three different techniques. You can see the data for this in the Time management file.</p>
+<p>As an example, let’s say that we want to examine several different time management techniques for college students: Pomodoro technique, Eisenhower matrix, and Time blocking. However, perhaps we also believe that which technique works might depend on whether the student is majoring in a STEM field versus a Humanities field. We get a sample of students in both STEM and Humanities, and assign them to the three different techniques. You can find the time management file <a href="https://github.com/kcampana/statstextbook/blob/1c9d6fdf69bebbf1b9e511bd55be0618906f0368/data%20files/Time%20Management.csv">here</a>.</p>
 <p>This is a factorial design. We can also describe it as a “two-way” ANOVA, because we have two independent variables. We might also see it described as a 2x3 ANOVA (we have one variable, or “factor,” with two levels, and a second variable with three levels).</p>
 <p>So, you may be asking why we don’t just do two separate ANOVAs for each variable? One reason is, again, <strong>family-wise error.</strong> But a more important issue is something known as an <strong>interaction.</strong> In research like this, we sometimes find that the influence of of one independent variable is affected by the other independent variable. I’ll share more about what interactions look like in a moment.</p>
 <p>The good news is that, mathematically, a factorial ANOVA is very similar to the one-way ANOVA we’ve worked with so far. So, just as before, we need to understand how much total variance is in our model, and we do this by comparing each data point to the grand mean:</p>

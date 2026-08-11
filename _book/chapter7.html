@@ -270,20 +270,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mediation and Moderation</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
     </ul>
@@ -344,7 +338,7 @@ window.Quarto = {
 <li><p>The difference between a contrast and a post-hoc test, and what they tell you about your data.</p></li>
 <li><p>How to write the results of an ANOVA and its related contrast/post-hoc test.</p></li>
 </ul>
-<p>Much of the time, we’re going to end up with a more complex design in our research where we need to test the differences between 3 or more groups. For example, imagine we were curious about what makes someone feel “satisfied” after a meal, and we establish four groups: A Control group who receives nothing after their meal; a Dessert group who receive a slice of pie after their meal; an Aperitif group, who receive a cocktail after dinner, and a Buttermint group who get a small butter mint after their meal.</p>
+<p>Much of the time, we’re going to end up with a more complex design in our research where we need to test the differences between 3 or more groups. For example, imagine we were curious about what makes someone feel “satisfied” after a meal, and we establish four groups: A Control group who receives nothing after their meal; a Dessert group who receive a slice of pie after their meal; an Aperitif group, who receive a cocktail after dinner, and a Buttermint group who get a small butter mint after their meal. The simulated data for this study can be found <a href="https://github.com/kcampana/statstextbook/blob/b0595638e13746e7a2d4294feae84d13e1d46a18/data%20files/satisfaction.csv">here</a>.</p>
 <p>Now, we certainly could simply do 6 separate t-tests between pairs of groups (A/B; A/C; A/D; B/C; B/D; C/D). But one problem we run into here is what we call <strong>familywise error.</strong> When we do multiple tests, we compound the likelihood of finding a Type I error. Specifically, if we do three t-tests, our likelihood of a Type I error is:</p>
 <p><span class="math inline">\(\text{Familywise Error}=1-(1-\alpha_p)^c\)</span></p>
 <p>Where <span class="math inline">\(\alpha_p\)</span> is the alpha level set for each comparison, and c is the number of comparisons you’re making. So, if we set each t-test at the normal <span class="math inline">\(\alpha=.05\)</span> for four comparisons, suddenly our error rate has ballooned to a 14% chance of a Type I error. Not acceptable!</p>

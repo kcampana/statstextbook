@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-3e54a2ba524a9c641b796d074eb695a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -131,6 +131,25 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Statistics for Social Scientists Who Are A Little Afraid of Them</a> 
+        <div class="sidebar-tools-main">
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistics-for-Social-Scientists-Who-Are-A-Little-Afraid-of-Them.pdf">
+              <i class="bi bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistics-for-Social-Scientists-Who-Are-A-Little-Afraid-of-Them.epub">
+              <i class="bi bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -232,20 +251,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mediation and Moderation</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Appendix 1: Tables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
     </ul>
@@ -483,11 +496,11 @@ Figure&nbsp;6.9: A scatterplot with details and the three age groups
 </figcaption>
 </figure>
 </div>
-<p>Oh, whoops! It turns out that age was a bit of a confounding variable here – when I separate out groups, suddenly what looked like a strong relationship is mostly an artifact of the different groups. In fact, within groups, there’s a weak negative relationship between head size and math score. In fact, <a href="#fig-simpson2" class="quarto-xref">Figure&nbsp;<span>6.9</span></a> illustrates the Simpson paradox – when we combine data from different groups, it can obscure the effect going on within a group. So, always be careful about combining different groups!</p>
+<p>Oh, whoops! It turns out that age was a bit of a confounding variable here – when I separate out groups, suddenly what looked like a strong relationship is mostly an artifact of the different groups. Within groups, there’s a weak negative relationship between head size and math score. In fact, <a href="#fig-simpson2" class="quarto-xref">Figure&nbsp;<span>6.9</span></a> illustrates the Simpson paradox – when we combine data from different groups, it can obscure the effect going on within a group. So, always be careful about combining different groups!</p>
 </section>
 <section id="example-2-scuba-diving" class="level3" data-number="6.4.2">
 <h3 data-number="6.4.2" class="anchored" data-anchor-id="example-2-scuba-diving"><span class="header-section-number">6.4.2</span> Example 2: Scuba Diving</h3>
-<p>For our next example, let’s imagine that I’ve collected data on different sports experiences people have tried, and I have this result when I ask people how many times my participants have gone scuba diving:</p>
+<p>For our next example, let’s imagine that I’ve collected data on different sports experiences people have tried (you can find this data set <a href="https://github.com/kcampana/statstextbook/blob/b0595638e13746e7a2d4294feae84d13e1d46a18/data%20files/scuba%20dives.csv">here</a>). I have this result when I ask people how many times my participants have gone scuba diving:</p>
 <div id="fig-diveout" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A histogram of dives, with a normal curve on the left and an extreme value at 234">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diveout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -515,7 +528,7 @@ Figure&nbsp;6.11: A histogram of dives with the outlier removed.
 </section>
 <section id="example-3-reaction-time" class="level3" data-number="6.4.3">
 <h3 data-number="6.4.3" class="anchored" data-anchor-id="example-3-reaction-time"><span class="header-section-number">6.4.3</span> Example 3: Reaction time</h3>
-<p>For my third example, let’s imagine that I conducted a study on reaction times and I have the following results:</p>
+<p>For my third example, let’s imagine that I conducted a study on reaction times (data is <a href="https://github.com/kcampana/statstextbook/blob/b0595638e13746e7a2d4294feae84d13e1d46a18/data%20files/reaction%20time.csv">here</a>) and I have the following results:</p>
 <div id="fig-react" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A histogram of reaction time, which shows a strong positive skew">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-react-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
