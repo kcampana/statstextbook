@@ -1,0 +1,353 @@
+---
+title: "Fundamentals of Statistics"
+author: "Danielle Navarro, Matthew Crump, Kristie Campana"
+number-sections: true
+---
+
+## Learning Objectives {#sec-fundamentals}
+
+- Understand what we mean when we talk about "statistics" and what their goal is for explaining the world around us.
+- Understand why it is important for social scientists to understand statistics, even when it is not an active part of their career goals.
+- Understand how statistics provide a link between theory and data in explaining social scientific phenomena.
+- Differentiate between different scales of measurement (nominal, ordinal, ratio, interval).
+- Differentiate between different types of research designs, and what types of questions each design can answer.
+
+## What are statistics?
+
+To the surprise of many students, statistics is a fairly significant part of a social science education. To the surprise of nobody, statistics is very rarely the *favorite* part of one's social science education. After all, if you really love the idea of statistics, you'd be enrolled in a statistics class, not a social science class. In my own experience of teaching statistics, there is usually a sizable portion of students who are quite unhappy to find themselves in my class. So I think a good place for us to start is addressing some of the common questions and myths people have about statistics.
+
+To me, the most basic question is: What are statistics? Many of my students had their last experience with math in a calculus class, which often feels very abstract to them. As social scientists, it's hard to think of why we might need a derivative, or why it might be important how quickly a cone fills with fluid. Statistics is much more prevalent in society, so I think students would greatly benefit from getting exposure to statistics in high school or college. But nobody has appointed me Queen of the World yet, so it is what it is.
+
+I particularly like Oxford Language's definition of statistics: "The practice or science of collecting and analyzing numerical data in large quantities, especially for the purpose of inferring proportions in a whole from those in a representative sample." There are several aspects of this definition that are worth exploring further.
+
+First, note that the definition references "numerical data" – while certainly qualitative data has its value, statistics join the scene once we want to quantify anything. Some statistics can be quite simple, such as percentages. Other statistics are more complex, like the logistic regression I cover towards the end of this book. But ultimately, we do need to have numbers and some variance in the numbers in order to make statistics valuable for answering our questions.
+
+Second, the definition notes that we need "data in large quantities." What is large here? That depends! But statistics are not terribly useful to us if we only have 5 data points. A common rule of thumb is to have a minimum of 30 data points for each condition we want to study, but ideally we'd like more than that.
+
+Third, I like that this definition explains that the ultimate goal of statistics is "inferring proportions in a whole from those in a representative sample." We'll dig into this point in Chapter 2, but for now, it suffices to say that the entire goal of conducting statistics is to take a sample, and use that to learn about what might be happening in a broader population. But for this to be trustworthy, we need to be thoughtful about who is and who is not included in our sample.
+
+In a nutshell, statistics allow us to take numerical information from a sample, and use that to understand what might be happening in a larger population of subjects.
+
+## Why do we need statistics?
+
+Given this definition, why are social scientists so obsessed with statistics? Just about any empirical article will have mysterious statistics plastered all over it, but usually the authors don't bother to explain why these statistics are so important to the points they are making. Students in social science often believe that research is a bit silly, because the field is just telling us something that is *common sense.*
+
+It does seem like that. But the best answer for why we need statistics is that humans are not trustworthy when it comes to understanding social science phenomena. Social scientists are susceptible to many biases, temptations and frailties humans suffer from. Statistics serves as a safeguard from ourselves. What seems like "common sense" is really a dependence on gut instincts, persuasive verbal arguments, and human reasoning. But humans were not really designed to solve scientific problems; we were designed to handle day-to-day inferences that helped us avoid being devoured by tigers or whatever. The modern world has fewer tiger-based problems (except for zookeepers I guess) and so relying on people to gauge reality based on gut feelings prevents us from making wise guesses about how people and societies work. In fact, in some ways, our brains are set up in a way that makes us quite bad at predicting human characteristics and behaviors.
+
+#### The curse of belief bias
+
+People are mostly pretty smart. We're certainly much smarter than the other species we share the planet with (though many people might disagree). Our minds are amazing things, and we seem to be capable of the most incredible feats of thought and reason. That doesn't make us perfect though. And among the many things that psychologists have shown over the years is that we really find it hard to be neutral-- it's hard to evaluate evidence impartially and without being swayed by pre-existing biases. A good example of this is the **belief bias effect** in logical reasoning: if you ask people to decide whether a particular argument is logically valid (i.e., the conclusion would be true if the premises were true), we tend to be influenced by the believability of the conclusion, even when we shouldn't. For instance, here's a valid argument where the conclusion is believable:
+
+> No cigarettes are inexpensive (Premise 1)
+>
+> Some addictive things are inexpensive (Premise 2)
+>
+> Therefore, some addictive things are not cigarettes (Conclusion)
+
+And here's a valid argument where the conclusion is not believable:
+
+> No addictive things are inexpensive (Premise 1)
+>
+> Some cigarettes are inexpensive (Premise 2)
+>
+> Therefore, some cigarettes are not addictive (Conclusion)
+
+The *logical structure* of argument #2 is identical to the structure of argument #1, and they're both valid. However, in the second argument, there are good reasons to think Premise 1 is incorrect, and as a result, it's probably the case that the Conclusion is incorrect. But that's irrelevant to the topic at hand: an argument is deductively valid if the conclusion is a logical consequence of the premises. That is, a valid argument doesn't have to involve true statements.
+
+Meanwhile, here's an invalid argument where the conclusion is believable:
+
+> No addictive things are inexpensive (Premise 1)
+>
+> Some cigarettes are inexpensive (Premise 2)
+>
+> Therefore, some addictive things are not cigarettes (Conclusion)
+
+And here's a valid argument where the conclusion is not believable:
+
+> No cigarettes are inexpensive (Premise 1)
+>
+> Some addictive things are inexpensive (Premise 2)
+>
+> Therefore, some cigarettes are not addictive (Conclusion)
+
+Suppose people are perfectly able to set aside their pre-existing biases about what is true and what isn't, and purely evaluate an argument on its logical merits. We'd expect 100% of people to say that the valid arguments are valid, and 0% of people to say that the invalid arguments are valid. So if you ran an experiment looking at this, you'd expect to see data like this:
+
+:::{#tbl-evans1}
+
+|                     | Conclusion feels true | Conclusion feels false |
+|---------------------|-----------------------|------------------------|
+| Argument is valid   | 100% say "valid"      | 100% say "valid"       |
+| Argument is invalid | 0% say "valid"        | 0% say "valid"         |
+
+Expected and logical conclusions from evaluating the validity of an argument
+:::
+
+However, in the classic study by Evans, Barston and Pollard (1983) they found the following results:
+
+:::{#tbl-evans2}
+
+|                     | Conclusion feels true | Conclusion feels false |
+|---------------------|-----------------------|------------------------|
+| Argument is valid   | 92% say "valid"       | 46% say "valid"        |
+| Argument is invalid | 92% say "valid"       | 8% say "valid"         |
+
+The actual results of Evans et al (1983)
+:::
+
+This table highlight the problem with trusting our gut instincts. Humans rely a lot on how the argument *feels*, so when a valid argument *feels* false, 54% of people are fooled into saying it's not valid. Likewise, when an invalid conclusion *feels* true, only 8% of people will realize that it is, in fact, not valid. When reality matches the feeling, people do pretty well. But when there is a mismatch, people are much worse at evaluating the validity of a statement.
+
+The good news here is that we have a great tool for solving this problem, and the name of that tool is "statistics." Relying on statistics helps us get away from depending too much on common sense or what "feels true" to us when talking about human behavior. Statistics *typically* keep us honest about what data does and does not tell us. I won't go so far as to say that statistics *always* keep us honest, though! There are a few things that might prevent us from finding the truth.
+
+First of all, data often has some interesting nooks and crannies that hide interesting secrets from us. One thing I absolutely love about statistics is that often we can use it to solve puzzles, but we might need to be creative in how we apply it. As one example from my own research, I was once tasked with determining whether a particular assessment predicted managerial performance. I had manager scores on the assessment, and several years of performance data (so, I had performance data from 2015, 2016, and so on). Managers started at different times, so they each had some performance data that was missing. Initially, there was no correlation between assessment performance and job performance for each year. However, when I rearranged the data so that it reflected their performance based on *how long they were in the role* (so a manager who started in 2015 would have their performance in 2016 as "Year 1 performance", whereas a manager who started in 2018 would have their performance in 2019 as "Year 1 performance"), suddenly it became crystal clear that managers who did poorly on their assessment absolutely tanked in job performance in their third year. I needed to do some critical thinking about what "time" represented in the data to unlock its secrets.
+
+Second, there are some secrets we can't unlock with our data. For my previous example, I was able to show that the assessment was predictive of performance. Why did managers with poor scores crash out in their third year, instead of in their first or second? Who knows! I certainly could speculate, but the data I had available wasn't going to answer that question (and frankly, it would be essentially impossible to collect data that would provide a definitive answer to that question).
+
+Third, statistics is a "garbage in, garbage out" situation. If I have crummy data, I can certainly use statistics to get an answer... but that answer is only as good as the data I'm using. We'll talk more about this in future chapters, but statistics is only part of the puzzle; issues like good methodology and appropriate sampling have major effects on our findings too.
+
+Finally, there are many ways that social scientists can misrepresent data or mislead their audience on what the data means. Sometimes this might be unintentional, but "lying with statistics" is a topic we will explore later in this text. It's a major ethical concern, because we make a lot of important decisions based on data and statistics, and misrepresentation of the data can have major repercussions.
+
+### Why do *I* have to know about statistics?
+
+Often, my students like to gripe that they don't plan to be directly involved with statistics. I have plenty of students who plan to go into fields where they are not going to do much research – maybe they will go on to treat patients in a clinic, or work in companies on developing training, or work in schools designing support programs for students. So if you don't plan on *doing* statistics, why bother to learn them?
+
+First, while you might be able to outsource a lot of the "doing of statistics" to someone else, you need to at least be a competent consumer of statistics. If you plan on designing studies, you will need to know how different designs related to statistics. If you plan on reading research, you'll be able to understand and critique that research if you know statistics. Hopefully, knowing statistics will also help alert you to any "fishiness" in the data that might suggest errors or malfeasance.
+
+Second, knowing statistics also ensures that if someone is trying to pull a fast one on you, you'll know. I once sat through a vendor presentation where the presenter clearly did not know he was dealing with a room full of statisticians, and he got torn to shreds for trying to sell us a measure that was absolute baloney.
+
+Finally, it's *expensive* to hire someone to do your stats! Most organizations aren't interested in spending that money if they can have an expert on staff. So, you'll be more employable if you can at least speak competently about statistics, even if that's not the focus of your job. Most workplaces are becoming more data-savvy, so this is a good skill to have in modern society. And yes, I know that artificial intelligence can serve as one way around knowing statistics. Unfortunately, at this time most available AI platforms are quite mediocre at handling numbers and data. So, even if you plan to use AI to help you, it is not dependable and you need to be ready to double check its answers.
+
+## There's more to research methods than statistics
+
+So far, most of what I've talked about is statistics, and so you'd be forgiven for thinking that statistics the only thing that's important here. Admittedly, about 99% of student *fears* relate to the statistics part of the course, so I've focused on the stats in this discussion, and hopefully I've convinced you that statistics matters, and more importantly, that it's not to be feared. That being said, it's pretty typical for introductory research methods classes to be very stats-heavy because you almost always find yourself needing statistics before you need the other research methods training. Why? Frankly, the statistics tend to be the easier part of understanding and conducting research. Methodology is harder to master. They both matter. I really do want to stress that research design is just as important as data analysis, and this book does spend a fair amount of time on it. However, while statistics has a kind of universality, and provides a set of core tools that are useful for most types of psychological research, the research methods side isn't quite so universal. There are some general principles that everyone should think about, but a lot of research design is very idiosyncratic, and is specific to the area of research that you want to engage in.
+
+### A brief introduction to research design
+
+In this chapter, we're going to start thinking about the basic ideas that go into designing a study, collecting data, checking whether your data collection works, and so on. It won't give you enough information to allow you to design studies of your own, but it will give you a lot of the basic tools that you need to assess the studies done by other people. However, since the focus of this book is much more on data analysis than on data collection, I'm only giving a very brief overview. Note that this chapter is "special" in two ways. Firstly, it's much more psychology-specific than the later chapters. Secondly, it focuses much more heavily on the scientific problem of research methodology, and much less on the statistical problem of data analysis. Nevertheless, the two problems are related to one another, so it's traditional for stats textbooks to discuss the problem in a little detail. This chapter relies heavily on \@Campbell1963 for the discussion of study design, and \@Stevens1946 for the discussion of scales of measurement.
+
+### Theoryland and Dataland: Creating an Operational Definition {#sec-design}
+
+One aspect of social science that's unique from other sciences is that most of what we measure isn't tangible. In "hard" science, there are many opportunities to measure things like weight, chemical makeup, hardness, speed. We often can observe these qualities in materials. Social science is rarely afforded this privilege. While some qualities might be directly observable (such as eye color), other variables we assume exist. Take "intelligence" as an example – this is a quality we think exists, but we can't directly observe it (the size and weight of someone's brain is not the same thing as "intelligence"). Even trying to define what "intelligence" is and how it looks when someone has a lot of it is a subject of great debate.
+
+Ultimately, I like to think that social scientists live in two different worlds called Theoryland and Dataland. "Intelligence" exists in Theoryland because it theoretically exists, but we can't directly measure it. But we need some terminology to understand how things work in Theoryland.
+
+First, we can think of "intelligence" as a **theoretical construct**. In social science, we use constructs all the time – intelligence, love, socioeconomic status – this are all things we think exist but can't be directly observed or handled. So instead, we need to come up with a **measure** – a method or tool we use to make our observations. This might be a question on a survey, or a behavioral observation, or a brain scan. **An operational definition** is the logical connection between the measure and the theoretical construct. If I want to create an operational definition of the construct "intelligence," I might do that by giving someone an IQ test, or asking someone to solve a puzzle in a certain amount of time. Ultimately, how a subject performs on this measure provides us with **a variable** – that is, the "data" we end up with in our data set. The data set exists in our other home, Dataland, where we are able to observe information that reflects (but is not identical to) our theoretical construct.
+
+In other words, this operational definition is essentially a bridge between Theoryland (where our construct exists) and Dataland (where we apply a measure and get data that tells us about what's going on in the real world around us). Sometimes this bridge is well-designed and solid, and other times it might not be.
+
+Take, for example, the construct of "age." We aren't going to be able to directly observe someone's age by being there at their birth and precisely measuring from then until the instant we collect data. Instead, we have to operationalize what we mean by age. It seems straightforward, but it really isn't! For instance, as an Industrial-Organizational psychologist who studies working adults, usually I assume that it is okay to measure age in years. But if you're a Developmental psychologist, that's way too crude, and so you often measure age in *years and months* (if a child is 2 years and 11 months, this is usually written as "2;11"). If you're interested in newborns, you might want to measure age in *days since birth*, maybe even *hours since birth*. In other words, the way in which you specify the allowable measurement values is important and dependent upon the type of questions you ask and the type of research you intend to do.
+
+Looking at this a bit more closely, you might also realize that the concept of "age" isn't actually all that precise. In general, when we say "age" we implicitly mean "the length of time since birth". But that's not always the right way to do it. Suppose you're interested in how newborn babies control their eye movements. If you're interested in kids that young, you might also start to worry that "birth" is not the only meaningful point in time to care about. If Baby Alice is born 3 weeks premature and Baby Bianca is born 1 week late, would it really make sense to say that they are the "same age" if we encountered them "2 hours after birth"? In one sense, yes: by social convention, we use birth as our reference point for talking about age in everyday life, since it defines the amount of time the person has been operating as an independent entity in the world, but from a scientific perspective that's not the only thing we care about. When we think about the biology of human beings, it's often useful to think of ourselves as organisms that have been growing and maturing since conception, and from that perspective Alice and Bianca aren't the same age at all. So you might want to define the concept of "age" in two different ways: the length of time since conception, and the length of time since birth. When dealing with adults, it won't make much difference, but when dealing with newborns it might.
+
+Moving beyond these issues, there's the question of methodology. What specific "measurement method" are you going to use to find out someone's age? As before, there are lots of different possibilities:
+
+- You could just ask people "how old are you?" The method of self-report is fast, cheap and easy, but it only works with people old enough to understand the question, and some people lie about their age.
+
+- You could ask an authority (e.g., a parent) "how old is your child?" This method is fast, and when dealing with kids it's not all that hard since the parent is almost always around. It doesn't work as well if you want to know "age since conception", since a lot of parents can't say for sure when conception took place. For that, you might need a different authority (e.g., an obstetrician). For adults, parents might be harder to use as an authority, so maybe a friend or partner is a better choice... but we are trusting that they actually know the right answer to our question.
+
+- You could look up official records, like birth certificates. This is time consuming and annoying, but it has its uses (e.g., if the person is now dead).
+
+As you can see, the ways we think about and measure age have different pros and cons that are going to be influenced by our research question. Some operational definitions are clearly poor (asking a two-year-old their age is sketchy at best) but there is no perfect way to measure "age" that will work for all research contexts. At the very least, when we try to create a decent operational definition of a variable, it involves:
+
+- Being precise about what you are trying to measure: For instance, does "age" mean "time since birth" or "time since conception" in the context of your research?
+
+- Determining what method you will use to measure it: Will you use self-report to measure age, ask a parent, or look up an official record? If you're using self-report, how will you phrase the question?
+
+- Defining the set of the allowable values that the measurement can take: Note that these values don't always have to be numerical, though they often are. When measuring age, the values are numerical, but we still need to think carefully about what numbers are allowed. Do we want age in years, years and months, days, hours? Etc. For other types of measurements (e.g., gender), the values aren't numerical. But, just as before, we need to think about what values are allowed. If we're asking people to self-report their gender, what options to we allow them to choose between? Is it enough to allow only "male" or "female"? Do you need an "other" option? Or should we not give people any specific options, and let them answer in their own words? And if you open up the set of possible values to include all verbal response, how will you interpret their answers?
+
+Operationalization is a tricky business, and there's no "one, true way" to do it. The way in which you choose to operationalize the informal concept of "age" or "gender" into a formal measurement depends on what you need to use the measurement for. Often you'll find that the community of scientists who work in your area have some fairly well-established ideas for how to go about it. In other words, operationalization needs to be thought through on a case by case basis. Nevertheless, while there a lot of issues that are specific to each individual research project, there are some aspects to it that are pretty general.
+
+### Scales of Measurement
+
+As we think about operational definitions and their link to data, we also need to consider what type of data we have available. A very useful concept for distinguishing between different types of variables is what's known as **scales of measurement**. Sorry to spoil my punchline later on, but understanding scales of measurement is *vital* for knowing which statistics you'll need to answer your research questions!
+
+### Nominal scale
+
+A **nominal scale** variable (also referred to as a **categorical** variable) is one in which there is no particular actual "amount" attached to the variable. Eye color is a classic example of a nominal scale – we usually think of this in categories like "green" or "brown" but there's no amount of anything attached to this variable. Sometimes you might have a number attached to a nominal scale, but often this number doesn't actually mean anything. For example, zip codes or postal codes are numbers that don't reflect an amount of anything; the zip code 55433 isn't "more zippy" than the zip code 11201 – they are just categories. Or if we're measuring someone's religion, if we code "Buddhist" as a 1 and "Muslim" as a 2 in our data set, the higher value doesn't indicate that Islam is better or more religious than Buddhism; the numbers assigned are arbitrary and just reflect that people have checked a different box on their survey.
+
+Nominal scales are fairly limited in the types of mathematical manipulations we can do with them. It doesn't make sense for us to talk about the "average religion" of a sample to be 1.75. At most, we can report on the frequencies of different groups, like reporting that 25 people in our sample report being Buddhists.
+
+### Ordinal scale
+
+**Ordinal scale** variables have a bit more structure than nominal scale variables, but not by a lot. An ordinal scale variable is one in which there is a natural, meaningful way to order the different possibilities, but you can't do anything else. The usual example given of an ordinal variable is "finishing position in a race". You *can* say that the person who finished first was faster than the person who finished second, but you *don't* know how much faster. As a consequence we know that 1st was faster than 2nd, and we know that 2nd was faster than 3rd, but the difference between 1st and 2nd might be much larger than the difference between 2nd and 3rd.
+
+Here's an more psychologically interesting example. Suppose I'm interested in people's attitudes to climate change, and I ask them to pick one of these four statements that most closely matches their beliefs:
+
+> (1) Temperatures are rising, because of human activity\
+> (2) Temperatures are rising, but we don't know why\
+> (3) Temperatures are rising, but not because of humans\
+> (4) Temperatures are not rising
+
+Notice that these four statements actually do have a natural ordering, in terms of "the extent to which they agree with the current science". Statement 1 is a close match, statement 2 is a reasonable match, statement 3 isn't a very good match, and statement 4 is in strong opposition to the science. So, in terms of the thing I'm interested in (the extent to which people endorse the science), I can order the items as $1 > 2 > 3 > 4$. Since this ordering exists, it would be very weird to list the options like this...
+
+> 1.  Temperatures are rising, but not because of humans\
+> 2.  Temperatures are rising, because of human activity\
+> 3.  Temperatures are not rising\
+> 4.  Temperatures are rising, but we don't know why
+
+...because it seems to violate the natural "structure" to the question.
+
+So, let's suppose I asked 100 people these questions, and got the following answers:
+
+:::{#tbl-climate}
+
+|                                                          | Number |
+|----------------------------------------------------------|:------:|
+| \(1\) Temperatures are rising, because of human activity |   51   |
+| \(2\) Temperatures are rising, but we don't know why     |   20   |
+| \(3\) Temperatures are rising, but not because of humans |   10   |
+| \(4\) Temperatures are not rising                        |   19   |
+
+Possible results of asking about climate change
+:::
+
+When analyzing these data, it seems quite reasonable to try to group (1), (2) and (3) together, and say that 81 of 100 people were willing to *at least partially* endorse the science. And it's *also* quite reasonable to group (2), (3) and (4) together and say that 49 of 100 people registered *at least some disagreement* with the dominant scientific view. However, it would be entirely bizarre to try to group (1), (2) and (4) together and say that 90 of 100 people said...what? There's nothing sensible that allows you to group those responses together at all.
+
+That said, notice that while we *can* use the natural ordering of these items to construct sensible groupings, what we *can't* do is average them. For instance, in my simple example here, the "average" response to the question is 1.97. If you can tell me what that means, I'd love to know. Because that sounds like gibberish to me!
+
+### Interval scale
+
+In contrast to nominal and ordinal scale variables, **interval scale** and ratio scale variables are variables for which the numerical value is genuinely meaningful. In the case of interval scale variables, the *differences* between the numbers are interpretable, but the variable doesn't have a "natural" zero value. One good example of this is SAT scores. SAT scores range from 400-1600, so it's impossible to even get a zero on this test, and if you somehow managed to do so, it's not an indication you have "no intelligence." But the difference between a score of 1000 and 1100 is the same as the distance between 1100 and 1200. Another example is years – the distance between 1990 and 2000 is ten years, and the distance between 2000 and 2010 is also ten years. The year of 0 doesn't mean "no time at all" – it's just where we started counting years the way we continue to number them in modern times.
+
+### Ratio scale
+
+The fourth and final type of variable to consider is a **ratio scale** variable. Just like with an interval variable, the numbers on a ratio scale indicate a fairly precise measure of the amount of a variable. It differs from interval scales in two important ways:
+
+- A zero on a ratio scale is a true zero, in that it indicates an absence of that quality.
+
+- You can reasonably multiply and divide the values on this scale.
+
+As an example, consider reaction time. If, somehow, someone was able to get zero milliseconds as their reaction time, it really does mean "no time at all." We can also do multiplication and division with reaction time – someone who takes 250 milliseconds to respond is twice as fast as someone who takes 500 milliseconds. Or if I'm studying snacking behavior, I might count how many candies someone takes out of a dish. In this case, someone could take zero, and that would mean "no snacking." And someone who eats 10 candies has eaten twice as many candies as someone who eats 5 candies.
+
+I find that students have a hard time distinguishing interval and ratio scales, so the good news is we largely treat them the same in how we conduct statistics in social sciences, but it's good to know the difference between both scales in case it comes up.
+
+It's also worth noting that we can measure the same variable with several different scales depending on how we create our measure. Age is a great example of this. If I ask someone to write in how many years old they are, that would be a ratio scale (a zero means I somehow have given my survey to a newborn who has been alive for zero years; someone who is 90 is three times older than someone who is 30). However, I could also **polytomize** my variable, where I take age and split it into several options, such as asking people to check a box that describes their age range (18 to 25; 26 to 30; 31 to 45...). Or I could **dichotomize** my variable by asking them to choose between two age options ("40 and under" versus "over 40"). In this case, I've taken what is a ratio variable, and I've turned it into an ordinal variable.
+
+We generally avoid polytomizing or dichotomizing a variable because doing that loses information. I can always take a ratio variable and turn it into an ordinal variable after the fact, but I can't do the reverse. If someone checks the "26 to 30" box for their age, I will have no way of knowing what their exact age is, so I won't be able to talk about differences between 27 and 28-year-old respondents. Occasionally, there might be a good reason to dichotomize or polytomize a variable – one example of this is whether someone passes or fails a test. While the score on the test is a ratio variable, there is an important distinction between someone who gets a 59% on the test (failing) and someone who gets a 60% on the test (passing). But doing this basically means that people who get a 30% versus a 59% on the test are more similar to each other than two people who get a 59% and a 60% on the test – dichotomizing their score into a pass/fail ordinal variable collapses people in the groups into broad buckets, which is only helpful in certain circumstances.
+
+### Continuous versus discrete variables
+
+There's a second kind of distinction that you need to be aware of, regarding what types of variables you can run into. This is the distinction between continuous variables and discrete variables. The difference between these is as follows:
+
+- A **continuous variable** is one in which, for any two values that you can think of, it's always logically possible to have another value in between.
+
+- A **discrete variable** is, in effect, a variable that isn't continuous. For a discrete variable, it's sometimes the case that there's nothing in the middle.
+
+These definitions probably seem a bit abstract, but they're pretty simple once you see some examples. For instance, response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond to a question, then it's possible for Cameron's response time to lie in between, by taking 3.0 seconds. And of course it would also be possible for David to take 3.031 seconds to respond, meaning that his response time would lie in between Cameron's and Alan's. And while in practice it might be impossible to measure response time that precisely, it's certainly possible in principle. Because we can always find a new value in between any two other ones, we say that response time is continuous.
+
+Discrete variables occur when this rule is violated. For example, nominal scale variables are always discrete: there isn't a type of transportation that falls "in between" trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete. Similarly, ordinal scale variables are always discrete: although "2nd place" does fall between "1st place" and "3rd place", there's nothing that can logically fall in between "1st place" and "2nd place". Interval scale and ratio scale variables can go either way. As we saw above, response time (a ratio scale variable) is continuous. Temperature in degrees Celsius (an interval scale variable) is also continuous. However, the year you went to school (an interval scale variable) is discrete. There's no year in between 2002 and 2003. The number of questions you get correct on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn't allow you to be "partially correct", there's nothing in between 5/10 and 6/10. The table summarizes the relationship between the scales of measurement and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible. I'm trying to hammer this point home, because (a) some textbooks get this wrong, and (b) people very often say things like "discrete variable" when they mean "nominal scale variable". It's very unfortunate.
+
+:::{#tbl-scales}
+
+|          | continuous | discrete |
+|----------|:----------:|:--------:|
+| nominal  |            |    x     |
+| ordinal  |            |    x     |
+| interval |     x      |    x     |
+| ratio    |     x      |    x     |
+
+: The relationship between the scales of measurement and the discrete/continuity distinction. Cells with an x correspond to things that are possible.
+:::
+
+### Some complexities
+
+Okay, I know you're going to be shocked to hear this, but ...the real world is much messier than this little classification scheme suggests. Very few variables in real life actually fall into these nice neat categories, so you need to be kind of careful not to treat the scales of measurement as if they were hard and fast rules. It doesn't work like that: they're guidelines, intended to help you think about the situations in which you should treat different variables differently. Nothing more.
+
+So let's take a classic example, maybe *the* classic example, of a psychological measurement tool: the **Likert scale**. The humble Likert scale is the bread and butter tool of all survey design. You yourself have filled out hundreds, maybe thousands of them, and odds are you've even used one yourself. Suppose we have a survey question that looks like this:
+
+> Which of the following best describes your opinion of the statement that "all pirates are freaking awesome" ...
+
+and then the options presented to the participant are these:
+
+> \(1\) Strongly disagree\
+> (2) Disagree\
+> (3) Neither agree nor disagree\
+> (4) Agree\
+> (5) Strongly agree
+
+This set of items is an example of a 5-point Likert scale: people are asked to choose among one of several (in this case 5) clearly ordered possibilities, generally with a verbal descriptor given in each case. However, it's not necessary that all items be explicitly described. This is a perfectly good example of a 5-point Likert scale too:
+
+> \(1\) Strongly disagree\
+> (2)\
+> (3)\
+> (4)\
+> (5) Strongly agree
+
+Likert scales are very handy, if somewhat limited, tools. The question is, what kind of variable are they? They're obviously discrete, since you can't give a response of 2.5. They're obviously not nominal scale, since the items are ordered; and they're not ratio scale either, since there's no natural zero.
+
+But are they ordinal scale or interval scale? One argument says that we can't really prove that the difference between "strongly agree" and "agree" is of the same size as the difference between "agree" and "neither agree nor disagree". In fact, in everyday life it's pretty obvious that they're not the same at all. So this suggests that we ought to treat Likert scales as ordinal variables. On the other hand, in practice most participants do seem to take the whole "on a scale from 1 to 5" part fairly seriously, and they tend to act as if the differences between the five response options were fairly similar to one another. As a consequence, a lot of researchers treat Likert scale data as if it were interval scale. It's not interval scale, but in practice it's close enough that we usually think of it as being **quasi-interval scale**.
+
+## The role of variables: predictors and outcomes
+
+Okay, I've got one last piece of terminology that I need to explain to you before moving away from variables. Normally, when we do some research we end up with lots of different variables. Then, when we analyse our data we usually try to explain some of the variables in terms of some of the other variables. It's important to keep the two roles "thing doing the explaining" and "thing being explained" distinct. So let's be clear about this now. Firstly, we might as well get used to the idea of using mathematical symbols to describe variables, since it's going to happen over and over again. Let's denote the "to be explained" variable $Y$, and denote the variables "doing the explaining" as $X_1$, $X_2$, etc.
+
+Now, when we doing an analysis, we have different names for $X$ and $Y$, since they play different roles in the analysis. The classical names for these roles are **independent variable** (IV) and **dependent variable** (DV). The IV is the variable that you use to do the explaining (i.e., $X$) and the DV is the variable being explained (i.e., $Y$). The logic behind these names goes like this: if there really is a relationship between $X$ and $Y$ then we can say that $Y$ depends on $X$, and if we have designed our study "properly" then $X$ isn't dependent on anything else. However, I personally find those names horrible: they're hard to remember and they're highly misleading, because (a) the IV is never actually "independent of everything else" and (b) if there's no relationship, then the DV doesn't actually depend on the IV. And in fact, because I'm not the only person who thinks that IV and DV are just awful names, there are a number of alternatives that I find more appealing.
+
+For example, in an experiment the IV refers to the **manipulation**, and the DV refers to the **measurement**. So, we could use **manipulated variable** (independent variable) and **measured variable** (dependent variable).
+
+:::{#tbl-ivdv}
+| role of the variable   | classical name            | modern name  |
+|:-----------------------|:--------------------------|:-------------|
+| "to be explained"      | dependent variable (DV)   | Measurement  |
+| "to do the explaining" | independent variable (IV) | Manipulation |
+
+: The terminology used to distinguish between different roles that a variable can play when analyzing a data set.
+:::
+
+We could also use **predictors** and **outcomes**. The idea here is that what you're trying to do is use $X$ (the predictors) to make guesses about $Y$ (the outcomes). This is summarized in the table:
+
+:::{#tbl-predictor}
+| role of the variable   | classical name            | modern name |
+|:-----------------------|:--------------------------|:------------|
+| "to be explained"      | dependent variable (DV)   | outcome     |
+| "to do the explaining" | independent variable (IV) | predictor   |
+
+: Alternative terminology used to distinguish between different roles that a variable can play when analyzing a data set.
+:::
+
+Because in this book we'll be talking about many different research designs other than experiments, I will use "predictors" and "outcomes" as the terminology going forward.
+
+Speaking of experiments... it's time to tackle research designs!
+
+## Research Designs
+
+It took me a while in graduate school to actually understand what my professors meant when they talked about "research designs." It sounds fancier than it is – all it means is that certain methods allow us to answer certain questions. The type of design we use also affects what statistics we should use, so it's an important distinction for the topic of statistics. The types of questions we ask also tend to be affected by how much attention our research topic has garnered so far... it's almost like thinking about the life span of a variable you plan to study.
+
+### Descriptive Research: "What is Y?"
+
+One of the very first steps in learning about a variable is defining it! Researchers design new constructs all the time, and part of learning about that construct is understanding what is and what is not part of that construct. One variable I studied in graduate school was something called "workplace incivility" – this is behavior that is not so intense that you can call it abuse, but it's low-grade disrespectful or rude behavior. It could include verbal behavior ("That's quite an... interesting outfit you're wearing today!") or non-verbal behavior (rolling your eyes, refusing to respond to a question).
+
+Early in the study of workplace incivility, researchers needed to learn a bit about what types of things people find uncivil at work, and what types of behaviors were frequent or infrequent. To learn more about this construct, researchers conducted **descriptive research** – research that helped describe and define this variable. Some of this research was fully qualitative, such as asking people what they considered to be rude and disrespectful (but not abusive) behavior at work. Or researchers might conduct a case study to explore a specific incident of incivility. Some research was quantitative, where researchers quantified what types of behaviors happened most frequently. Statistics in this kind of research tend to be pretty minimal – often we use statistics like frequencies or mean/median/mode to help us get a handle on what that variable is. In order to study incivility, we need to understand how it differs from related but distinct variables, such as "workplace abuse" or "workplace aggression."
+
+### Correlational Research: "What is related to Y?"
+
+Once researchers had a handle on a good definition for workplace incivility, they started to ask what relates to that variable. Who is likely to experience it? Who is likely to instigate it? What are some emotions and behaviors that relate to working in a place with a lot of incivility? This research is known as **correlational research.** The name is a little unfortunate – despite the word "correlation" being in the name, you don't necessarily use a statistical correlation to test it. When you hear people say "Correlation is not causation" usually they are talking about something that was studied using a correlational *design*.
+
+In correlational research, we are able to talk about other variables that are associated with it, but we *cannot make assertions about causality.* For example, imagine I give employees a survey asking them about how much they experience incivility in their workplace, and I discover that people who are very low in agreeableness report more incivility. I can't say that being disagreeable causes incivility in the workplace! Maybe it's true that grumpy people invite uncivil behavior from others. Or perhaps disagreeable people interpret neutral behavior as uncivil. Perhaps being treated rudely causes people to become more disagreeable. Or maybe there's a third variable that causes someone to both be disagreeable and to be treated rudely by others. Who knows! The point is that all I can say is that these variables are associated, but I can't claim to know anything about causality.
+
+### Experimental Research: "What causes Y? What does Y cause?"
+
+In some cases, the variable life cycle can progress to delving into causality. We might want to know what causes our variable, or what outcomes are a result of our variable. *Causality can only be established through experimental methods.*
+
+The key features of **experimental research** is that the researcher controls all aspects of the study, especially what participants experience during the study. In particular, the researcher manipulates or varies something (IVs), and then allows the outcome variable (DV) to vary naturally. The idea here is to deliberately vary the something in the world (IVs) to see if it has any causal effects on the outcomes. Moreover, in order to ensure that there's no chance that something other than the manipulated variable is causing the outcomes, everything else is kept constant or is in some other way "balanced" to ensure that they have no effect on the results. In practice, it's almost impossible to *think* of everything else that might have an influence on the outcome of an experiment, much less keep it constant. The standard solution to this is **randomization**: that is, we randomly assign people to different groups, and then give each group a different treatment (i.e., assign them different values of the predictor variables). We'll talk more about randomization later in this book, but for now, it's enough to say that what randomization does is minimize (but not eliminate) the chances that there are any systematic difference between groups.
+
+As an example, let's say I want to examine whether incivility causes higher levels of stress. I create a lab study where participants are invited in to work on a task, and I train my research assistant to either be civil or uncivil to the participants. Each session, my assistant flips a coin before the study starts to determine whether to be civil (heads) or uncivil (tails). Everything else about the study remains the same. At the beginning and at the end of the session, participants have their cortisol measured using a cheek swab. If I see that cortisol levels rise for the participants treated uncivilly but not for participants who are treated civilly, I can be reasonably confident that incivility does indeed cause stress.
+
+However, hopefully you can see there might be some ethical problems with this – it's not ideal that I'm stressing out my participants by being mean to them in a study, and this can have all kinds of negative effects on them and their opinion about research and deception. So, there might be some variables where doing a true experiment might be impossible or unethical (such as the effects of smoking – it would not be ethical to randomly assign our participants to either become smokers or non-smokers).
+
+In these cases, we might choose to use a **quasi-experiment.** In this case, we still might introduce a manipulation of some sort, but our groups are not randomly assigned. In my prior example, maybe we work with a company where they have two different plants, and we know they are planning to hire a new manager at each plant –one who is uncivil and one who is civil. We watch to see whether the plant with the uncivil manager demonstrates higher levels of stress. However, the lack of random assignment makes it harder for us to confidently assert causality – the people who work in each plant might be different, or something else might happen at the plant that could cause higher levels of stress, like an accident or layoffs. Quasi-experiments are not as effective as true experiments in understanding causality, but in some cases, its the best we can do.
+
+### Meta-Analysis: What do we know so far about X and Y?
+
+The last type of research worth discussing here is the meta-analysis. The statistics for this are beyond what we will cover in this book, but suffice it to say that when we've established a lot of studies looking at the relationship between a few variables, a meta-analysis is a way to get an overview of what all the studies have to say about the relationship, and it allows us to come up with an estimate of the correlation between variables across all studies, as well as some variables that might affect the relationship. Meta-analysis relies on other studies, so this can only happen when a decent amount of literature on the topic has built up, so we're likely to see this later in the life cycle of a variable.
+
+### Putting it all together
+
+I've been yapping for a long time at this point about a lot of things other than statistics. So why am I making you read all of this when the goal of this book is to teach you statistics?
+
+This all ties together in that understanding your variables and your research design will help you know what test you should use to answer your research questions. Once we start diving into specific tests in @sec-ttests, I'll get into more specifics. But for now, it's worthwhile to let you know:
+
+- Some designs are incompatible with some statistics (you will basically never do a Pearson correlation on data from an experiment).
+
+- Which statistics you use depend on how you scale your variables. If you measure age as a ratio variable versus an ordinal variable, that will determine what statistic is most appropriate for your data.
+
+This will all start to come together soon, but if I gave you a test on all this stuff right now and you feel like you could maybe squeak out a C on that test, you are where you need to be! I know it seems odd, but for the first few chapters of this book, you're just going to be simmering in new information, and you'll find that all of a sudden, it starts to connect and make sense. So don't feel too bad if you're overwhelmed! We have a ways to go before we can start pulling all the strings together. And don't be afraid to revisit this chapter to refresh yourself!
