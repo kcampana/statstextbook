@@ -151,23 +151,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Statistics for Social Scientists Who Are A Little Afraid of Them</a> 
         <div class="sidebar-tools-main">
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./Statistics-for-Social-Scientists-Who-Are-A-Little-Afraid-of-Them.pdf">
-              <i class="bi bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./Statistics-for-Social-Scientists-Who-Are-A-Little-Afraid-of-Them.epub">
-              <i class="bi bi-journal pe-1"></i>
-            Download ePub
-            </a>
-          </li>
-      </ul>
-    </div>
+    <a href="./Statistics-for-Social-Scientists-Who-Are-A-Little-Afraid-of-Them.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -358,7 +342,7 @@ window.Quarto = {
 <p><span class="math inline">\(\text{z} = \frac{\bar{X}-X}{\sigma}\)</span></p>
 <p>This equation looks a little similar to <a href="chapter3.html#eq-z" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>, the equation for a z-score. With a z-score, we were trying to compare someone’s score to the rest of the sample. This is analagous to a t-test, but instead of looking at an individual and comparing them to the sample, we are looking at a sample and seeing how it compares to the population. I like to think of it as “scaling up” the same idea from one person to a group of people. You’ll also notice instead of using the population standard deviation ( <span class="math inline">\(\sigma\)</span> ), we are using the standard error of the mean ( <span class="math inline">\(S_{\bar{X}}\)</span>, see <a href="chapter2.html#eq-sem" class="quarto-xref">Equation&nbsp;<span>3.1</span></a> ) . Why would we do this?</p>
 <p>In this case, <strong>we don’t know the population standard deviation.</strong> That is something that exists only in Theoryland, and we would never actually be able to measure this directly. So, as I mentioned before, we need to estimate this value by using the standard error of the mean.</p>
-<p>So, essentially, the t-test tells us the ratio between how big the difference is between two means (the population mean and our sample mean) compared to how much the data points spread out from that mean. Take a look at <a href="#fig-ttestgif" class="quarto-xref">Figure&nbsp;<span>7.1</span></a> below:</p>
+<p>So, essentially, the t-test tells us the ratio between how big the difference is between two means (the population mean and our sample mean) compared to how much the data points spread out from that mean. Take a look at the graphic below:</p>
 <div id="fig-ttestgif" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A gif showing that as two distributions move further apart, the t-value gets larger and the significance value gets smaller.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ttestgif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -370,7 +354,7 @@ Figure&nbsp;7.1: A t-test when our distributions move further apart
 </figure>
 </div>
 <p>This animation illustrates what happens to our t-test and our significance when the standard deviation is the same, but the difference between our means changes. As the difference between means gets larger, the magnitude of our t-test gets larger, and our significance value gets smaller. In other words, as our means get further apart, we can feel more confident that these groups are truly different from one another.</p>
-<p>Now take a look at ??? below. Here, the means stay the same, but within each group, the variance (and thus standard deviation) shrinks. As you can see, when standard deviation gets smaller, our t-test value gets larger, and our significance value gets smaller. So, when people within each group are very similar to each other, a small difference between means might be significant, because as the standard deviation shrinks, our distributions stop overlapping as much.</p>
+<p>Now take a look at the graphic below. Here, the means stay the same, but within each group, the variance (and thus standard deviation) shrinks. As you can see, when standard deviation gets smaller, our t-test value gets larger, and our significance value gets smaller. So, when people within each group are very similar to each other, a small difference between means might be significant, because as the standard deviation shrinks, our distributions stop overlapping as much.</p>
 <div id="ttestgif2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/ttest2.gif" class="img-fluid figure-img" alt="An animation that shows when the variance of distributions gets smaller, it results in the distributions overlapping less, which means a larger t-test value and a smaller significance value"></p>
@@ -382,7 +366,7 @@ Figure&nbsp;7.1: A t-test when our distributions move further apart
 <p>In <span class="citation" data-cites="clark2008">Clark and Stoner (<a href="#ref-clark2008" role="doc-biblioref">2008</a>)</span> , braille readers had an average score of 99, compared to a population average of 100. We also know from their data that the standard deviation for the sample was 11.70, and the sample size was 23. So, we can plug in these values to get the t-test value itself:</p>
 <p><span class="math inline">\({S_{\bar X}} = \frac{11.70}{\sqrt{23}} = 2.44\)</span></p>
 <p><span class="math inline">\(\text{t} = \frac{\bar{100}-99}{2.44}=.41\)</span></p>
-<p>This is quite a tiny t-test value! If you were doing your computations by hand, you’d need to compare this value with the critical t-test value on a t-table (<span class="quarto-unresolved-ref">?tbl-ttable</span>) – if our obtained t-test value is lower in magnitude compared to the critical value, we conclude the difference is not significant. Here, our degrees of freedom are 22, and we are doing a one-tailed test with <span class="math inline">\(\alpha=.05\)</span>. According to the t-table, our critical t-value is so the critical t-test value is 1.71. Our obtained t-test value of .41 does not clear that bar, so we can declare this test non-significant, and that our sample likely doesn’t differ from the population.</p>
+<p>This is quite a tiny t-test value! If you were doing your computations by hand, you’d need to compare this value with the critical t-test value on a t-table <a href="appendix1.html#tbl-ttable" class="quarto-xref">Table&nbsp;<span>15.2</span></a> – if our obtained t-test value is lower in magnitude compared to the critical value, we conclude the difference is not significant. Here, our degrees of freedom are 22, and we are doing a one-tailed test with <span class="math inline">\(\alpha=.05\)</span>. According to the t-table, our critical t-value is so the critical t-test value is 1.71. Our obtained t-test value of .41 does not clear that bar, so we can declare this test non-significant, and that our sample likely doesn’t differ from the population.</p>
 <p>(The good news is that we have software that can do these calculations for us, so we don’t generally refer to t tables anymore; instead, the software would indicate that the p-value is greater than our usual .05 standard cutoff for declaring something significant).</p>
 <p>In other words, if we think of our t-test value as a ratio, we don’t see much of a difference between our sample mean and the population mean, and we see quite a bit of variation within our sample; the fact that our sample is one point lower than the population is very likely just due to random chance. (We can’t be 100% certain about this, though! It is certainly possible that we had a weird sample just by chance, so we might be making a Type II error… but we would never know if that was the case.)</p>
 <p>So ultimately, the authors reasonably concluded that braille readers seem to be quite similar to other students in terms of their spelling skills, which seems like good news. Of course, it’s a small sample, so we would want to keep in mind whether this sample was representative, and whether the size of the difference is practically significant.</p>
@@ -530,7 +514,7 @@ Table&nbsp;7.1: Table with 10 scores for Group A and 15 scores for Group B
 <p><span class="math inline">\(s^2_p = \frac{(10-1)10.04 + (15-1)6.64}{10+15 -2}=7.97\)</span></p>
 <p>And then we apply that value to our t-test equation:</p>
 <p><span class="math inline">\(t = \frac{108.60-105.73}{\sqrt{(\frac{7.97}{10} + \frac{7.97}{15})}}=2.49\)</span></p>
-<p>Again, if you are using statistical software, the program should provide you with a significance value. But just for clarity’s sake, you can also use <span class="quarto-unresolved-ref">?tbl-ttable</span> to find the critical t value; a two-tailed test with <span class="math inline">\(\alpha=.05\)</span> and 23 degrees of freedom gives us a critical t of 2.07. Because our obtained t-test value is larger than this, we can conclude this is a significant difference. In other words, our results indicate that the group that saw the incorrect spelling did markedly worse than the other group, possibly because when it came time to take the test, the students had a hard time remembering which was the correct versus incorrect spelling. So, we have an answer to our question about what technique works best for students.</p>
+<p>Again, if you are using statistical software, the program should provide you with a significance value. But just for clarity’s sake, you can also use <a href="appendix1.html#tbl-ttable" class="quarto-xref">Table&nbsp;<span>15.2</span></a> to find the critical t value; a two-tailed test with <span class="math inline">\(\alpha=.05\)</span> and 23 degrees of freedom gives us a critical t of 2.07. Because our obtained t-test value is larger than this, we can conclude this is a significant difference. In other words, our results indicate that the group that saw the incorrect spelling did markedly worse than the other group, possibly because when it came time to take the test, the students had a hard time remembering which was the correct versus incorrect spelling. So, we have an answer to our question about what technique works best for students.</p>
 <section id="what-to-do-if-your-assumption-of-normality-andor-homoscedasticity-are-violated" class="level3" data-number="7.3.1">
 <h3 data-number="7.3.1" class="anchored" data-anchor-id="what-to-do-if-your-assumption-of-normality-andor-homoscedasticity-are-violated"><span class="header-section-number">7.3.1</span> What to do if your assumption of normality and/or homoscedasticity are violated</h3>
 <p>The good news is that t-tests are typically quite <strong>robust</strong> against violations of this type. However, if you have concerns about the normality or homoscedasticity of your data, you can apply what’s called a <strong>Welch’s correction.</strong> This correction doesn’t use pooled variance, but keeps variances separated in the denominator. It also makes an adjustment to the degrees of freedom for the test – specifically, it reduces the degrees of freedom to account for the increased uncertainty of the test. Ultimately, the correction raises the critical t-test value, making it slightly less likely that you’ll obtain a significant result. Most of the time, the results won’t differ by much, and in fact, some social scientists recommend using the Welch test even if you don’t have issues of normality or heteroscedasticity <span class="citation" data-cites="delacre2019">Delacre et al. (<a href="#ref-delacre2019" role="doc-biblioref">2019</a>)</span>. If you do use a Welch correction, you should report it in your write up, and adjust the degrees of freedom and the t-test result accordingly.</p>
@@ -579,7 +563,7 @@ Figure&nbsp;7.2: A bar chart of group means.
 <section id="sec-withinT" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="sec-withinT"><span class="header-section-number">7.4</span> Within-Subject T-Test</h2>
 <p>The final type of t-test you’ll encounter is the within-subject t-test. This test has a lot of different names, depending on the nature of the research you’re doing. In many cases, this t-test is used if you are testing participants twice, like with a pre-test and a post-test to see if there’s been improvement after a treatment or intervention; this is often called a repeated measures t-test or a dependent t-test. In some research contexts, it might not be feasible to assess people with both a pre- and post-test, so sometimes participants are matched on a characteristic, and are given the two different conditions and assessed on their outcome. Because they were matched ahead of time, they likely are similar and so they can be treated the same in terms of how they respond to two different treatments. This is known as a matched-sample t-test, but mathematically, all of these different t-tests are the same. The main difference here is that the two scores share some relationship, so we can’t treat this as a between subject sample, where we assume the scores between groups are independent of one another.</p>
-<p>We can take our example from the last section and re-design it as a within subject t-testdata set is <a href="https://github.com/kcampana/statstextbook/blob/b0595638e13746e7a2d4294feae84d13e1d46a18/data%20files/spelling%20within.csv">here</a>). So, in this case, we might teach our students some words using only the correct spelling, and have them take a spelling test on those words (Condition A). We then teach them some different words using the other technique of showing them both the correct and the incorrect spelling (Condition B). There are some methodological problems with doing it this way, but let’s not worry too much about that for the sake of this illustration.</p>
+<p>We can take our example from the last section and re-design it as a within subject t-test (the data set is <a href="https://github.com/kcampana/statstextbook/blob/b0595638e13746e7a2d4294feae84d13e1d46a18/data%20files/spelling%20within.csv">here</a>). So, in this case, we might teach our students some words using only the correct spelling, and have them take a spelling test on those words (Condition A). We then teach them some different words using the other technique of showing them both the correct and the incorrect spelling (Condition B). There are some methodological problems with doing it this way, but let’s not worry too much about that for the sake of this illustration.</p>
 <p>So now, our data might look like this:</p>
 <div id="tbl-withinspell" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -667,9 +651,14 @@ Table&nbsp;7.2: Table with data from 10 people who took a spelling test twice.
 <p>Where <span class="math inline">\({\bar{D}}\)</span> is the average difference score, and <span class="math inline">\({{S_D}}\)</span> is the standard deviation of those difference scores. We find that the average difference score is 4.0, and the standard deviation of differences is 2.83, so:</p>
 <p><span class="math inline">\(\text{t}= \frac{4.00-0}{\frac{2.83}{\sqrt{10}}}=4.47\)</span></p>
 <p>The critical t-score for this test is 2.26, so the difference is clearly significant in this case; students see a significant drop in scores if they use a technique that shows them mistakes than if they don’t see mistakes.</p>
-<p>There are a couple additional points worth noting here. First, imagine that we had one unusually poor speller in the group. Let’s say that participant #10 has a score of 3 in Condition A, and a score of 1 in Condition B – so, they are about 100 points lower than most students. However, because we are interested in the <strong>change</strong> in scores, the value in the difference column wouldn’t change, nor would the standard deviation of difference scores. We essentially throw away the variance between participants in this equation. We don’t really care if participants are different from one another, we just care whether their scores change in a systematic way. This also means that this test is more powerful than a between-subjects t-test. If we take these same scores and treat them as if they are in a between-subject test: :::{#tbl-betweenspell}</p>
+<p>There are a couple additional points worth noting here. First, imagine that we had one unusually poor speller in the group. Let’s say that participant #10 has a score of 3 in Condition A, and a score of 1 in Condition B – so, they are about 100 points lower than most students. However, because we are interested in the <strong>change</strong> in scores, the value in the difference column wouldn’t change, nor would the standard deviation of difference scores. We essentially throw away the variance between participants in this equation. We don’t really care if participants are different from one another, we just care whether their scores change in a systematic way. This also means that this test is more powerful than a between-subjects t-test. If we take these same scores and treat them as if they are in a between-subject test:</p>
+<div id="tbl-betweenspell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-betweenspell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7.3: The same data but as a between-subject test
+</figcaption>
+<div aria-describedby="tbl-betweenspell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
-<caption>The same data but as a between-subject test :::</caption>
 <thead>
 <tr class="header">
 <th>Group</th>
@@ -759,6 +748,9 @@ Table&nbsp;7.2: Table with data from 10 people who took a spelling test twice.
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p>We would find a t-score of about 3.00. This value is significant, but not nearly as large in magnitude as the 3.97 we found when we treated the data as within-subject. So, you don’t need as many participants or as much data with a within-subject test as you do with a between-subject test to detect a difference. There are many reasons why it might be nonsensical or impossible to use a within-subject design for your research, but if it is possible, it is worth considering, especially if you are limited on resources or participants.</p>
 <section id="what-to-do-if-your-assumptions-are-violated" class="level3" data-number="7.4.1">
 <h3 data-number="7.4.1" class="anchored" data-anchor-id="what-to-do-if-your-assumptions-are-violated"><span class="header-section-number">7.4.1</span> What to do if your assumptions are violated</h3>
